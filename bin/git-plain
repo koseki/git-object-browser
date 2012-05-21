@@ -1,0 +1,5 @@
+#! /usr/bin/env ruby
+
+require 'git-plain'
+
+GitPlain::Main.new.execute
