@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 
 module GitPlain
 
-  class GitIndexDumper < BinFile
+  class IndexDumper < BinFile
 
     def initialize(input, output)
       @in = input

@@ -1,4 +1,7 @@
+# -*- coding: utf-8 -*-
+
 module GitPlain
+
   class ObjectDumper < BinFile
 
     def initialize(input, output)

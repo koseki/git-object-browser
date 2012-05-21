@@ -1,24 +1,35 @@
-# Git::Plain
+# git-plain
 
-TODO: Write a gem description
+Dump all git objects to plain text files.
+
 
 ## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'git-plain'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
 
     $ gem install git-plain
 
 ## Usage
 
-TODO: Write usage instructions here
+Execute 'git plain' in your working directory.
+
+    $ cd working-dir
+    $ git plain
+
+creates:
+
+- .git/plain/index
+- .git/plain/objects/...
+
+All objects is now readable. Then, you can do this.
+
+    $ cd .git/
+    $ git init
+
+Commit all git objects to the .git/.git repository to see how the git repository works.
+
+
+## Todo 
+
+- Extract packed objects.
 
 ## Contributing
 

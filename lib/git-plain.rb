@@ -10,8 +10,8 @@ require 'digest/sha1'
 require 'stringio'
 
 require "git-plain/binfile"
-require "git-plain/"
-
+require "git-plain/object_dumper"
+require "git-plain/index_dumper"
 
 module GitPlain
   class Main
@@ -23,7 +23,7 @@ module GitPlain
         STDERR << "Write: .git/plain/index\n"
         File.open(target + "/index") do |input|
           File.open(outdir + "/index", "w") do |output|
-            dumper = GitIndexDumper.new(input, output)
+            dumper = GitPlain::IndexDumper.new(input, output)
             dumper.dump
           end
         end
@@ -48,7 +48,7 @@ module GitPlain
         STDERR << "Write: .git/plain/#{path}\n"
         File.open(target + "/" + path) do |input|
           File.open(outfile, "w") do |output|
-            dumper = GitObjectDumper.new(input, output)
+            dumper = GitPlain::ObjectDumper.new(input, output)
             dumper.dump
           end
         end
