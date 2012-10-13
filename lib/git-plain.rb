@@ -9,12 +9,13 @@ require 'zlib'
 require 'digest/sha1'
 require 'stringio'
 
-require "git-plain/models/binfile.rb"
-require "git-plain/models/git_object.rb"
-require "git-plain/models/index.rb"
-require "git-plain/models/index_entry.rb"
-require "git-plain/models/index_reuc_extension.rb"
-require "git-plain/models/index_tree_extension.rb"
+require "git-plain/models/binfile"
+require "git-plain/models/git_object"
+require "git-plain/models/index"
+require "git-plain/models/index_entry"
+require "git-plain/models/index_reuc_extension"
+require "git-plain/models/index_tree_extension"
+require "git-plain/server/main"
 
 require "git-plain/dumper"
 require "git-plain/object_dumper"
@@ -24,8 +25,12 @@ module GitPlain
   class Main
     def execute
       target = find_target
-      dumper = Dumper.new(target)
-      dumper.dump
+      if ARGV[0] == "dump"
+        dumper = Dumper.new(target)
+        dumper.dump
+      else
+        Server::Main.execute(target, 8080)
+      end
     end
 
     def find_target
