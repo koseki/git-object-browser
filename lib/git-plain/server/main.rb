@@ -14,6 +14,7 @@ module GitPlain
         root = File.dirname(File.dirname(File.dirname(File.dirname(__FILE__))))
         root = File.expand_path(File.join(root, "htdocs"))
         server = WEBrick::HTTPServer.new :Port => port, :DocumentRoot => root
+        server.mount '/git', GitServlet, @target
         trap 'INT' do
           server.shutdown
         end
