@@ -10,7 +10,7 @@ module GitPlain
     end
 
     def dump
-      dirc = @in.read(4)
+      dirc = raw(4)
       if dirc != "DIRC"
         throw Exception.new("Illegal format.")
       end
@@ -91,7 +91,7 @@ module GitPlain
         intent_to_add     = flags[2..2]
       end
 
-      name_length = ["0000" + flags[4..15]].pack("B*").unpack("n")
+      name_length = ["0000" + flags[4..15]].pack("B*").unpack("n")[0]
 
       path = ""
 
@@ -101,7 +101,7 @@ module GitPlain
 
       begin
         path += token.unpack("Z*").first
-        break if token[-1] == 0
+        break if token.unpack("C*").last == 0
       end while(token = raw(8))
 
       @out << "            ctime: #{ctime}\n"
