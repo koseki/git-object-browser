@@ -35,9 +35,9 @@ module GitPlain
         @out << "----------------------------------------------------------------\n"
         @out << "extension: #{sig}\n"
         @out << "----------------------------------------------------------------\n"
-        # self.call("dump_extension_#{sig.to_lower}")
-        skip_extension
-        @out << "(skip)\n"
+        self.send("dump_extension_#{sig.downcase}")
+        # skip_extension
+        # @out << "(skip)\n"
         @out << "\n"
       end
 
@@ -142,6 +142,31 @@ module GitPlain
       raw(length)
     end
 
+    def dump_extension_tree
+      total_length = int
+      length = 0
+      while (length < total_length)
+        path_component = find_char "\0"
+        entry_count = find_char " "
+        subtree_count = find_char "\n"
+        sha1 = hex(20)
+
+        length += path_component.bytesize + 1
+        length += entry_count.bytesize + 1
+        length += subtree_count.bytesize + 1
+        length += 20
+
+        @out << "   path_component: #{path_component}\n"
+        @out << "      entry_count: #{entry_count}\n"
+        @out << "    subtree_count: #{subtree_count}\n"
+        @out << "             sha1: #{sha1}\n\n"
+        
+      end
+    end
+
+    def dump_extension_reuc
+      skip_extension
+    end
   end
 
 end
