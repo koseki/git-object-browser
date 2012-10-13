@@ -14,8 +14,8 @@ module GitPlain
       sha1 = Digest::SHA1.hexdigest(store)
       @in = StringIO.new(store)
 
-      type = space_terminated_str
-      size = null_terminated_str
+      type = find_char " "
+      size = find_char "\0"
 
       @out << "type: #{type}\n"
       @out << "size: #{size}\n"
@@ -31,12 +31,12 @@ module GitPlain
 
     # man git-ls-tree
     def dump_tree_entry
-      mode = space_terminated_str
+      mode = find_char " "
       return false if mode.empty?
 
       mode = " " + mode if mode.length < 6
 
-      filename = null_terminated_str
+      filename = find_char "\0"
       sha1 = hex(20)
 
       @out << "#{mode} #{sha1} #{filename}\n"

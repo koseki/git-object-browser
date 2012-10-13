@@ -17,20 +17,11 @@ module GitPlain
       return @in.read(bytes).unpack("B*").first
     end
 
-    def null_terminated_str
+    def find_char(char)
       buf = ""
       loop do
         c = @in.read(1)
-        return buf if c.nil? || c == "\0"
-        buf += c
-      end
-    end
-
-    def space_terminated_str
-      buf = ""
-      loop do
-        c = @in.read(1)
-        return buf if c.nil? || c == " "
+        return buf if c.nil? || c == char
         buf += c
       end
     end
