@@ -9,7 +9,13 @@ require 'zlib'
 require 'digest/sha1'
 require 'stringio'
 
-require "git-plain/binfile"
+require "git-plain/models/binfile.rb"
+require "git-plain/models/git_object.rb"
+require "git-plain/models/index.rb"
+require "git-plain/models/index_entry.rb"
+require "git-plain/models/index_reuc_extension.rb"
+require "git-plain/models/index_tree_extension.rb"
+
 require "git-plain/object_dumper"
 require "git-plain/index_dumper"
 
