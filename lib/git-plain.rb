@@ -7,22 +7,28 @@ require "git-plain/version"
 
 require 'zlib'
 require 'digest/sha1'
+require 'json'
 require 'stringio'
 
+require "git-plain/models/ref"
 require "git-plain/models/binfile"
+require "git-plain/models/directory"
 require "git-plain/models/git_object"
 require "git-plain/models/index"
 require "git-plain/models/index_entry"
 require "git-plain/models/index_reuc_extension"
 require "git-plain/models/index_tree_extension"
 require "git-plain/server/main"
+require "git-plain/server/git_servlet"
 
 require "git-plain/dumper"
 require "git-plain/object_dumper"
 require "git-plain/index_dumper"
 
 module GitPlain
+
   class Main
+
     def execute
       target = find_target
       if ARGV[0] == "dump"
@@ -44,6 +50,8 @@ module GitPlain
 
       throw Exception.new(".git not found")
     end
-  end
 
+  end
 end
+
+GitPlain::Main.new().execute if __FILE__ == $0

@@ -32,6 +32,14 @@ module GitPlain
         end
       end
 
+      def to_hash
+        return {
+          "signature" => @signature,
+          "total_length" => @total_length,
+          "entries" => @entries
+        }
+      end
+
     end
   end
 end

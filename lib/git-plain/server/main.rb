@@ -28,4 +28,3 @@ module GitPlain
     end
   end
 end
-

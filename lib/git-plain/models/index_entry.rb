@@ -63,6 +63,33 @@ module GitPlain
         return path
       end
 
+
+      def to_hash
+        return {
+          "ctime" => @ctime,
+          "cnano" => @cnano,
+          "mtime" => @mtime,
+          "mnano" => @mnano,
+          "dev"   => @dev,
+          "ino"   => @ino,
+          "object_type"       => @object_type,
+          "unix_permission"   => @unix_permission,
+
+          "uid"   => @uid,
+          "gid"   => @gid,
+          "size"  => @size,
+          "sha1"  => @sha1,
+          "path"  => @path,
+
+          "assume_valid_flag" => @assume_valid_flag,
+          "extended_flag"     => @extended_flag,
+          "stage"             => @stage,
+          "skip_worktree"     => @skip_worktree,
+          "intent_to_add"     => @intent_to_add,
+          "name_length"       => @name_length,
+        }
+      end
+
     end
   end
 end

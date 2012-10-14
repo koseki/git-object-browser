@@ -38,6 +38,17 @@ module GitPlain
         end
         return entries
       end
+      
+      def to_hash
+        return {
+          "type" => @type,
+          "sha1" => @sha1,
+          "size" => @size,
+          "entries" => @entries,
+          "contents" => @contents,
+        }
+      end
+
     end
   end
 end

@@ -18,6 +18,13 @@ module GitPlain
         raw(@total_length) # TODO 
       end
 
+      def to_hash
+        return {
+          "signature" => @signature,
+          "total_length" => @total_length,
+        }
+      end
+
     end
   end
 end

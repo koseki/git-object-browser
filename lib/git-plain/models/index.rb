@@ -47,6 +47,26 @@ module GitPlain
         return extensions
       end
 
+      def to_hash
+        entries = []
+        @entries.each do |entry|
+          entries << entry.to_hash
+        end
+
+        extensions = []
+        @extensions.each do |extension|
+          extensions << extension.to_hash
+        end
+
+        return {
+          "version"      => @version,
+          "entry_count"  => @entry_count,
+          "entries"      => entries,
+          "extensions"   => extensions,
+          "sha1"         => @sha1,
+        }
+      end
+
     end
   end
 end
