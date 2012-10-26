@@ -1,0 +1,9 @@
+<article>
+<h1><i data-entry-icon="'directory'"></i> {{path}}</h1>
+<ul style="list-style-type: none">
+<li data-ng-repeat="entry in object.entries">
+<a href="/#/{{$parent.path}}/{{entry.basename}}"><i data-entry-icon="entry.type"></i> {{entry.basename}}</a>
+</li>
+</ul>
+
+</article>

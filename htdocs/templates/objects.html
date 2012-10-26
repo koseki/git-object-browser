@@ -1,0 +1,14 @@
+<h1><i class="icon-folder-open"></i> {{path}}</h1>
+
+<table class="table table-bordered table-hover">
+<tbody>
+<tr data-ng-repeat="rows in objectTable">
+<td data-ng-repeat="cel in rows">
+  <span data-ng-switch="cel.type">
+    <span data-ng-switch-when="empty">{{cel.basename}}</span>
+    <span data-ng-switch-default><a href="/#/.git/objects/{{cel.basename}}">{{cel.basename}}</a></span>
+  </span>
+</td>
+</tr>
+</tbody>
+</table>

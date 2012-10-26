@@ -1,0 +1,21 @@
+<article>
+<h1 style="font-size:1.8em;"><i data-entry-icon="'object'"></i> {{path}} <small>Object</small></h1>
+
+<table class="table">
+<tr><th>type</th><td>{{object.type}}</td></tr>
+<tr><th>sha1</th><td>{{object.sha1}}</td></tr>
+<tr><th>size</th><td>{{object.size}}</td></tr>
+
+<tr data-ng-repeat="prop in object.properties">
+<th>{{prop.key}}</th>
+<td data-ng-switch="prop.type">
+<span data-ng-switch-when="sha1"><a href="#/.git/{{prop.path}}">{{prop.value}}</a></span>
+<span data-ng-switch-when="user">{{prop.value}} <small style="color:#aaa">{{prop.date}}</small></span>
+<span data-ng-switch-default>{{prop.value}}</span>
+</td>
+</tr>
+<tr><th>message</th><td>{{object.message}}</td></tr>
+</table>
+
+
+</article>
