@@ -67,6 +67,10 @@ module GitPlain
         }
       end
 
+      def self.path?(relpath)
+        relpath == "index"
+      end
+
     end
   end
 end

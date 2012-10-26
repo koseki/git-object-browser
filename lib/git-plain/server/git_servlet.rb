@@ -69,7 +69,7 @@ module GitPlain
       end
 
       def response_object(response)
-        return false unless @relpath =~ %r{\Aobjects/[0-9a-f]{2}/[0-9a-f]{38}\z}
+        return false unless GitPlain::Models::GitObject.path?(@relpath)
 
         obj = {}
         File.open(File.join(@target, @relpath)) do |input|
@@ -80,9 +80,7 @@ module GitPlain
       end
 
       def response_ref(response)
-        ref_names = %w{HEAD FETCH_HEAD ORIG_HEAD MERGE_HEAD CHERRY_PICK_HEAD}
-
-        return false unless ref_names.include?(@relpath) or @relpath =~ %r{refs/}
+        return false unless GitPlain::Models::Ref.path?(@relpath)
 
         obj = {}
         File.open(File.join(@target, @relpath)) do |input|

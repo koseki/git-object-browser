@@ -11,11 +11,18 @@ module GitPlain
         Dir.chdir(File.join(root, path)) do
           files = Dir.glob("*")
           files.each do |file|
+            relpath = File.join(path, file).gsub(%r{\A/}, '')
             entry = {}
             if File.directory?(file)
               entry[:type] = "directory"
             elsif File.symlink?(file)
               entry[:type] = "symlink"
+            elsif Ref::path?(relpath)
+              entry[:type] = 'ref'
+            elsif Index::path?(relpath)
+              entry[:type] = 'index'
+            elsif GitObject::path?(relpath)
+              entry[:type] = 'object'
             else
               entry[:type] = "file"
             end

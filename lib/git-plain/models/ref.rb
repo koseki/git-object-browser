@@ -21,6 +21,11 @@ module GitPlain
         }
       end
 
+      def self.path?(relpath)
+        ref_names = %w{HEAD FETCH_HEAD ORIG_HEAD MERGE_HEAD CHERRY_PICK_HEAD}
+        return (ref_names.include?(relpath) || relpath =~ %r{\Arefs/})
+      end
+
     end
 
   end
