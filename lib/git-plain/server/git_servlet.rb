@@ -12,7 +12,7 @@ module GitPlain
         # status, content_type, body = do_stuff_with request
 
         path = request.path
-        unless path =~ %r{/git(?:/(.*))?}
+        unless path =~ %r{/.git(?:/(.*))?}
           not_found(response)
           return
         end
