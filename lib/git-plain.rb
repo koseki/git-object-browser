@@ -8,6 +8,7 @@ require "git-plain/version"
 require 'zlib'
 require 'digest/sha1'
 require 'json'
+require 'time'
 require 'stringio'
 
 require "git-plain/models/ref"
