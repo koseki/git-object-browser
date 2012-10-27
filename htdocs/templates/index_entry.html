@@ -25,9 +25,9 @@
 <h2><i class="icon-file"></i> {{entry.path}}</h2>
 <table class="table">
 <tbody>
-<tr data-ng-repeat="(key, value) in entry">
+<tr data-ng-repeat="key in keys">
 <th>{{key}}</th>
-<td>{{value}}</td>
+<td>{{entry[key]}}</td>
 </tr>
 </tbody>
 </table>

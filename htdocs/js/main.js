@@ -118,25 +118,60 @@ function GitCtrl($scope, $routeParams, GitResource) {
     return entry;
   };
 
-  GitResource.get({'path': path}, function(object) {
-    $scope.workingdir = object.workingdir;
-    $scope.root = object.root;
-    if (object.path == "") {
+  $scope.indexEntryKeys = function(version) {
+    var keys = [
+      'ctime',
+      'cnano',
+      'mtime',
+      'mnano',
+      'dev',
+      'ino',
+      'object_type',
+      'unix_permission',
+      'uid',
+      'gid',
+      'size',
+      'sha1',
+      'path'
+    ]
+
+    if (version == 2) {
+      keys = keys.concat([
+        'assume_valid_flag',
+        'extended_flag',
+        'stage',
+      ]);
+    } else {
+      keys = keys.concat([
+        'skip_worktree',
+        'intent_to_add',
+      ]);
+    }
+    keys.push('name_length');
+
+    return keys;
+  }
+
+  GitResource.get({'path': path}, function(json) {
+    $scope.workingdir = json.workingdir;
+    $scope.root = json.root;
+    if (json.path == "") {
       $scope.path = ".git";
     } else {
-      $scope.path = ".git/" + object.path;
+      $scope.path = ".git/" + json.path;
     }
-    $scope.object = object.object;
+    $scope.object = json.object;
+    $scope.keys = $scope.indexEntryKeys($scope.object.version);
 
     var template;
-    if (object.path == "objects") {
+    if (json.path == "objects") {
       template = "objects";
       $scope.objectTable = $scope.objectTable($scope.object.entries);
-    } else if (object.path == "index" && $routeParams.sha1) {
+    } else if (json.path == "index" && $routeParams.sha1) {
       template = "index_entry";
       $scope.entry = $scope.findIndexEntry($routeParams.sha1);
     } else {
-      template = object.type;
+      template = json.type;
     }
 
     $scope.template = 'templates/' + template + '.html';
