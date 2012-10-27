@@ -106,6 +106,18 @@ function GitCtrl($scope, $routeParams, GitResource) {
     return rows;
   }
 
+  $scope.findIndexEntry = function(sha1) {
+    var entries = $scope.object.entries;
+    var entry = null;
+    angular.forEach(entries, function(value) {
+      if (value.sha1 == sha1) {
+        entry = value;
+        return;
+      }
+    });
+    return entry;
+  };
+
   GitResource.get({'path': path}, function(object) {
     $scope.workingdir = object.workingdir;
     $scope.root = object.root;
@@ -120,11 +132,14 @@ function GitCtrl($scope, $routeParams, GitResource) {
     if (object.path == "objects") {
       template = "objects";
       $scope.objectTable = $scope.objectTable($scope.object.entries);
+    } else if (object.path == "index" && $routeParams.sha1) {
+      template = "index_entry";
+      $scope.entry = $scope.findIndexEntry($routeParams.sha1);
     } else {
       template = object.type;
     }
 
     $scope.template = 'templates/' + template + '.html';
   });
-  
+
 }
