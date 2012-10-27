@@ -53,21 +53,7 @@ angular.module('GitObjectBrowser', ['GitServices'])
 
       element.attr('href', href);
     }
-  })
-
-  .directive('objectProp', function($parse) {
-    return function(scope, element, attrs) {
-      var prop = ($parse(attrs.objectProp))(scope);
-      var match = prop[1].match(/^([0-9a-f]{2})([0-9a-f]{38})$/)
-      if (match) {
-        match[0] + '/' + match[1]
-      }
-    }
   });
-
-
-function HomeCtrl($scope) {
-}
 
 function GitCtrl($scope, $routeParams, GitResource) {
   $scope.template = 'templates/loading.html';
