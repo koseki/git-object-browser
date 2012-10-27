@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module GitPlain
 
   module Models
@@ -15,7 +16,7 @@ module GitPlain
       def parse
         store = Zlib::Inflate.inflate(@in.read)
         @sha1 = Digest::SHA1.hexdigest(store)
-        @in   = StringIO.new(store)
+        @in   = StringIO.new(store).set_encoding('utf-8')
 
         @type = find_char ' '
         @size = find_char "\0"
@@ -53,7 +54,6 @@ module GitPlain
           break if line.empty?
           prop = {}
           (prop['key'], prop['value']) = line.split(/ /, 2)
-          p prop['value']
           if prop['value'] =~ /\A([0-9a-f]{2})([0-9a-f]{38})\z/
             prop['type'] = 'sha1'
             prop['path'] = "objects/#{ $1 }/#{ $2 }"
