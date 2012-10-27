@@ -71,6 +71,12 @@ angular.module('GitObjectBrowser', ['GitServices'])
 
       element.attr('href', href);
     }
+  })
+
+  .filter('unixtime', function($filter) {
+    return function(input, format) {
+      return ($filter('date'))(input * 1000, format);
+    }
   });
 
 function GitCtrl($scope, $routeParams, GitResource) {
