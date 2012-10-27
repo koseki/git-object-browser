@@ -32,11 +32,30 @@ angular.module('GitObjectBrowser', ['GitServices'])
         'ref': 'icon-map-marker',
         'index': 'icon-list',
         'file': 'icon-file',
-        'object': 'icon-comment'
+        'object': 'icon-comment',
+        'blob': 'icon-file',
+        'tree': 'icon-folder-open',
+        'commit': 'icon-ok',
+        'tag': 'icon-tag'
       };
 
       var entryType = ($parse(attrs.entryIcon))(scope);
       element.addClass(icons[entryType]);
+    }
+  })
+
+  .directive('modeIcon', function($parse) {
+    return function(scope, element, attrs) {
+      var mode = ($parse(attrs.modeIcon))(scope);
+      var iconClass;
+      if (120000 <= mode) {
+        iconClass = 'icon-share-alt';
+      } else if (100000 <= mode) {
+        iconClass = 'icon-file';
+      } else {
+        iconClass = 'icon-folder-open';
+      }
+      element.addClass(iconClass);
     }
   })
 
