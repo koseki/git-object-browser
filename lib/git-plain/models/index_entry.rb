@@ -28,7 +28,7 @@ module GitPlain
         mode   = binstr(4)
         @object_type     = mode[16..19]
         unused           = mode[20..22]
-        @unix_permission = mode[23..31]
+        @unix_permission = sprintf('%o', mode[23..31].to_i(2))
 
         @uid   = int # 32 bytes
         @gid   = int
