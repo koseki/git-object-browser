@@ -21,9 +21,8 @@ angular.module('GitObjectBrowser', ['GitServices'])
     });
 
     $routeProvider.
-      when('/', {controller:HomeCtrl, templateUrl:'templates/home.html'}).
       whenPath('/.git', 10, {controller:GitCtrl, templateUrl:'templates/git.html'}).
-      otherwise({redirectTo:'/'});
+      otherwise({redirectTo:'/.git/'});
   })
 
   .directive('entryIcon', function($parse) {
