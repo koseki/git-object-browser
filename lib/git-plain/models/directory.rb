@@ -7,11 +7,15 @@ module GitPlain
       def initialize(root, path)
         @root = root
         @path = path
-        @entries = []
-        Dir.chdir(File.join(root, path)) do
+        @entries = read_entries
+      end
+
+      def read_entries
+        entries = []
+        Dir.chdir(File.join(@root, @path)) do
           files = Dir.glob("*")
           files.each do |file|
-            relpath = File.join(path, file).gsub(%r{\A/}, '')
+            relpath = File.join(@path, file).gsub(%r{\A/}, '')
             entry = {}
             if File.directory?(file)
               entry[:type] = "directory"
@@ -28,8 +32,14 @@ module GitPlain
             end
             entry[:basename] = file
             entry[:mtime] = File.mtime(file).to_i
-            @entries << entry
+            entry[:size] = File.size(file)
+            entries << entry
           end
+        end
+        order = %w{directory ref index object file symlink}
+        entries.sort do |a,b| 
+          (order.index(a[:type]) <=> order.index(b[:type])).nonzero? ||
+            a[:basename] <=> b[:basename]
         end
       end
 
