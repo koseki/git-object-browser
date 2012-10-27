@@ -1,10 +1,12 @@
 <article>
 <h1><i data-entry-icon="'ref'"></i> {{path}} <small>Reference</small></h1>
 
-<div data-ng-show="object.sha1">
-sha1: <a data-ref-href="object">{{object.sha1}}</a>
-</div>
-<div data-ng-show="object.ref">
-ref: <a  data-ref-href="object">{{object.ref}}</a>
-</div>
+<table class="table">
+<tr data-ng-show="object.sha1">
+<th>sha1</th><td><a data-ref-href="object">{{object.sha1}}</a></td>
+</tr>
+<tr data-ng-show="object.ref">
+<th>ref</th><td><a  data-ref-href="object">{{object.ref}}</a></td>
+</tr>
+</table>
 </article>
