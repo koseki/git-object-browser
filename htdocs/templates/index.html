@@ -1,1 +1,35 @@
-index
+<article>
+<h1><i data-entry-icon="'index'"></i> {{path}} <small>Index</small></h1>
+
+<table class="table">
+<tr>
+<th>version</th>
+<td>{{object.version}}</td>
+</tr>
+
+<tr>
+<th>sha1</th>
+<td>{{object.sha1}}</td>
+</tr>
+
+<tr>
+<th>entry_count</th>
+<td>{{object.entry_count}}</td>
+</tr>
+
+</table>
+</article>
+
+<article>
+
+<table class="table table-striped">
+<tr data-ng-repeat="entry in object.entries">
+<td><i class="icon-file"></i> {{entry.path}}</td>
+<td><a href="#" data-ref-href="entry">{{entry.sha1}}</a></td>
+</tr>
+</table>
+
+</article>
+
+{{object}}
+
