@@ -33,6 +33,7 @@ module GitPlain
         return if response_index(response)
         return if response_object(response)
         return if response_ref(response)
+        return if response_packed_refs(response)
 
         response_file(response)
       end
@@ -87,6 +88,17 @@ module GitPlain
           obj = GitPlain::Models::Ref.new(input)
         end
         response_wrapped_object(response, "ref", obj)
+        return true
+      end
+
+      def response_packed_refs(response)
+        return false unless GitPlain::Models::PackedRefs.path?(@relpath)
+
+        obj = {}
+        File.open(File.join(@target, @relpath)) do |input|
+          obj = GitPlain::Models::PackedRefs.new(input)
+        end
+        response_wrapped_object(response, "packed_refs", obj)
         return true
       end
 

@@ -23,6 +23,8 @@ module GitPlain
               entry[:type] = "symlink"
             elsif Ref::path?(relpath)
               entry[:type] = 'ref'
+            elsif PackedRefs::path?(relpath)
+              entry[:type] = 'packed_refs'
             elsif Index::path?(relpath)
               entry[:type] = 'index'
             elsif GitObject::path?(relpath)
@@ -36,7 +38,7 @@ module GitPlain
             entries << entry
           end
         end
-        order = %w{directory ref index object file symlink}
+        order = %w{directory ref packed_refs index object file symlink}
         entries.sort do |a,b| 
           (order.index(a[:type]) <=> order.index(b[:type])).nonzero? ||
             a[:basename] <=> b[:basename]
