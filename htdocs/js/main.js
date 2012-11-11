@@ -1,11 +1,11 @@
 
 angular.module('GitServices', ['ngResource'])
   .factory('GitResource', function($resource) {
-    var GitResource = $resource('/.git/:path');
-    return GitResource;
+    var resource = $resource('/.git/:path');
+    return resource;
   })
-  .factory('PackedRefsResource', function($resource) {
-    var resource = $resource('/.git/packed-refs');
+  .factory('PackedObjectResource', function($resource) {
+    var resource = $resource('/.git/:path?offset=:offset');
     return resource;
   });
 
@@ -92,7 +92,7 @@ angular.module('GitObjectBrowser', ['GitServices'])
     }
   });
 
-function GitCtrl($scope, $location, $routeParams, GitResource) {
+function GitCtrl($scope, $location, $routeParams, GitResource, PackedObjectResource) {
   $scope.template = 'templates/loading.html';
   var path = '';
   for (var i = 1; i <= 10; i++) {
@@ -212,6 +212,10 @@ function GitCtrl($scope, $location, $routeParams, GitResource) {
           $scope.object.entries[fanout] = { fanoutMin: i + 1 }
         }
       });
+      $scope.packUrl = $scope.path.replace(/.idx$/, '.pack');
+    } else if (json.type == "packed_object") {
+      template = json.type;
+      $scope.offset = $routeParams.offset;
     } else {
       template = json.type;
     }
@@ -238,6 +242,10 @@ function GitCtrl($scope, $location, $routeParams, GitResource) {
     }
   };
 
-  GitResource.get({'path': path}, $scope.resourceLoaded, $scope.resourceError(path));
+  if (path.match(/^objects\/pack\/pack-[0-9a-f]{40}\.pack$/) && $routeParams.offset) {
+    PackedObjectResource.get({path: path, offset:$routeParams.offset}, $scope.resourceLoaded, $scope.resourceError(path));
+  } else {
+    GitResource.get({path: path}, $scope.resourceLoaded, $scope.resourceError(path));
+  }
 
 }
