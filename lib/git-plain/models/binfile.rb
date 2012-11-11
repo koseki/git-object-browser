@@ -12,6 +12,14 @@ module GitPlain
         return @in.read(bytes)
       end
 
+      def bytes(bytes)
+        return @in.read(bytes).unpack("C*")
+      end
+
+      def byte
+        return bytes(1).first
+      end
+
       def int
         return @in.read(4).unpack("N").first.to_i
       end
@@ -31,6 +39,10 @@ module GitPlain
           return buf if c.nil? || c == char
           buf += c
         end
+      end
+
+      def skip(bytes)
+        @in.seek(bytes, IO::SEEK_CUR)
       end
 
       def peek(bytes)

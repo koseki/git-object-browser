@@ -10,7 +10,6 @@ module GitPlain
 
       def do_GET(request, response)
         # status, content_type, body = do_stuff_with request
-
         path = request.path
         unless path =~ %r{/.git(?:/(.*))?}
           not_found(response)
@@ -34,6 +33,7 @@ module GitPlain
         return if response_object(response)
         return if response_ref(response)
         return if response_pack_index(response)
+        return if response_packed_object(response, request.query["offset"])
         return if response_packed_refs(response)
 
         response_file(response)
@@ -99,6 +99,17 @@ module GitPlain
           obj = GitPlain::Models::PackIndex.new(input)
         end
         response_wrapped_object(response, "pack_index", obj)
+        return true
+      end
+
+      def response_packed_object(response, offset)
+        return false if offset.nil?
+        return false unless GitPlain::Models::PackedObject.path?(@relpath)
+        obj = {}
+        File.open(File.join(@target, @relpath)) do |input|
+          obj = GitPlain::Models::PackedObject.new(input, offset.to_i)
+        end
+        response_wrapped_object(response, "packed_object", obj)
         return true
       end
 
