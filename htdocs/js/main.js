@@ -3,6 +3,10 @@ angular.module('GitServices', ['ngResource'])
   .factory('GitResource', function($resource) {
     var GitResource = $resource('/.git/:path');
     return GitResource;
+  })
+  .factory('PackedRefsResource', function($resource) {
+    var resource = $resource('/.git/packed-refs');
+    return resource;
   });
 
 angular.module('GitObjectBrowser', ['GitServices'])
@@ -30,6 +34,7 @@ angular.module('GitObjectBrowser', ['GitServices'])
       var icons = {
         'directory': 'icon-folder-open',
         'ref': 'icon-map-marker',
+        'packed_refs': 'icon-map-marker',
         'index': 'icon-list',
         'file': 'icon-file',
         'object': 'icon-comment',
@@ -63,9 +68,17 @@ angular.module('GitObjectBrowser', ['GitServices'])
     return function(scope, element, attrs) {
       var entry = ($parse(attrs.refHref))(scope);
       var href = "";
-      if (entry.sha1) {
-        href = '#/.git/objects/' + entry.sha1.substr(0, 2) + '/' + entry.sha1.substr(2);
-      } else if (entry.ref) {
+      var sha1 = null;
+
+      if (typeof(entry) == 'string') {
+        sha1 = entry;
+      } else if (entry && entry.sha1) {
+        sha1 = entry.sha1;
+      }
+
+      if (sha1 !== null) {
+        href = '#/.git/objects/' + sha1.substr(0, 2) + '/' + sha1.substr(2);
+      } else if (entry && entry.ref) {
         href = '#/.git/' + entry.ref;
       }
 
@@ -79,7 +92,7 @@ angular.module('GitObjectBrowser', ['GitServices'])
     }
   });
 
-function GitCtrl($scope, $routeParams, GitResource) {
+function GitCtrl($scope, $location, $routeParams, GitResource) {
   $scope.template = 'templates/loading.html';
   var path = '';
   for (var i = 1; i <= 10; i++) {
@@ -156,9 +169,9 @@ function GitCtrl($scope, $routeParams, GitResource) {
     keys.push('name_length');
 
     return keys;
-  }
+  };
 
-  GitResource.get({'path': path}, function(json) {
+  $scope.resourceLoaded = function(json) {
     $scope.workingdir = json.workingdir;
     $scope.root = json.root;
     if (json.path == "") {
@@ -168,19 +181,49 @@ function GitCtrl($scope, $routeParams, GitResource) {
     }
     $scope.object = json.object;
     $scope.keys = $scope.indexEntryKeys($scope.object.version);
-
     var template;
     if (json.path == "objects") {
       template = "objects";
       $scope.objectTable = $scope.objectTable($scope.object.entries);
-    } else if (json.path == "index" && $routeParams.sha1) {
+    } else if (json.type == "index" && $routeParams.sha1) {
       template = "index_entry";
       $scope.entry = $scope.findIndexEntry($routeParams.sha1);
+    } else if (json.type == "packed_refs" && $routeParams.ref) {
+      template = json.type;
+      var entries = [];
+      angular.forEach($scope.object.entries, function(entry) {
+        if (entry.ref == $routeParams.ref) {
+          entries.push(entry);
+          $scope.limited = true;
+        }
+      });
+      $scope.object.entries = entries;
     } else {
       template = json.type;
     }
 
     $scope.template = 'templates/' + template + '.html';
-  });
+  };
+
+  $scope.resourceError = function(path) {
+    return function(response) {
+      if (response.status == 404) {
+        $scope.resourceNotFound(path);
+      } else {
+        $scope.template = 'templates/error.html';
+      }
+    };
+  };
+
+  $scope.resourceNotFound = function(path) {
+    $scope.path = path;
+    if (path.indexOf('refs/') == 0) {
+      $location.url('/.git/packed-refs?ref=' + path);
+    } else {
+      $scope.template = 'templates/notfound.html';
+    }
+  };
+
+  GitResource.get({'path': path}, $scope.resourceLoaded, $scope.resourceError(path));
 
 }
