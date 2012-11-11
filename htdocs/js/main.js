@@ -198,6 +198,20 @@ function GitCtrl($scope, $location, $routeParams, GitResource) {
         }
       });
       $scope.object.entries = entries;
+    } else if (json.type == "pack_index") {
+      template = json.type;
+      angular.forEach($scope.object.fanout, function(fanout, i) {
+        if ($scope.object.entries[fanout]) {
+          var entry = $scope.object.entries[fanout];
+          if (! entry.fanoutMin) {
+            entry.fanoutMin = i + 1;
+          } else {
+            entry.fanoutMax = i + 1;
+          }
+        } else {
+          $scope.object.entries[fanout] = { fanoutMin: i + 1 }
+        }
+      });
     } else {
       template = json.type;
     }

@@ -1,0 +1,31 @@
+<article>
+<h1><i data-entry-icon="'index'"></i> {{path}} <small>Pack Index</small></h1>
+
+<table class="table table-striped">
+<thead>
+<tr>
+<th>#</th>
+<th>fanout</th>
+<th>sha1</th>
+<th>crc32</th>
+<th>offset</th>
+</tr>
+</thead>
+<tbody>
+<tr data-ng-repeat="(i, entry) in object.entries">
+<td>{{i}}</td>
+
+<td>
+<span data-ng-show="entry.fanoutMax">{{entry.fanoutMin}} - {{entry.fanoutMax}}</span>
+<span data-ng-hide="entry.fanoutMax">{{entry.fanoutMin}}</span>
+</td>
+<td>{{entry.sha1}}</td>
+<td>{{entry.crc32}}</td>
+<td>{{entry.offset}}</td>
+</tr>
+</tbody>
+</table>
+
+<a href="#/.git/packed-refs" data-ng-show="limited">Show All</a>
+</article>
+
