@@ -30,52 +30,78 @@ module GitPlain
         @type = header[:type]
         @size = header[:size]
 
-        if false
-        store = Zlib::Inflate.new
-        buffer = ""
-        while buffer.size < @size
-          rawdata = raw(4096)
-          if rawdata.size == 0
-            # XXX
+        if @type == 'OBJ_OFS_DELTA'
+          @delta_offset = header[:delta_offset]
+
+          store = Zlib::Inflate.new
+          buffer = ""
+          while buffer.size < @size
+            rawdata = raw(4096)
+            if rawdata.size == 0
+              raise "inflate error"
+            end
+            buffer << store.inflate(rawdata)
           end
-          buffer << store.inflate(rawdata)
+          store.close
+          File.open("/tmp/git-plain-buffer", "w") do |io|
+            io << buffer
+          end
         end
-        store.close
-        end
+
+        self
       end
 
       def parse_header(offset)
         seek(offset)
-        raw_header = byte
-        continue = (raw_header & 0b10000000)
-        type     = (raw_header & 0b01110000) >> 4
-        size     = (raw_header & 0b00001111)
-        size_len = 4
-        while continue != 0
-          raw_header = byte
-          continue   = (raw_header & 0b10000000)
-          size      += (raw_header & 0b01111111) << size_len
-          size_len  += 7
-        end
 
+        (type, size) = parse_type_and_size
         type = TYPES[type]
         header = { :type => type, :size => size }
-        header[:delta_offset] = parse_delta_offset(offset) if type == 'OBJ_OFS_DELTA'
+        header[:delta_offset] = offset - parse_delta_offset if type == 'OBJ_OFS_DELTA'
 
         return header
       end
 
-      def parse_delta_offset(offset)
-        raw_header = byte
-        continue = raw_header & 0b10000000
-        doffset  = raw_header & 0b01111111
+      def parse_type_and_size
+        hdr      = byte
+        continue = (hdr & 0b10000000)
+        type     = (hdr & 0b01110000) >> 4
+        size     = (hdr & 0b00001111)
+        size_len = 4
         while continue != 0
-          raw_header = byte
-          continue   = raw_header & 0b10000000
-          low_offset = raw_header & 0b01111111
-          doffset = ((doffset + 1) << 7) | low_offset
+          hdr        = byte
+          continue   = (hdr & 0b10000000)
+          size      += (hdr & 0b01111111) << size_len
+          size_len  += 7
         end
-        return offset - doffset
+        return [type, size]
+      end
+      private :parse_type_and_size
+
+      # delta.h get_delta_hdr_size
+      def parse_delta_size
+        size     = 0
+        size_len = 0
+        begin
+          hdr       = byte
+          continue  = (hdr & 0b10000000)
+          size     += (hdr & 0b01111111) << size_len
+          size_len += 7
+        end while continue != 0
+        return size
+      end
+      private :parse_delta_size
+
+      # unpack-objects.c unpack_delta_entry
+      def parse_delta_offset
+        offset = -1
+        begin
+          hdr        = byte
+          continue   = hdr & 0b10000000
+          low_offset = hdr & 0b01111111
+          offset = ((offset + 1) << 7) | low_offset
+        end while continue != 0
+        return offset
       end
       private :parse_delta_offset
 
