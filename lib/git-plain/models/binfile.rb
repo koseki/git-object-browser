@@ -45,6 +45,10 @@ module GitPlain
         @in.seek(bytes, IO::SEEK_CUR)
       end
 
+      def seek(bytes)
+        @in.seek(bytes)
+      end
+
       def peek(bytes)
         result = raw(bytes)
         @in.seek(bytes * -1, IO::SEEK_CUR)

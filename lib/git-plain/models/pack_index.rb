@@ -60,6 +60,14 @@ module GitPlain
         }
       end
 
+      def load_object_types(input)
+        obj = PackedObject.new(input)
+        @entries.each do |entry|
+          header = obj.parse_header(entry[:offset])
+          entry.merge!(header)
+        end
+      end
+
     end
   end
 end

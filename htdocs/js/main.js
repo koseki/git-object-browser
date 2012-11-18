@@ -200,19 +200,6 @@ function GitCtrl($scope, $location, $routeParams, GitResource, PackedObjectResou
       $scope.object.entries = entries;
     } else if (json.type == "pack_index") {
       template = json.type;
-      angular.forEach($scope.object.fanout, function(fanout, i) {
-        if ($scope.object.entries[fanout]) {
-          var entry = $scope.object.entries[fanout];
-          if (! entry.fanoutMin) {
-            entry.fanoutMin = i + 1;
-          } else {
-            entry.fanoutMax = i + 1;
-          }
-        } else {
-          $scope.object.entries[fanout] = { fanoutMin: i + 1 }
-        }
-      });
-      $scope.packUrl = $scope.path.replace(/.idx$/, '.pack');
     } else if (json.type == "packed_object") {
       template = json.type;
       $scope.offset = $routeParams.offset;
@@ -247,5 +234,51 @@ function GitCtrl($scope, $location, $routeParams, GitResource, PackedObjectResou
   } else {
     GitResource.get({path: path}, $scope.resourceLoaded, $scope.resourceError(path));
   }
+
+}
+
+function PackIndexCtrl($scope, $location, $routeParams) {
+
+  $scope.orderByOffset = function() {
+    $scope.object.entries = $scope.object.entries.sort(function(a, b) {
+      var x = a.offset - b.offset;
+      if (x == 0) {
+        return a.index - b.index;
+      }
+      return x;
+    });
+    return false;
+  }
+
+  $scope.orderByIndex = function() {
+    $scope.object.entries = $scope.object.entries.sort(function(a, b) {
+      return a.index - b.index;
+    })
+    return false;
+  }
+
+  $scope.packUrl = $scope.path.replace(/.idx$/, '.pack');
+  
+  angular.forEach($scope.object.entries, function(entry, i) {
+    entry.index = i;
+  });
+
+  angular.forEach($scope.object.fanout, function(fanout, i) {
+    function toHex(num) {
+      var hex = num.toString(16);
+      return hex.length < 2 ? '0' + hex : hex;
+    }
+
+    if ($scope.object.entries[fanout]) {
+      var entry = $scope.object.entries[fanout];
+      if (! entry.fanoutMin) {
+        entry.fanoutMin = toHex(i);
+      } else {
+        entry.fanoutMax = toHex(i);
+      }
+    } else {
+      $scope.object.entries[fanout] = { fanoutMin: toHex(i) };
+    }
+  });
 
 }

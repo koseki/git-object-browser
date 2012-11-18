@@ -1,27 +1,31 @@
 <article>
 <h1><i data-entry-icon="'index'"></i> {{path}} <small>Pack Index</small></h1>
 
-<table class="table table-striped">
+<table class="table table-striped" data-ng-controller="PackIndexCtrl">
 <thead>
 <tr>
-<th>#</th>
+<th><a href="" data-ng-click="orderByIndex()">#</a></th>
 <th>fanout</th>
 <th>sha1</th>
 <th>crc32</th>
-<th>offset</th>
+<th><a href="" data-ng-click="orderByOffset()">offset</a></th>
+<th>type *</th>
+<th>size *</th>
 </tr>
 </thead>
 <tbody>
 <tr data-ng-repeat="(i, entry) in object.entries">
-<td>{{i}}</td>
+<td>{{entry.index}}</td>
 
 <td>
-<span data-ng-show="entry.fanoutMax">{{entry.fanoutMin}} - {{entry.fanoutMax}}</span>
-<span data-ng-hide="entry.fanoutMax">{{entry.fanoutMin}}</span>
+<span data-ng-show="entry.fanoutMax"><i class="icon-arrow-up"></i> {{entry.fanoutMin}} - {{entry.fanoutMax}}</span>
+<span data-ng-show="entry.fanoutMin != null && ! entry.fanoutMax"><i class="icon-arrow-up"></i> {{entry.fanoutMin}}</span>
 </td>
 <td>{{entry.sha1}}</td>
 <td>{{entry.crc32}}</td>
 <td><a href="#/{{packUrl}}?offset={{entry.offset}}">{{entry.offset}}</a></td>
+<td>{{entry.type}} <span data-ng-show="entry.delta_offset"><i class="icon-arrow-up"></i> {{entry.delta_offset}}<span></td>
+<td>{{entry.size}}</td>
 </tr>
 </tbody>
 </table>
