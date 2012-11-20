@@ -43,6 +43,30 @@ module GitPlain
             buffer << store.inflate(rawdata)
           end
           store.close
+
+          tmp = @in
+          @in = StringIO.new(buffer)
+          @base_size  = parse_delta_size
+          @delta_size = parse_delta_size
+          @delta_commands = []
+          while ! @in.eof?
+            cmd = byte
+            if cmd & 0b10000000 != 0
+              (offset, size) = parse_base_offset_and_size(cmd)
+              @delta_commands << { :source => :base, :offset => offset, :size => size }
+            elsif cmd != 0
+              begin
+                data = raw(cmd).encode('UTF-8')
+              rescue Exception
+                data = "(not UTF-8)"
+              end
+              @delta_commands << { :source => :delta, :size => cmd, :data => data }
+            else
+              raise "delta command = 0"
+            end
+          end
+          @in = tmp
+
           File.open("/tmp/git-plain-buffer", "w") do |io|
             io << buffer
           end
@@ -105,10 +129,28 @@ module GitPlain
       end
       private :parse_delta_offset
 
+      def parse_base_offset_and_size(cmd)
+        offset = size = 0
+        offset  = byte       if cmd & 0b00000001 != 0
+        offset |= byte << 8  if cmd & 0b00000010 != 0
+        offset |= byte << 16 if cmd & 0b00000100 != 0
+        offset |= byte << 24 if cmd & 0b00001000 != 0
+        size    = byte       if cmd & 0b00010000 != 0
+        size   |= byte << 8  if cmd & 0b00100000 != 0
+        size   |= byte << 16 if cmd & 0b01000000 != 0
+        size = 0x10000 if size == 0
+        return [offset,size]
+      end
+      private :parse_base_offset_and_size
+
       def to_hash
         return {
           :type => @type,
           :size => @size,
+          :delta_offset => @delta_offset,
+          :base_size => @base_size,
+          :delta_size => @delta_size,
+          :delta_commands => @delta_commands,
         }
       end
 

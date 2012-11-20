@@ -19,8 +19,32 @@
 </tr>
 
 <tr>
-<th></th>
-<td></td>
+<th>delta offset</th>
+<td><a href="#/{{path}}?offset={{object.delta_offset}}">{{object.delta_offset}}</a></td>
+</tr>
+
+<tr>
+<th>commands</th>
+<td>
+
+<table class="table table-striped">
+<thead>
+<th>source</th>
+<th>offset</th>
+<th>size</th>
+<th>data</th>
+</thead>
+<tbody>
+<tr data-ng-repeat="command in object.delta_commands">
+<td>{{command.source}}</td>
+<td>{{command.offset}}</td>
+<td>{{command.size}}</td>
+<td>{{command.data}}</td>
+</tr>
+</tbody>
+</table>
+
+</td>
 </tr>
 
 </tbody>
