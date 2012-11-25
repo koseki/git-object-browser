@@ -10,26 +10,55 @@ module GitPlain
 
       def initialize(input)
         super(input)
-        parse
       end
 
       def parse
-        store = Zlib::Inflate.inflate(@in.read)
-        @sha1 = Digest::SHA1.hexdigest(store)
-        @in   = StringIO.new(store).set_encoding('utf-8')
+        content = Zlib::Inflate.inflate(@in.read)
+        @sha1 = Digest::SHA1.hexdigest(content)
+        @in   = StringIO.new(content)
 
         @type = find_char ' '
         @size = find_char "\0"
 
+        parse_inflated
+        self
+      end
+
+      def parse_inflated(type, size)
+        @type = type
+        @size = size
+
         if @type == 'tree'
           @entries = parse_tree_entries
-        else 
+        else
           @contents = @in.read
           if @type == 'commit' or @type == 'tag'
             (@properties, @message) = parse_contents
           end
         end
+
+        self
       end
+
+
+      def to_hash
+        return {
+          'type' => @type,
+          'sha1' => @sha1,
+          'size' => @size,
+          'entries' => @entries,
+          'contents' => @contents,
+          'properties' => @properties,
+          'message' => @message,
+        }
+      end
+
+      def self.path?(relpath)
+        relpath =~ %r{\Aobjects/[0-9a-f]{2}/[0-9a-f]{38}\z}
+      end
+
+
+      private
 
       def parse_tree_entries
         entries = []
@@ -74,22 +103,6 @@ module GitPlain
         message = lines.join "\n"
 
         [properties, message]
-      end
-      
-      def to_hash
-        return {
-          'type' => @type,
-          'sha1' => @sha1,
-          'size' => @size,
-          'entries' => @entries,
-          'contents' => @contents,
-          'properties' => @properties,
-          'message' => @message,
-        }
-      end
-
-      def self.path?(relpath)
-        relpath =~ %r{\Aobjects/[0-9a-f]{2}/[0-9a-f]{38}\z}        
       end
 
     end

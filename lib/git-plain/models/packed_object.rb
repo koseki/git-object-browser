@@ -9,6 +9,9 @@ module GitPlain
 
     class PackedObject < BinFile
 
+      attr_reader :header, :raw_data
+      attr_reader :object, :object_type, :object_size
+
       TYPES = %w{
         undefined
         OBJ_COMMIT
@@ -25,37 +28,57 @@ module GitPlain
       end
 
       def parse(offset)
-        @offset = offset
-        header = parse_header(offset)
-        @type = header[:type]
-        @size = header[:size]
+        parse_raw(offset)
+        p @raw_data
 
-        if @type == 'OBJ_OFS_DELTA'
-          obj_ofs_delta(header)
-        end
+        input = StringIO.new(@raw_data)
+        type = @object_type.sub(/\AOBJ_/, '').downcase
+        @object = GitObject.new(input).parse_inflated(type, @object_size)
 
         self
+      end
+
+      def parse_raw(offset)
+        @offset = offset
+        @header = parse_header(offset)
+
+        if @header[:type] == 'OBJ_OFS_DELTA'
+          obj_ofs_delta
+        else
+          @object_type = @header[:type]
+          @object_size = @header[:size]
+          @raw_data = zlib_inflate
+        end
       end
 
       def parse_header(offset)
         seek(offset)
 
-        (type, size) = parse_type_and_size
+        (type, size, header_size) = parse_type_and_size
         type = TYPES[type]
-        header = { :type => type, :size => size }
-        header[:delta_offset] = offset - parse_delta_offset if type == 'OBJ_OFS_DELTA'
+        header = { :type => type, :size => size, :header_size => header_size }
+
+        if type == 'OBJ_OFS_DELTA'
+          (delta_offset, delta_header_size) = parse_delta_offset
+          header[:delta_offset] = offset - delta_offset
+          header[:header_size] += delta_header_size
+        end
 
         return header
       end
 
       def to_hash
         return {
-          :type => @type,
-          :size => @size,
-          :delta_offset => @delta_offset,
+          :type => @header[:type],
+          :size => @header[:size],
+          :object_type => @object_type,
+          :object_size => @object_size,
+          :header_size => @header[:header_size],
+          :delta_offset => @header[:delta_offset],
           :base_size => @base_size,
           :delta_size => @delta_size,
           :delta_commands => @delta_commands,
+          :object => @object.to_hash,
         }
       end
 
@@ -66,9 +89,17 @@ module GitPlain
 
       private
 
-      def obj_ofs_delta(header)
-        @delta_offset = header[:delta_offset]
-        buffer = unpack_delta
+      def obj_ofs_delta
+        begin
+          pack = PackedObject.new(@in)
+          pack.parse_raw(@header[:delta_offset])
+          @object_type = pack.object_type
+          @base = pack.raw_data
+        ensure
+          seek(@offset + @header[:header_size])
+        end
+
+        buffer = zlib_inflate
 
         tmp = @in
         begin
@@ -81,8 +112,14 @@ module GitPlain
 
       def patch_delta
         @base_size  = parse_delta_size
+        if @base.size != @base_size
+          raise 'incollect base size'
+        end
+
         @delta_size = parse_delta_size
+        @object_size = @delta_size
         @delta_commands = []
+        @raw_data = ''
         while ! @in.eof?
           delta_command
         end
@@ -93,26 +130,29 @@ module GitPlain
         if cmd & 0b10000000 != 0
           (offset, size) = parse_base_offset_and_size(cmd)
           @delta_commands << { :source => :base, :offset => offset, :size => size }
+          @raw_data << @base[offset, size]
         elsif cmd != 0
           size = cmd
+          data = raw(size)
+          @raw_data << data
           begin
-            data = raw(size).encode('UTF-8')
+            cmd_data = data.encode('UTF-8')
           rescue Exception
-            data = "(not UTF-8)"
+            cmd_data = '(not UTF-8)'
           end
-          @delta_commands << { :source => :delta, :size => size, :data => data }
+          @delta_commands << { :source => :delta, :size => size, :data => cmd_data }
         else
-          raise "delta command = 0"
+          raise 'delta command is 0'
         end
       end
 
-      def unpack_delta
+      def zlib_inflate
         store = Zlib::Inflate.new
-        buffer = ""
-        while buffer.size < @size
+        buffer = ''
+        while buffer.size < @header[:size]
           rawdata = raw(4096)
           if rawdata.size == 0
-            raise "inflate error"
+            raise 'inflate error'
           end
           buffer << store.inflate(rawdata)
         end
@@ -122,17 +162,19 @@ module GitPlain
 
       def parse_type_and_size
         hdr      = byte
+        hdr_size = 1
         continue = (hdr & 0b10000000)
         type     = (hdr & 0b01110000) >> 4
         size     = (hdr & 0b00001111)
         size_len = 4
         while continue != 0
           hdr        = byte
+          hdr_size  += 1
           continue   = (hdr & 0b10000000)
           size      += (hdr & 0b01111111) << size_len
           size_len  += 7
         end
-        return [type, size]
+        return [type, size, hdr_size]
       end
 
       # delta.h get_delta_hdr_size
@@ -150,14 +192,16 @@ module GitPlain
 
       # unpack-objects.c unpack_delta_entry
       def parse_delta_offset
-        offset = -1
+        offset   = -1
+        hdr_size = 0
         begin
           hdr        = byte
+          hdr_size  += 1
           continue   = hdr & 0b10000000
           low_offset = hdr & 0b01111111
-          offset = ((offset + 1) << 7) | low_offset
+          offset     = ((offset + 1) << 7) | low_offset
         end while continue != 0
-        return offset
+        return [offset, hdr_size]
       end
 
       def parse_base_offset_and_size(cmd)
@@ -170,7 +214,7 @@ module GitPlain
         size   |= byte << 8  if cmd & 0b00100000 != 0
         size   |= byte << 16 if cmd & 0b01000000 != 0
         size = 0x10000 if size == 0
-        return [offset,size]
+        return [offset, size]
       end
 
     end

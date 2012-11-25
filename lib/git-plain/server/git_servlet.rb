@@ -47,7 +47,7 @@ module GitPlain
         hash["root"] = @target
         hash["path"] = @relpath
         hash["wroking_dir"] = File.basename(File.dirname(@target))
-        
+
         response.body = ::JSON.generate(hash)
       end
 
@@ -75,7 +75,7 @@ module GitPlain
 
         obj = {}
         File.open(File.join(@target, @relpath)) do |input|
-          obj = GitPlain::Models::GitObject.new(input)
+          obj = GitPlain::Models::GitObject.new(input).parse
         end
         response_wrapped_object(response, "object", obj)
         return true
