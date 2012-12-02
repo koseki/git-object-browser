@@ -1,35 +1,13 @@
-# git-plain
+# git-object-browser
 
-Dump all git objects to plain text files.
+Browse git raw objects.
 
 
 ## Installation
 
-    $ gem install git-plain
+    $ gem install git-object-browser
 
 ## Usage
-
-Execute 'git plain' in your working directory.
-
-    $ cd working-dir
-    $ git plain
-
-creates:
-
-- .git/plain/index
-- .git/plain/objects/...
-
-All objects is now readable. Then, you can do this.
-
-    $ cd .git/
-    $ git init
-
-Commit all git objects to the .git/.git repository to see how the git repository works.
-
-
-## Todo 
-
-- Extract packed objects.
 
 ## Contributing
 
