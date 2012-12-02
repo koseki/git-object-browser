@@ -44,7 +44,7 @@ module GitPlain
     end
 
     def find_target
-      target = Dir.pwd
+      target = ARGV[1]
       begin
         if File.exist?(target + "/.git")
           return target + "/.git"
