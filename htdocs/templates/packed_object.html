@@ -48,6 +48,7 @@
 </tbody>
 
 <tbody data-ng-switch="object.object.type">
+<tr data-ng-switch-when="blob"><th>contents</th><td><pre>{{object.object.contents}}</pre></td></tr>
 <tr data-ng-switch-when="commit"><th>message</th><td>{{object.object.message}}</td></tr>
 <tr data-ng-switch-when="tag"><th>message</th><td>{{object.object.message}}</td></tr>
 <tr data-ng-switch-when="tree"><th>entries</th><td>
@@ -90,7 +91,7 @@
 <td>{{command.source}}</td>
 <td>{{command.offset}}</td>
 <td>{{command.size}}</td>
-<td>{{command.data}}</td>
+<td><pre data-ng-show="command.data">{{command.data}}</pre></td>
 </tr>
 </tbody>
 
