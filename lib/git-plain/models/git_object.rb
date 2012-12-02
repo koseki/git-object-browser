@@ -13,7 +13,7 @@ module GitPlain
       end
 
       def parse
-        content = Zlib::Inflate.inflate(@in.read)
+        content = Zlib::Inflate.inflate(@in.read(nil))
         parse_inflated(content)
         self
       end
@@ -31,10 +31,14 @@ module GitPlain
         if @type == 'tree'
           @entries = parse_tree_entries
         else
-          @contents = @in.read
+          @contents = @in.read(nil)
           if @type == 'commit' or @type == 'tag'
             (@properties, @message) = parse_contents
           end
+
+          @contents = @contents.force_encoding('UTF-8')
+          @contents = '(not UTF-8)' unless @contents.valid_encoding?
+          @contents = @contents[0, 3000] + "\n..." if @contents.length > 3000
         end
 
         self
@@ -89,9 +93,11 @@ module GitPlain
           elsif %w{author committer tagger}.include?(prop['key']) &&
               # couldn't find the spec...
               prop['value'].to_s =~ /\A(.*) <(.*)> (\d+)(?: ((?:(?:\+|-)(?:\d{4}|\d{2}:\d{2}))|Z))?\z/
-            prop['type'] = 'user'
-            prop['name'] = $1
-            prop['email'] = $2
+            prop['type']  = 'user'
+            prop['name']  = $1.force_encoding("UTF-8")
+            prop['name']  = '(not UTF-8)' unless prop['name'].valid_encoding?
+            prop['email'] = $2.force_encoding("UTF-8")
+            prop['email'] = '(not UTF-8)' unless prop['email'].valid_encoding?
             prop['unixtime'] = $3
             prop['timezone'] = $4
             prop['date'] = Time.at($3.to_i).iso8601
@@ -100,7 +106,8 @@ module GitPlain
           end
           properties << prop
         end
-        message = lines.join "\n"
+        message = lines.join("\n").force_encoding("UTF-8")
+        message = '(not UTF-8)' unless message.valid_encoding?
 
         [properties, message]
       end

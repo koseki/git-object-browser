@@ -146,23 +146,28 @@ module GitPlain
 
       def delta_command
         cmd = byte
+        data = nil
         if cmd & 0b10000000 != 0
           (offset, size) = parse_base_offset_and_size(cmd)
+          data = @base[offset, size]
+          @raw_data << data
           @delta_commands << { :source => :base, :offset => offset, :size => size }
-          @raw_data << @base[offset, size]
         elsif cmd != 0
           size = cmd
           data = raw(size)
           @raw_data << data
-          begin
-            cmd_data = data.encode('UTF-8')
-          rescue Exception
-            cmd_data = '(not UTF-8)'
-          end
-          @delta_commands << { :source => :delta, :size => size, :data => cmd_data }
+          @delta_commands << { :source => :delta, :size => size }
         else
           raise 'delta command is 0'
         end
+        @delta_commands.last[:data] = shorten_utf8(data, 2000)
+      end
+
+      def shorten_utf8(bin, length)
+        str = bin.force_encoding('UTF-8')
+        str = '(not UTF-8)' unless str.valid_encoding?
+        str = str[0, length] + '...' if str.length > length
+        str
       end
 
       def zlib_inflate
