@@ -96,21 +96,33 @@ module GitPlain
         return false unless GitPlain::Models::PackIndex.path?(@relpath)
         obj = {}
         File.open(File.join(@target, @relpath)) do |input|
-          obj = GitPlain::Models::PackIndex.new(input)
+          obj = GitPlain::Models::PackIndex.new(input).parse
         end
-        File.open(File.join(@target, @relpath.sub(/\.idx\z/, '.pack'))) do |input|
+        File.open(index_to_pack_path) do |input|
           obj.load_object_types(input)
         end
         response_wrapped_object(response, "pack_index", obj)
         return true
       end
 
+      def index_to_pack_path
+        File.join(@target, @relpath.sub(/\.idx\z/, '.pack'))
+      end
+
+      def pack_to_index_path
+        File.join(@target, @relpath.sub(/\.pack\z/, '.idx'))
+      end
+
       def response_packed_object(response, offset)
         return false if offset.nil?
         return false unless GitPlain::Models::PackedObject.path?(@relpath)
         obj = {}
-        File.open(File.join(@target, @relpath)) do |input|
-          obj = GitPlain::Models::PackedObject.new(input).parse(offset.to_i)
+
+        File.open(pack_to_index_path) do |index_input|
+          index = GitPlain::Models::PackIndex.new(index_input)
+          File.open(File.join(@target, @relpath)) do |input|
+            obj = GitPlain::Models::PackedObject.new(index, input).parse(offset.to_i)
+          end
         end
         response_wrapped_object(response, "packed_object", obj)
         return true

@@ -14,17 +14,17 @@ module GitPlain
 
       def parse
         content = Zlib::Inflate.inflate(@in.read)
+        parse_inflated(content)
+        self
+      end
+
+      def parse_inflated(content)
         @sha1 = Digest::SHA1.hexdigest(content)
         @in   = StringIO.new(content)
 
         @type = find_char ' '
         @size = find_char "\0"
 
-        parse_inflated
-        self
-      end
-
-      def parse_inflated(type, size)
         @type = type
         @size = size
 

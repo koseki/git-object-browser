@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# https://github.com/git/git/blob/master/builtin/unpack-objects.c
+# https://github.com/git/git/blob/master/sha1_file.c
 # https://github.com/git/git/blob/master/patch-delta.c
+# https://github.com/git/git/blob/master/builtin/unpack-objects.c
 # https://github.com/mojombo/grit/blob/master/lib/grit/git-ruby/internal/pack.rb
 module GitPlain
 
@@ -14,26 +15,26 @@ module GitPlain
 
       TYPES = %w{
         undefined
-        OBJ_COMMIT
-        OBJ_TREE
-        OBJ_BLOB
-        OBJ_TAG
+        commit
+        tree
+        blob
+        tag
         undefined
-        OBJ_OFS_DELTA
-        OBJ_REF_DELTA
+        ofs_delta
+        ref_delta
       }
 
-      def initialize(input)
+      def initialize(index, input)
         super(input)
+        @index = index
       end
 
       def parse(offset)
         parse_raw(offset)
-        p @raw_data
 
-        input = StringIO.new(@raw_data)
-        type = @object_type.sub(/\AOBJ_/, '').downcase
-        @object = GitObject.new(input).parse_inflated(type, @object_size)
+        input = "#{ @object_type } #{ object_size }\0" + @raw_data
+
+        @object = GitObject.new(nil).parse_inflated(input)
 
         self
       end
@@ -42,8 +43,10 @@ module GitPlain
         @offset = offset
         @header = parse_header(offset)
 
-        if @header[:type] == 'OBJ_OFS_DELTA'
+        if @header[:type] == 'ofs_delta'
           obj_ofs_delta
+        elsif @header[:type] == 'ref_delta'
+          obj_ref_delta
         else
           @object_type = @header[:type]
           @object_size = @header[:size]
@@ -53,18 +56,22 @@ module GitPlain
 
       def parse_header(offset)
         seek(offset)
-
         (type, size, header_size) = parse_type_and_size
         type = TYPES[type]
-        header = { :type => type, :size => size, :header_size => header_size }
+        { :type => type, :size => size, :header_size => header_size }
+      end
 
-        if type == 'OBJ_OFS_DELTA'
-          (delta_offset, delta_header_size) = parse_delta_offset
-          header[:delta_offset] = offset - delta_offset
-          header[:header_size] += delta_header_size
-        end
+      def parse_ofs_delta_header(offset, header)
+        (delta_offset, delta_header_size) = parse_delta_offset
+        header[:base_offset] = offset - delta_offset
+        header[:header_size] += delta_header_size
+        header
+      end
 
-        return header
+      def parse_ref_delta_header(header)
+        header[:base_sha1]   = hex(20)
+        header[:header_size] += 20
+        header
       end
 
       def to_hash
@@ -74,10 +81,9 @@ module GitPlain
           :object_type => @object_type,
           :object_size => @object_size,
           :header_size => @header[:header_size],
-          :delta_offset => @header[:delta_offset],
-          :base_size => @base_size,
-          :delta_size => @delta_size,
+          :base_offset => @header[:base_offset],
           :delta_commands => @delta_commands,
+          :base_size => @base_size,
           :object => @object.to_hash,
         }
       end
@@ -86,13 +92,24 @@ module GitPlain
         return relpath =~ %r{\Aobjects/pack/pack-[0-9a-f]{40}.pack\z}
       end
 
-
       private
 
       def obj_ofs_delta
+        parse_ofs_delta_header(@offset, @header)
+        load_base_and_patch_delta
+      end
+
+      def obj_ref_delta
+        parse_ref_delta_header(@header)
+        index_entry = @index.find(@header[:base_sha1])
+        @header[:base_offset] = index_entry[:offset]
+        load_base_and_patch_delta
+      end
+
+      def load_base_and_patch_delta
         begin
-          pack = PackedObject.new(@in)
-          pack.parse_raw(@header[:delta_offset])
+          pack = PackedObject.new(@index, @in)
+          pack.parse_raw(@header[:base_offset])
           @object_type = pack.object_type
           @base = pack.raw_data
         ensure
@@ -116,12 +133,14 @@ module GitPlain
           raise 'incollect base size'
         end
 
-        @delta_size = parse_delta_size
-        @object_size = @delta_size
+        @object_size = parse_delta_size
         @delta_commands = []
         @raw_data = ''
         while ! @in.eof?
           delta_command
+        end
+        if @object_size != @raw_data.size
+          raise 'incollect delta size'
         end
       end
 
@@ -160,6 +179,8 @@ module GitPlain
         buffer
       end
 
+      # sha1_file.c unpack_object_header_buffer
+      # unpack-objects.c unpack_one
       def parse_type_and_size
         hdr      = byte
         hdr_size = 1
@@ -190,6 +211,7 @@ module GitPlain
         return size
       end
 
+      # sha1_file.c get_delta_base
       # unpack-objects.c unpack_delta_entry
       def parse_delta_offset
         offset   = -1
@@ -204,6 +226,7 @@ module GitPlain
         return [offset, hdr_size]
       end
 
+      # patch-delta.c
       def parse_base_offset_and_size(cmd)
         offset = size = 0
         offset  = byte       if cmd & 0b00000001 != 0
