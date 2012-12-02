@@ -4,6 +4,11 @@
 <table class="table">
 <tbody>
 <tr>
+<th>base offset</th>
+<td><a href="#/{{path}}?offset={{object.base_offset}}">{{object.base_offset}}</a></td>
+</tr>
+
+<tr>
 <th>offset</th>
 <td>{{offset}}</td>
 </tr>
@@ -14,45 +19,23 @@
 </tr>
 
 <tr>
-<th>size</th>
+<th>base size</th>
+<td>{{object.base_size}}</td>
+</tr>
+
+<tr>
+<th>delta size</th>
 <td>{{object.size}}</td>
 </tr>
 
-<tr>
-<th>delta offset</th>
-<td><a href="#/{{path}}?offset={{object.delta_offset}}">{{object.delta_offset}}</a></td>
-</tr>
+<tr><th>size</th><td>{{object.object.size}}</td></tr>
 
-<tr>
-<th>commands</th>
-<td>
-
-<table class="table table-striped">
-<thead>
-<th>source</th>
-<th>offset</th>
-<th>size</th>
-<th>data</th>
-</thead>
-<tbody>
-<tr data-ng-repeat="command in object.delta_commands">
-<td>{{command.source}}</td>
-<td>{{command.offset}}</td>
-<td>{{command.size}}</td>
-<td>{{command.data}}</td>
-</tr>
-</tbody>
-</table>
-
-</td>
-</tr>
 
 <tr><th>type</th><td>
 <i data-entry-icon="object.object.type"></i> {{object.object.type}}
 </td>
 </tr>
 <tr><th>sha1</th><td>{{object.object.sha1}}</td></tr>
-<tr><th>size</th><td>{{object.object.size}}</td></tr>
 
 <tr data-ng-repeat="prop in object.object.properties">
 <th>{{prop.key}}</th>
@@ -87,6 +70,35 @@
 
 </table>
 </td></tr>
+</tbody>
+
+<tbody>
+
+<tr>
+<th>commands</th>
+<td>
+
+<table class="table table-striped">
+<thead>
+<th>source</th>
+<th>offset</th>
+<th>size</th>
+<th>data</th>
+</thead>
+<tbody>
+<tr data-ng-repeat="command in object.delta_commands">
+<td>{{command.source}}</td>
+<td>{{command.offset}}</td>
+<td>{{command.size}}</td>
+<td>{{command.data}}</td>
+</tr>
+</tbody>
+
+</table>
+
+</td>
+</tr>
+
 
 
 </tbody>

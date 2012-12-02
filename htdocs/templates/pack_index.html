@@ -24,7 +24,10 @@
 <td>{{entry.sha1}}</td>
 <td>{{entry.crc32}}</td>
 <td><a href="#/{{packUrl}}?offset={{entry.offset}}">{{entry.offset}}</a></td>
-<td>{{entry.type}} <span data-ng-show="entry.delta_offset"><i class="icon-arrow-up"></i> {{entry.delta_offset}}<span></td>
+<td><i data-entry-icon="entry.type"></i> {{entry.type}}
+<span data-ng-show="entry.base_offset"><a href="#/{{packUrl}}?offset={{entry.base_offset}}">{{entry.base_offset}}</a></span>
+<span data-ng-show="entry.base_sha1"><a href="#/{{packUrl}}?sha1={{entry.base_sha1}}">{{entry.base_sha1.substr(0,6)}}</a></span>
+</td>
 <td>{{entry.size}}</td>
 </tr>
 </tbody>

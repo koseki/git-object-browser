@@ -41,7 +41,9 @@ angular.module('GitObjectBrowser', ['GitServices'])
         'blob': 'icon-file',
         'tree': 'icon-folder-open',
         'commit': 'icon-ok',
-        'tag': 'icon-tag'
+        'tag': 'icon-tag',
+        'ofs_delta': 'icon-arrow-up',
+        'ref_delta': 'icon-arrow-down'
       };
 
       var entryType = ($parse(attrs.entryIcon))(scope);
