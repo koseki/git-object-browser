@@ -1,9 +1,9 @@
 require 'webrick'
 
-module GitPlain
+module GitObjectBrowser
 
   module Server
-    
+
     class Main
 
       def initialize(target)

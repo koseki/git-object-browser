@@ -1,4 +1,4 @@
-module GitPlain
+module GitObjectBrowser
 
   module Models
 

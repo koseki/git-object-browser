@@ -1,4 +1,4 @@
-module GitPlain
+module GitObjectBrowser
 
   class Dumper
 
@@ -22,7 +22,7 @@ module GitPlain
       STDERR << "Write: .git/plain/index\n"
       File.open(index_file) do |input|
         File.open(out_file, "w") do |output|
-          dumper = GitPlain::IndexDumper.new(input, output)
+          dumper = GitObjectBrowser::IndexDumper.new(input, output)
           dumper.dump
         end
       end
@@ -51,7 +51,7 @@ module GitPlain
         obj_file = File.join(@target, path)
         File.open(obj_file) do |input|
           File.open(outfile, "w") do |output|
-            dumper = GitPlain::ObjectDumper.new(input, output)
+            dumper = GitObjectBrowser::ObjectDumper.new(input, output)
             dumper.dump
           end
         end

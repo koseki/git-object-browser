@@ -1,5 +1,3 @@
-module Git
-  module Plain
-    VERSION = "0.0.2"
-  end
+module GitObjectBrowser
+  VERSION = "0.0.2"
 end

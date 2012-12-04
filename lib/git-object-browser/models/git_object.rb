@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-module GitPlain
+module GitObjectBrowser
 
   module Models
 

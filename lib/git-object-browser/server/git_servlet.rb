@@ -1,5 +1,5 @@
 
-module GitPlain
+module GitObjectBrowser
 
   module Server
 
@@ -54,7 +54,7 @@ module GitPlain
       def response_directory(response)
         return false unless File.directory?(File.join(@target, @relpath))
 
-        obj = GitPlain::Models::Directory.new(@target, @relpath)
+        obj = GitObjectBrowser::Models::Directory.new(@target, @relpath)
         response_wrapped_object(response, "directory", obj)
         return true
       end
@@ -64,39 +64,39 @@ module GitPlain
 
         obj = {}
         File.open(File.join(@target, @relpath)) do |input|
-          obj = GitPlain::Models::Index.new(input)
+          obj = GitObjectBrowser::Models::Index.new(input)
         end
         response_wrapped_object(response, "index", obj)
         return true
       end
 
       def response_object(response)
-        return false unless GitPlain::Models::GitObject.path?(@relpath)
+        return false unless GitObjectBrowser::Models::GitObject.path?(@relpath)
 
         obj = {}
         File.open(File.join(@target, @relpath)) do |input|
-          obj = GitPlain::Models::GitObject.new(input).parse
+          obj = GitObjectBrowser::Models::GitObject.new(input).parse
         end
         response_wrapped_object(response, "object", obj)
         return true
       end
 
       def response_ref(response)
-        return false unless GitPlain::Models::Ref.path?(@relpath)
+        return false unless GitObjectBrowser::Models::Ref.path?(@relpath)
 
         obj = {}
         File.open(File.join(@target, @relpath)) do |input|
-          obj = GitPlain::Models::Ref.new(input)
+          obj = GitObjectBrowser::Models::Ref.new(input)
         end
         response_wrapped_object(response, "ref", obj)
         return true
       end
 
       def response_pack_index(response)
-        return false unless GitPlain::Models::PackIndex.path?(@relpath)
+        return false unless GitObjectBrowser::Models::PackIndex.path?(@relpath)
         obj = {}
         File.open(File.join(@target, @relpath)) do |input|
-          obj = GitPlain::Models::PackIndex.new(input).parse
+          obj = GitObjectBrowser::Models::PackIndex.new(input).parse
         end
         File.open(index_to_pack_path) do |input|
           obj.load_object_types(input)
@@ -115,13 +115,13 @@ module GitPlain
 
       def response_packed_object(response, offset)
         return false if offset.nil?
-        return false unless GitPlain::Models::PackedObject.path?(@relpath)
+        return false unless GitObjectBrowser::Models::PackedObject.path?(@relpath)
         obj = {}
 
         File.open(pack_to_index_path) do |index_input|
-          index = GitPlain::Models::PackIndex.new(index_input)
+          index = GitObjectBrowser::Models::PackIndex.new(index_input)
           File.open(File.join(@target, @relpath)) do |input|
-            obj = GitPlain::Models::PackedObject.new(index, input).parse(offset.to_i)
+            obj = GitObjectBrowser::Models::PackedObject.new(index, input).parse(offset.to_i)
           end
         end
         response_wrapped_object(response, "packed_object", obj)
@@ -129,11 +129,11 @@ module GitPlain
       end
 
       def response_packed_refs(response)
-        return false unless GitPlain::Models::PackedRefs.path?(@relpath)
+        return false unless GitObjectBrowser::Models::PackedRefs.path?(@relpath)
 
         obj = {}
         File.open(File.join(@target, @relpath)) do |input|
-          obj = GitPlain::Models::PackedRefs.new(input)
+          obj = GitObjectBrowser::Models::PackedRefs.new(input)
         end
         response_wrapped_object(response, "packed_refs", obj)
         return true

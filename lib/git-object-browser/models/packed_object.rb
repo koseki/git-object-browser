@@ -4,7 +4,7 @@
 # https://github.com/git/git/blob/master/patch-delta.c
 # https://github.com/git/git/blob/master/builtin/unpack-objects.c
 # https://github.com/mojombo/grit/blob/master/lib/grit/git-ruby/internal/pack.rb
-module GitPlain
+module GitObjectBrowser
 
   module Models
 

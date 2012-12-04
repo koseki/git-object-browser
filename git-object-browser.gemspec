@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/git-plain/version', __FILE__)
+require File.expand_path('../lib/git-object-browser/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["koseki"]
@@ -13,5 +13,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "git-object-browser"
   gem.require_paths = ["lib"]
-  gem.version       = Git::Plain::VERSION
+  gem.version       = GitObjectBrowser::VERSION
 end

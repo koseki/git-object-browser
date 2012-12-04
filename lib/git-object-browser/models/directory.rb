@@ -1,5 +1,5 @@
 
-module GitPlain
+module GitObjectBrowser
 
   module Models
 
@@ -39,7 +39,7 @@ module GitPlain
           end
         end
         order = %w{directory ref packed_refs index object file symlink}
-        entries.sort do |a,b| 
+        entries.sort do |a,b|
           (order.index(a[:type]) <=> order.index(b[:type])).nonzero? ||
             a[:basename] <=> b[:basename]
         end

@@ -1,5 +1,5 @@
 #! /usr/bin/env ruby
 
-require 'git-plain'
+require 'git-object-browser'
 
-GitPlain::Main.new.execute
+GitObjectBrowser::Main.new.execute
