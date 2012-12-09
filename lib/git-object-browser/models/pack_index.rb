@@ -73,7 +73,6 @@ module GitObjectBrowser
         while lo < hi
           mid = (lo + hi) / 2
           mid_sha1 = get_sha1(mid)
-          puts "#{mid} #{mid_sha1.unpack("H*")}"
           if mid_sha1 == sha1
             return {
               :sha1   => sha1_hex,

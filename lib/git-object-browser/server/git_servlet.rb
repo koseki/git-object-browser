@@ -19,7 +19,7 @@ module GitObjectBrowser
         @relpath = $1.to_s
         path = File.join(@target, @relpath)
         unless File.exist?(path)
-          not_found(response)
+          not_found(response) unless redirect_to_packed_object(response)
           return
         end
 
@@ -37,6 +37,27 @@ module GitObjectBrowser
         return if response_packed_refs(response)
 
         response_file(response)
+      end
+
+      def redirect_to_packed_object(response)
+        return false unless GitObjectBrowser::Models::GitObject.path?(@relpath)
+        sha1 = @relpath.gsub(%r{\A.*/([0-9a-f]{2})/([0-9a-f]{38})\z}, '\1\2')
+
+        Dir.chdir(@target) do
+          Dir.glob('objects/pack/*.idx') do |path|
+            File.open(path) do |input|
+              index = GitObjectBrowser::Models::PackIndex.new(input)
+              result = index.find(sha1)
+              unless result.nil?
+                packfile = path.sub(/\.idx\z/, '.pack')
+                response.status = 302
+                response["Location"] = "/.git/#{ packfile }?offset=#{ result[:offset] }"
+                return true
+              end
+            end
+          end
+        end
+        false
       end
 
       def response_wrapped_object(response, type, obj)
