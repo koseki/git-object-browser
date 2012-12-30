@@ -1,40 +1,41 @@
 <article>
-<h1><i data-entry-icon="'object'"></i> {{path}} <small>Packed Object</small></h1>
+<h1 style="font-size:1.8em;"><i data-entry-icon="'object'"></i> {{path}} <small>Packed Object</small></h1>
 
 <table class="table">
 <tbody>
+
 <tr>
+<th>offset</th>
+<td>{{object.offset}}</td>
+</tr>
+
+<tr data-ng-show="object.base_offset">
 <th>base offset</th>
 <td><a href="#/{{path}}?offset={{object.base_offset}}">{{object.base_offset}}</a></td>
 </tr>
 
-<tr>
-<th>offset</th>
-<td>{{offset}}</td>
+<tr data-ng-show="object.base_offset">
+<th>delta type</th>
+<td><i data-entry-icon="object.type"></i> {{object.type}}</td>
 </tr>
 
 <tr>
 <th>type</th>
-<td>{{object.type}}</td>
+<td><i data-entry-icon="object.object.type"></i> {{object.object.type}}</td>
 </tr>
 
-<tr>
+<tr data-ng-show="object.base_offset">
 <th>base size</th>
 <td>{{object.base_size}}</td>
 </tr>
 
-<tr>
+<tr data-ng-show="object.base_offset">
 <th>delta size</th>
 <td>{{object.size}}</td>
 </tr>
 
 <tr><th>size</th><td>{{object.object.size}}</td></tr>
 
-
-<tr><th>type</th><td>
-<i data-entry-icon="object.object.type"></i> {{object.object.type}}
-</td>
-</tr>
 <tr><th>sha1</th><td>{{object.object.sha1}}</td></tr>
 
 <tr data-ng-repeat="prop in object.object.properties">
