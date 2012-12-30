@@ -11,7 +11,7 @@ module GitObjectBrowser
     class PackedObject < BinFile
 
       attr_reader :header, :raw_data
-      attr_reader :object, :object_type, :object_size
+      attr_reader :object
 
       TYPES = %w{
         undefined
@@ -31,11 +31,8 @@ module GitObjectBrowser
 
       def parse(offset)
         parse_raw(offset)
-
-        input = "#{ @object_type } #{ object_size }\0" + @raw_data
-
+        input = "#{ @object_type } #{ @object_size }\0" + @raw_data
         @object = GitObject.new(nil).parse_inflated(input)
-
         self
       end
 
@@ -52,6 +49,8 @@ module GitObjectBrowser
           @object_size = @header[:size]
           @raw_data = zlib_inflate
         end
+
+        [@object_type, @object_size]
       end
 
       def parse_header(offset)
@@ -76,10 +75,9 @@ module GitObjectBrowser
 
       def to_hash
         return {
-          :type => @header[:type],
+          :offset => @offset,
+          :type => @header[:type], # commit, tree, blob, tag, ofs_delta, ref_delta
           :size => @header[:size],
-          :object_type => @object_type,
-          :object_size => @object_size,
           :header_size => @header[:header_size],
           :base_offset => @header[:base_offset],
           :delta_commands => @delta_commands,
@@ -109,8 +107,7 @@ module GitObjectBrowser
       def load_base_and_patch_delta
         begin
           pack = PackedObject.new(@index, @in)
-          pack.parse_raw(@header[:base_offset])
-          @object_type = pack.object_type
+          (@object_type, _) = pack.parse_raw(@header[:base_offset])
           @base = pack.raw_data
         ensure
           seek(@offset + @header[:header_size])
@@ -120,12 +117,12 @@ module GitObjectBrowser
       end
 
       def patch_delta
-        @base_size  = parse_delta_size
+        @base_size  = parse_size
         if @base.size != @base_size
           raise 'incollect base size'
         end
 
-        @object_size = parse_delta_size
+        @object_size = parse_size
         @delta_commands = []
         @raw_data = ''
         while ! @in.eof?
@@ -196,7 +193,7 @@ module GitObjectBrowser
       end
 
       # delta.h get_delta_hdr_size
-      def parse_delta_size
+      def parse_size
         size     = 0
         size_len = 0
         begin
