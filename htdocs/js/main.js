@@ -200,11 +200,6 @@ function GitCtrl($scope, $location, $routeParams, GitResource, PackedObjectResou
         }
       });
       $scope.object.entries = entries;
-    } else if (json.type == "pack_index") {
-      template = json.type;
-    } else if (json.type == "packed_object") {
-      template = json.type;
-      $scope.offset = $routeParams.offset;
     } else {
       template = json.type;
     }
@@ -239,6 +234,10 @@ function GitCtrl($scope, $location, $routeParams, GitResource, PackedObjectResou
 
 }
 
+function PackFileCtrl($scope, $location, $routeParams) {
+  $scope.indexUrl = $scope.path.replace(/.pack$/, '.idx');
+}
+
 function PackIndexCtrl($scope, $location, $routeParams) {
 
   $scope.orderByOffset = function() {
@@ -260,7 +259,7 @@ function PackIndexCtrl($scope, $location, $routeParams) {
   }
 
   $scope.packUrl = $scope.path.replace(/.idx$/, '.pack');
-  
+
   angular.forEach($scope.object.entries, function(entry, i) {
     entry.index = i;
   });

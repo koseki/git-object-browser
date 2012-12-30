@@ -32,8 +32,9 @@ module GitObjectBrowser
         return if response_index(response)
         return if response_object(response)
         return if response_ref(response)
-        return if response_pack_index(response)
         return if response_packed_object(response, request.query["offset"])
+        return if response_pack_file(response)
+        return if response_pack_index(response)
         return if response_packed_refs(response)
 
         response_file(response)
@@ -123,6 +124,16 @@ module GitObjectBrowser
           obj.load_object_types(input)
         end
         response_wrapped_object(response, "pack_index", obj)
+        return true
+      end
+
+      def response_pack_file(response)
+        return false unless GitObjectBrowser::Models::PackFile.path?(@relpath)
+        obj = {}
+        File.open(File.join(@target, @relpath)) do |input|
+          obj = GitObjectBrowser::Models::PackFile.new(input).parse
+        end
+        response_wrapped_object(response, 'pack_file', obj)
         return true
       end
 
