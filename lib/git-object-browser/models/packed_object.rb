@@ -116,15 +116,7 @@ module GitObjectBrowser
           seek(@offset + @header[:header_size])
         end
 
-        buffer = zlib_inflate
-
-        tmp = @in
-        begin
-          @in = StringIO.new(buffer)
-          patch_delta
-        ensure
-          @in = tmp
-        end
+        switch_source(StringIO.new(zlib_inflate)) { patch_delta }
       end
 
       def patch_delta

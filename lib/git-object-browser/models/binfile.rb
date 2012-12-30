@@ -8,6 +8,14 @@ module GitObjectBrowser
         @in = input
       end
 
+      def switch_source(input)
+        tmp = @in
+        @in = input
+        yield
+      ensure
+        @in = tmp
+      end
+
       def raw(bytes)
         return @in.read(bytes)
       end
