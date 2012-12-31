@@ -21,7 +21,7 @@ module GitObjectBrowser
       end
 
       def bytes(bytes)
-        @in.read(bytes).unpack("C*")
+        @in.read(bytes).unpack('C*')
       end
 
       def byte
@@ -29,19 +29,19 @@ module GitObjectBrowser
       end
 
       def int
-        @in.read(4).unpack("N").first.to_i
+        @in.read(4).unpack('N').first.to_i
       end
 
       def hex(bytes)
-        @in.read(bytes).unpack("H*").first
+        @in.read(bytes).unpack('H*').first
       end
 
       def binstr(bytes)
-        @in.read(bytes).unpack("B*").first
+        @in.read(bytes).unpack('B*').first
       end
 
       def find_char(char)
-        buf = ""
+        buf = ''
         loop do
           c = @in.read(1)
           return buf if c.nil? || c == char
