@@ -2,7 +2,7 @@ module GitObjectBrowser
 
   module Models
 
-    class IndexTreeExtension < BinFile
+    class IndexTreeExtension < Bindata
 
       attr_reader :signature, :total_length, :entries
 

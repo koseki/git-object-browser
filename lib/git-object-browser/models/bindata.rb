@@ -2,7 +2,7 @@ module GitObjectBrowser
 
   module Models
 
-    class BinFile
+    class Bindata
 
       def initialize(input)
         @in = input
@@ -17,27 +17,27 @@ module GitObjectBrowser
       end
 
       def raw(bytes)
-        return @in.read(bytes)
+        @in.read(bytes)
       end
 
       def bytes(bytes)
-        return @in.read(bytes).unpack("C*")
+        @in.read(bytes).unpack("C*")
       end
 
       def byte
-        return bytes(1).first
+        bytes(1).first
       end
 
       def int
-        return @in.read(4).unpack("N").first.to_i
+        @in.read(4).unpack("N").first.to_i
       end
 
       def hex(bytes)
-        return @in.read(bytes).unpack("H*").first
+        @in.read(bytes).unpack("H*").first
       end
 
       def binstr(bytes)
-        return @in.read(bytes).unpack("B*").first
+        @in.read(bytes).unpack("B*").first
       end
 
       def find_char(char)
@@ -60,7 +60,7 @@ module GitObjectBrowser
       def peek(bytes)
         result = raw(bytes)
         @in.seek(bytes * -1, IO::SEEK_CUR)
-        return result
+        result
       end
 
     end

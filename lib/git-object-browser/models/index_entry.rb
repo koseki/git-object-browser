@@ -2,7 +2,7 @@ module GitObjectBrowser
 
   module Models
 
-    class IndexEntry < BinFile
+    class IndexEntry < Bindata
 
       attr_reader :version, :ctime, :cnano, :mtime, :mnano, :dev, :ino
       attr_reader :object_type, :unix_permission

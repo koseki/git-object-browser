@@ -3,7 +3,7 @@ module GitObjectBrowser
 
   module Models
 
-    class GitObject < BinFile
+    class GitObject < Bindata
 
       attr_reader :sha1, :type, :size, :entries, :contents
       attr_reader :properties, :message

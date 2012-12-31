@@ -8,7 +8,7 @@ module GitObjectBrowser
 
   module Models
 
-    class PackedObject < BinFile
+    class PackedObject < Bindata
 
       attr_reader :header, :raw_data
       attr_reader :object

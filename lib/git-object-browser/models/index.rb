@@ -3,7 +3,7 @@ module GitObjectBrowser
   module Models
 
     # Parse .git/index file
-    class Index < BinFile
+    class Index < Bindata
 
       attr_reader :version, :entry_count, :entries, :extensions, :sha1
 

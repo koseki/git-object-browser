@@ -10,7 +10,7 @@ module GitObjectBrowser
     #   sha1      20bytes * fanout[255]
     #   crc        4bytes * fanout[255]
     #   offset     4bytes * fanout[255]
-    class PackIndex < BinFile
+    class PackIndex < Bindata
 
       def initialize(input)
         super(input)

@@ -11,7 +11,7 @@ module GitObjectBrowser
     #   object entries     -> packed_object.rb
     #
     # https://github.com/git/git/blob/master/Documentation/technical/pack-format.txt
-    class PackFile < BinFile
+    class PackFile < Bindata
       def initialize(input)
         super(input)
       end

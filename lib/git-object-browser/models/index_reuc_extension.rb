@@ -2,7 +2,7 @@ module GitObjectBrowser
 
   module Models
 
-    class IndexReucExtension < BinFile
+    class IndexReucExtension < Bindata
 
       attr_reader :signature, :total_length
 
@@ -15,7 +15,7 @@ module GitObjectBrowser
         @signature = raw(4) # REUC
         @total_length = int
 
-        raw(@total_length) # TODO 
+        raw(@total_length) # TODO
       end
 
       def to_hash

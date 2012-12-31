@@ -12,7 +12,7 @@ require 'time'
 require 'stringio'
 
 require "git-object-browser/models/ref"
-require "git-object-browser/models/binfile"
+require "git-object-browser/models/bindata"
 require "git-object-browser/models/directory"
 require "git-object-browser/models/git_object"
 require "git-object-browser/models/index"
