@@ -1,0 +1,11 @@
+[user]
+    name = git sample
+    email = git@example.com
+
+[core]
+    repositoryformatversion = 0
+    filemode = true
+    bare = false
+    logallrefupdates = true
+    ignorecase = true
+    excludesfile = _git/ignore

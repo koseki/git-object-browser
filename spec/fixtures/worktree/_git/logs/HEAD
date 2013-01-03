@@ -1,0 +1,9 @@
+6698ccf4d63fdaf0388cb741b4e56aa754b530c2 532a1874c26cd19bd4d66e03218ab73e63de4357 git sample <git@example.com> 981172803 +0000	commit: commit 3
+532a1874c26cd19bd4d66e03218ab73e63de4357 93b714995d24c52180195876058a49c7d7fea0ad git sample <git@example.com> 981172804 +0000	commit: commit 4
+93b714995d24c52180195876058a49c7d7fea0ad 93b714995d24c52180195876058a49c7d7fea0ad git sample <git@example.com> 981172804 +0000	checkout: moving from master to branch-a
+93b714995d24c52180195876058a49c7d7fea0ad 6c444ac15f1e3c2a6869bd36ca7e58c39512106f git sample <git@example.com> 981172805 +0000	commit: commit 4a-1
+6c444ac15f1e3c2a6869bd36ca7e58c39512106f bee0d26d33c284ee065e38bd7e81ae4bdc870f89 git sample <git@example.com> 981172806 +0000	commit: commit 4a-2
+bee0d26d33c284ee065e38bd7e81ae4bdc870f89 93b714995d24c52180195876058a49c7d7fea0ad git sample <git@example.com> 981172806 +0000	checkout: moving from branch-a to branch-b
+93b714995d24c52180195876058a49c7d7fea0ad 0731f9d4b6fa0475872be6a8ca263096f1d201cf git sample <git@example.com> 981172807 +0000	commit: commit 4b-1
+0731f9d4b6fa0475872be6a8ca263096f1d201cf 93b714995d24c52180195876058a49c7d7fea0ad git sample <git@example.com> 981172807 +0000	checkout: moving from branch-b to master
+93b714995d24c52180195876058a49c7d7fea0ad 37d1632d3f1159dad9cfb58e6c34312ab4355c49 git sample <git@example.com> 981172808 +0000	merge branch-a: Merge made by the 'recursive' strategy.

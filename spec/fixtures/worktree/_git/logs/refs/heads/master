@@ -1,0 +1,3 @@
+6698ccf4d63fdaf0388cb741b4e56aa754b530c2 532a1874c26cd19bd4d66e03218ab73e63de4357 git sample <git@example.com> 981172803 +0000	commit: commit 3
+532a1874c26cd19bd4d66e03218ab73e63de4357 93b714995d24c52180195876058a49c7d7fea0ad git sample <git@example.com> 981172804 +0000	commit: commit 4
+93b714995d24c52180195876058a49c7d7fea0ad 37d1632d3f1159dad9cfb58e6c34312ab4355c49 git sample <git@example.com> 981172808 +0000	merge branch-a: Merge made by the 'recursive' strategy.
