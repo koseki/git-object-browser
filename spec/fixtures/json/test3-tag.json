@@ -1,0 +1,36 @@
+{
+  "type": "tag",
+  "sha1": "00cb8bfeb5b8ce906d39698e4e33b38341f5448f",
+  "size": "144",
+  "entries": null,
+  "contents": "object 532a1874c26cd19bd4d66e03218ab73e63de4357\ntype commit\ntag test3-tag\ntagger git sample <git@example.com> 981172803 +0000\n\ntag for commit 3\n",
+  "properties": [
+    {
+      "key": "object",
+      "value": "532a1874c26cd19bd4d66e03218ab73e63de4357",
+      "type": "sha1",
+      "path": "objects/53/2a1874c26cd19bd4d66e03218ab73e63de4357"
+    },
+    {
+      "key": "type",
+      "value": "commit",
+      "type": "text"
+    },
+    {
+      "key": "tag",
+      "value": "test3-tag",
+      "type": "text"
+    },
+    {
+      "key": "tagger",
+      "value": "git sample <git@example.com> 981172803 +0000",
+      "type": "user",
+      "name": "git sample",
+      "email": "git@example.com",
+      "unixtime": "981172803",
+      "timezone": "+0000",
+      "date": "2001-02-03T04:00:03+00:00"
+    }
+  ],
+  "message": "tag for commit 3"
+}

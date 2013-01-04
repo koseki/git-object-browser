@@ -6,6 +6,8 @@ require 'spork'
 
 Spork.prefork do
   require 'rspec'
+
+  FIXTURES_DIR = File.join(File.dirname(__FILE__), 'fixtures')
 end
 
 Spork.each_run do

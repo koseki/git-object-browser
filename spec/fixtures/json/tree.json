@@ -1,0 +1,20 @@
+{
+  "type": "tree",
+  "sha1": "c36491256978d26c08cd7aa97eee0f5631f96659",
+  "size": "78",
+  "entries": [
+    {
+      "mode": "100644",
+      "filename": "sample-a.txt",
+      "sha1": "1d3dc60b5a117054e43741d51e599ff31bb15f9f"
+    },
+    {
+      "mode": "100644",
+      "filename": "sample.txt",
+      "sha1": "d234c5e057fe32c676ea67e8cb38f4625ddaeb54"
+    }
+  ],
+  "contents": null,
+  "properties": null,
+  "message": null
+}

@@ -1,0 +1,48 @@
+{
+  "type": "commit",
+  "sha1": "37d1632d3f1159dad9cfb58e6c34312ab4355c49",
+  "size": "258",
+  "entries": null,
+  "contents": "tree c36491256978d26c08cd7aa97eee0f5631f96659\nparent 93b714995d24c52180195876058a49c7d7fea0ad\nparent bee0d26d33c284ee065e38bd7e81ae4bdc870f89\nauthor git sample <git@example.com> 981172808 +0000\ncommitter git sample <git@example.com> 981172808 +0000\n\nmerge a\n",
+  "properties": [
+    {
+      "key": "tree",
+      "value": "c36491256978d26c08cd7aa97eee0f5631f96659",
+      "type": "sha1",
+      "path": "objects/c3/6491256978d26c08cd7aa97eee0f5631f96659"
+    },
+    {
+      "key": "parent",
+      "value": "93b714995d24c52180195876058a49c7d7fea0ad",
+      "type": "sha1",
+      "path": "objects/93/b714995d24c52180195876058a49c7d7fea0ad"
+    },
+    {
+      "key": "parent",
+      "value": "bee0d26d33c284ee065e38bd7e81ae4bdc870f89",
+      "type": "sha1",
+      "path": "objects/be/e0d26d33c284ee065e38bd7e81ae4bdc870f89"
+    },
+    {
+      "key": "author",
+      "value": "git sample <git@example.com> 981172808 +0000",
+      "type": "user",
+      "name": "git sample",
+      "email": "git@example.com",
+      "unixtime": "981172808",
+      "timezone": "+0000",
+      "date": "2001-02-03T04:00:08+00:00"
+    },
+    {
+      "key": "committer",
+      "value": "git sample <git@example.com> 981172808 +0000",
+      "type": "user",
+      "name": "git sample",
+      "email": "git@example.com",
+      "unixtime": "981172808",
+      "timezone": "+0000",
+      "date": "2001-02-03T04:00:08+00:00"
+    }
+  ],
+  "message": "merge a"
+}
