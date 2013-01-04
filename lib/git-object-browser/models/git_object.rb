@@ -100,7 +100,7 @@ module GitObjectBrowser
             prop['email'] = '(not UTF-8)' unless prop['email'].valid_encoding?
             prop['unixtime'] = $3
             prop['timezone'] = $4
-            prop['date'] = Time.at($3.to_i).iso8601
+            prop['date'] = epoch($3.to_i, $4).iso8601
           else
             prop['type'] = 'text'
           end
@@ -110,6 +110,16 @@ module GitObjectBrowser
         message = '(not UTF-8)' unless message.valid_encoding?
 
         [properties, message]
+      end
+
+      def epoch(sec, timezone)
+        DateTime.strptime(sec.to_s, '%s').new_offset(parse_timezone(timezone))
+      end
+
+      def parse_timezone(timezone)
+        timezone = '+00:00' if timezone == 'Z'
+        return Rational(0, 24) unless timezone =~ /(\+|-)?(\d\d):?(\d\d)/
+        Rational($2.to_i, 24) + Rational($3, 60) * (($1 == '-') ? -1 : 1)
       end
 
     end
