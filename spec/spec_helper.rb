@@ -8,6 +8,10 @@ Spork.prefork do
   require 'rspec'
 
   FIXTURES_DIR = File.join(File.dirname(__FILE__), 'fixtures')
+
+  def load_json(file)
+    File.read(File.join(FIXTURES_DIR, 'json', file)).strip
+  end
 end
 
 Spork.each_run do

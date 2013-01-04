@@ -1,13 +1,11 @@
+# -*- coding: utf-8 -*-
+
 require 'spec_helper.rb'
-require 'pp'
 
 module GitObjectBrowser::Models
   describe GitObject do
-    def load_json(file)
-      File.read(File.join(FIXTURES_DIR, 'json', file)).strip
-    end
 
-    let(:infile) { File.join(FIXTURES_DIR, 'worktree', '_git', 'objects', sha1[0,2], sha1[2,40]) }
+    let(:infile) { File.join(FIXTURES_DIR, 'worktree/_git/objects', sha1[0,2], sha1[2,40]) }
     let(:input) { File.open(infile) }
     subject { GitObject.new(input) }
 

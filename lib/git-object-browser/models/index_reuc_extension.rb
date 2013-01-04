@@ -8,14 +8,15 @@ module GitObjectBrowser
 
       def initialize(input)
         super(input)
-        parse
       end
 
       def parse
         @signature = raw(4) # REUC
         @total_length = int
 
-        raw(@total_length) # TODO
+        data = raw(@total_length) # TODO
+
+        self
       end
 
       def to_hash

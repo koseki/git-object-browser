@@ -9,7 +9,6 @@ module GitObjectBrowser
 
       def initialize(input)
         super(input)
-        parse
       end
 
       def parse
@@ -23,6 +22,8 @@ module GitObjectBrowser
         @entries     = parse_entries
         @extensions  = parse_extensions
         @sha1        = hex(20)
+
+        self
       end
 
       def parse_entries
@@ -37,9 +38,9 @@ module GitObjectBrowser
         extensions = []
         while signature = peek(4)
           if signature == "TREE"
-            extensions << IndexTreeExtension.new(@in)
+            extensions << IndexTreeExtension.new(@in).parse
           elsif  signature == "REUC"
-            extensions << IndexReucExtension.new(@in)
+            extensions << IndexReucExtension.new(@in).parse
           else
             break
           end

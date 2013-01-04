@@ -86,7 +86,7 @@ module GitObjectBrowser
 
         obj = {}
         File.open(File.join(@target, @relpath)) do |input|
-          obj = GitObjectBrowser::Models::Index.new(input)
+          obj = GitObjectBrowser::Models::Index.new(input).parse
         end
         response_wrapped_object(response, "index", obj)
         return true
