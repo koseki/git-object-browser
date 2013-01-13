@@ -51,7 +51,7 @@ module GitObjectBrowser::Models
 
       it 'return correct hash' do
         data = subject.parse.to_hash
-        data['sha1'].should eq 'cb9dab99534f6561c467b2fcbbd7cf54a9e8fc05'
+        data['sha1'].should eq 'ad7408a5d4e6050d3b95c21d260ae568b24e4d19'
       end
     end
   end
