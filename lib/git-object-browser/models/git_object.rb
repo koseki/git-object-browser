@@ -31,14 +31,14 @@ module GitObjectBrowser
         if @type == 'tree'
           @entries = parse_tree_entries
         else
-          @contents = @in.read(nil)
+          @content = @in.read(nil)
           if @type == 'commit' or @type == 'tag'
             (@properties, @message) = parse_contents
           end
 
-          @contents = @contents.force_encoding('UTF-8')
-          @contents = '(not UTF-8)' unless @contents.valid_encoding?
-          @contents = @contents[0, 3000] + "\n..." if @contents.length > 3000
+          @content = @content.force_encoding('UTF-8')
+          @content = '(not UTF-8)' unless @content.valid_encoding?
+          @content = @content[0, 3000] + "\n..." if @content.length > 3000
         end
 
         self
@@ -51,7 +51,7 @@ module GitObjectBrowser
           'sha1' => @sha1,
           'size' => @size,
           'entries' => @entries,
-          'contents' => @contents,
+          'content' => @content,
           'properties' => @properties,
           'message' => @message,
         }
@@ -78,7 +78,7 @@ module GitObjectBrowser
       end
 
       def parse_contents
-        lines = @contents.split /\n/
+        lines = @content.split /\n/
         line = ''
         properties = []
         message = ''

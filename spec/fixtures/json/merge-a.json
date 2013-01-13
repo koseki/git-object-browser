@@ -3,7 +3,7 @@
   "sha1": "37d1632d3f1159dad9cfb58e6c34312ab4355c49",
   "size": "258",
   "entries": null,
-  "contents": "tree c36491256978d26c08cd7aa97eee0f5631f96659\nparent 93b714995d24c52180195876058a49c7d7fea0ad\nparent bee0d26d33c284ee065e38bd7e81ae4bdc870f89\nauthor git sample <git@example.com> 981172808 +0000\ncommitter git sample <git@example.com> 981172808 +0000\n\nmerge a\n",
+  "content": "tree c36491256978d26c08cd7aa97eee0f5631f96659\nparent 93b714995d24c52180195876058a49c7d7fea0ad\nparent bee0d26d33c284ee065e38bd7e81ae4bdc870f89\nauthor git sample <git@example.com> 981172808 +0000\ncommitter git sample <git@example.com> 981172808 +0000\n\nmerge a\n",
   "properties": [
     {
       "key": "tree",
