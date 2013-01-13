@@ -11,6 +11,7 @@ require 'json'
 require 'time'
 require 'stringio'
 
+require "git-object-browser/main"
 require "git-object-browser/models/ref"
 require "git-object-browser/models/bindata"
 require "git-object-browser/models/directory"
@@ -29,34 +30,5 @@ require "git-object-browser/server/git_servlet"
 require "git-object-browser/dumper"
 require "git-object-browser/object_dumper"
 require "git-object-browser/index_dumper"
-
-module GitObjectBrowser
-
-  class Main
-
-    def execute
-      target = find_target
-      if ARGV[0] == "dump"
-        dumper = Dumper.new(target)
-        dumper.dump
-      else
-        Server::Main.execute(target, 8080)
-      end
-    end
-
-    def find_target
-      target = ARGV[1]
-      begin
-        if File.exist?(target + "/.git")
-          return target + "/.git"
-        end
-        target = File.dirname(target)
-      end while target != "/" # XXX
-
-      throw Exception.new(".git not found")
-    end
-
-  end
-end
 
 GitObjectBrowser::Main.new().execute if __FILE__ == $0
