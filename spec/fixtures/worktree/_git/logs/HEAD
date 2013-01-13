@@ -7,3 +7,4 @@ bee0d26d33c284ee065e38bd7e81ae4bdc870f89 93b714995d24c52180195876058a49c7d7fea0a
 93b714995d24c52180195876058a49c7d7fea0ad 0731f9d4b6fa0475872be6a8ca263096f1d201cf git sample <git@example.com> 981172807 +0000	commit: commit 4b-1
 0731f9d4b6fa0475872be6a8ca263096f1d201cf 93b714995d24c52180195876058a49c7d7fea0ad git sample <git@example.com> 981172807 +0000	checkout: moving from branch-b to master
 93b714995d24c52180195876058a49c7d7fea0ad 37d1632d3f1159dad9cfb58e6c34312ab4355c49 git sample <git@example.com> 981172808 +0000	merge branch-a: Merge made by the 'recursive' strategy.
+37d1632d3f1159dad9cfb58e6c34312ab4355c49 40a061aaf0cd0555449671a11993e4fed11f91a4 git sample <git@example.com> 981172809 +0000	commit: add subdir

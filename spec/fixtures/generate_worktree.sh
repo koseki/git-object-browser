@@ -95,4 +95,9 @@ git checkout master
 
 setdate "00:08"
 git merge --no-ff branch-a -m 'merge a'
-export GIT_COMMITTER_DATE=""
+
+setdate "00:09"
+mkdir subdir
+touch subdir/sample-sub.txt
+git add subdir/sample-sub.txt
+git commit -m 'add subdir'
