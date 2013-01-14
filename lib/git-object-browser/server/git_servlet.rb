@@ -173,12 +173,10 @@ module GitObjectBrowser
 
       def response_file(response)
         path = File.join(@target, @relpath)
-        obj = {
-          "root" => @target,
-          "relpath" => @relpath,
-          "mtime" => File.mtime(path).to_i,
-          "size" => File.size(path),
-        }
+        obj = {}
+        File.open(path) do |input|
+          obj = GitObjectBrowser::Models::PlainFile.new(input).parse
+        end
         response_wrapped_object(response, "file", obj)
         return true
       end
