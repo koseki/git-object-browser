@@ -10,6 +10,7 @@ require 'digest/sha1'
 require 'json'
 require 'time'
 require 'stringio'
+require 'optparse'
 
 require "git-object-browser/main"
 require "git-object-browser/models/ref"

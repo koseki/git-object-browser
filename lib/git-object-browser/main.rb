@@ -2,13 +2,32 @@
 module GitObjectBrowser
   class Main
     def execute
-      target = find_target(ARGV[1])
-      if ARGV[0] == "dump"
-        dumper = Dumper.new(target)
-        dumper.dump
-      else
-        Server::Main.execute(target, 8080)
+      host = '127.0.0.1'
+      port = 8080
+      opts = OptionParser.new do |opts|
+        opts.on('-p', '--port=PORT', 'port number') do |value|
+          port = value.to_i if 0 < value.to_i
+        end
+        opts.on('-b', '--bind=HOST', 'address to bind') do |value|
+          host = value
+        end
+        opts.on('-d', '--dump', 'dump objects') do
+          puts 'not implemented yet'
+          exit
+        end
+        opts.on_tail("-h", "--help", "show this help.") do
+          puts opts
+          exit
+        end
+        opts.on_tail("-v", "--version", "show version.") do
+          puts "git-object-browser " + VERSION
+          exit
+        end
+        opts.parse!(ARGV)
       end
+
+      target = find_target(ARGV[0])
+      Server::Main.execute(target, host, port)
     end
 
     def find_target(target = nil, git_dir_name = '.git')
