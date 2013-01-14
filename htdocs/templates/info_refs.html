@@ -1,0 +1,27 @@
+<article>
+<h1><i data-entry-icon="'ref'"></i> {{path}} <small>References</small></h1>
+
+<table class="table table-striped">
+<thead>
+<tr>
+<th>sha1</th>
+<th>ref</th>
+</tr>
+</thead>
+<tbody>
+<tr data-ng-repeat="entry in object.entries">
+<td>
+<i data-entry-icon="'commit'" data-ng-hide="entry.tag_sha1"></i>
+<i data-entry-icon="'tag'" data-ng-show="entry.tag_sha1"></i>
+ <a data-ref-href="entry">{{entry.sha1}}</a>
+<span data-ng-show="entry.tag_sha1"><br>
+<i data-entry-icon="'commit'"></i> <a data-ref-href="entry.tag_sha1">{{entry.tag_sha1}}</a>
+</span>
+</td>
+<td><a href="#/.git/info/refs?ref={{entry.ref}}">{{entry.ref}}</a></td>
+</tr>
+</tbody>
+</table>
+
+<a href="#/.git/packed-refs" data-ng-show="limited">Show All</a>
+</article>

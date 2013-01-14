@@ -23,6 +23,8 @@ module GitObjectBrowser
               entry[:type] = "symlink"
             elsif Ref::path?(relpath)
               entry[:type] = 'ref'
+            elsif InfoRefs::path?(relpath)
+              entry[:type] = 'info_refs'
             elsif PackedRefs::path?(relpath)
               entry[:type] = 'packed_refs'
             elsif Index::path?(relpath)
@@ -38,7 +40,7 @@ module GitObjectBrowser
             entries << entry
           end
         end
-        order = %w{directory ref packed_refs index object file symlink}
+        order = %w{directory ref info_refs packed_refs index object file symlink}
         entries.sort do |a,b|
           (order.index(a[:type]) <=> order.index(b[:type])).nonzero? ||
             a[:basename] <=> b[:basename]

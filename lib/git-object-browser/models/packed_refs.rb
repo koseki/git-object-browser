@@ -5,9 +5,9 @@ module GitObjectBrowser
 
     class PackedRefs
       def initialize(input)
-        line = input.gets.to_s
         @entries = []
         while (line = input.gets) do
+          next if line =~ /\A\s*#/
           next unless line =~ /(\^)?([0-9a-f]{40})\s*(.*)/
           sha1 = $2
           ref  = $3

@@ -34,6 +34,7 @@ angular.module('GitObjectBrowser', ['GitServices'])
       var icons = {
         'directory': 'icon-folder-open',
         'ref': 'icon-map-marker',
+        'info_refs': 'icon-map-marker',
         'packed_refs': 'icon-map-marker',
         'index': 'icon-list',
         'file': 'icon-file',
