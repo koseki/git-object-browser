@@ -29,8 +29,8 @@ module GitObjectBrowser
           entry['entry_count']    = entry['entry_count'].to_i
           entry['subtree_count']  = entry['subtree_count'].to_i
 
-          if length < @total_length
-            entry['sha1']           = hex(20)
+          if 0 <= entry['entry_count']
+            entry['sha1'] = hex(20)
             length += 20
           end
           @entries << entry
