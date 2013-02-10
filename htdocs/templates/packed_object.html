@@ -1,111 +1,111 @@
 <article>
 <h1 style="font-size:1.8em;"><i data-entry-icon="'object'"></i> {{path}} <small>Packed Object</small></h1>
 
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#parsed" data-toggle="tab">Parsed</a></li>
+      <li><a href="#deltas" data-toggle="tab" data-ng-show="object.delta_commands">Deltas</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="parsed">
+
 <table class="table">
-<tbody>
+  <tbody>
+    <tr>
+      <th>offset</th>
+      <td>{{object.offset}}</td>
+    </tr>
+    <tr data-ng-show="object.base_offset">
+      <th>base offset</th>
+      <td><a href="#/{{path}}?offset={{object.base_offset}}">{{object.base_offset}}</a></td>
+    </tr>
+    <tr data-ng-show="object.base_offset">
+      <th>delta type</th>
+      <td><i data-entry-icon="object.type"></i> {{object.type}}</td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><i data-entry-icon="object.object.type"></i> {{object.object.type}}</td>
+    </tr>
+    <tr data-ng-show="object.base_offset">
+      <th>base size</th>
+      <td>{{object.base_size}}</td>
+    </tr>
+    <tr data-ng-show="object.base_offset">
+      <th>delta size</th>
+      <td>{{object.size}}</td>
+    </tr>
+    <tr><th>size</th><td>{{object.object.size}}</td></tr>
+    <tr><th>sha1</th><td>{{object.object.sha1}}</td></tr>
 
-<tr>
-<th>offset</th>
-<td>{{object.offset}}</td>
-</tr>
+    <tr data-ng-repeat="prop in object.object.properties">
+      <th>{{prop.key}}</th>
+      <td data-ng-switch="prop.type">
+        <span data-ng-switch-when="sha1"><a href="#/.git/{{prop.path}}">{{prop.value}}</a></span>
+        <span data-ng-switch-when="user">{{prop.value}} <small style="color:#aaa">{{prop.date}}</small></span>
+        <span data-ng-switch-default>{{prop.value}}</span>
+      </td>
+    </tr>
+  </tbody>
+<table>
 
-<tr data-ng-show="object.base_offset">
-<th>base offset</th>
-<td><a href="#/{{path}}?offset={{object.base_offset}}">{{object.base_offset}}</a></td>
-</tr>
-
-<tr data-ng-show="object.base_offset">
-<th>delta type</th>
-<td><i data-entry-icon="object.type"></i> {{object.type}}</td>
-</tr>
-
-<tr>
-<th>type</th>
-<td><i data-entry-icon="object.object.type"></i> {{object.object.type}}</td>
-</tr>
-
-<tr data-ng-show="object.base_offset">
-<th>base size</th>
-<td>{{object.base_size}}</td>
-</tr>
-
-<tr data-ng-show="object.base_offset">
-<th>delta size</th>
-<td>{{object.size}}</td>
-</tr>
-
-<tr><th>size</th><td>{{object.object.size}}</td></tr>
-
-<tr><th>sha1</th><td>{{object.object.sha1}}</td></tr>
-
-<tr data-ng-repeat="prop in object.object.properties">
-<th>{{prop.key}}</th>
-<td data-ng-switch="prop.type">
-<span data-ng-switch-when="sha1"><a href="#/.git/{{prop.path}}">{{prop.value}}</a></span>
-<span data-ng-switch-when="user">{{prop.value}} <small style="color:#aaa">{{prop.date}}</small></span>
-<span data-ng-switch-default>{{prop.value}}</span>
-</td>
-</tr>
-</tbody>
-
-<tbody data-ng-switch="object.object.type">
-<tr data-ng-switch-when="blob"><th>content</th><td><pre>{{object.object.content}}</pre></td></tr>
-<tr data-ng-switch-when="commit"><th>message</th><td>{{object.object.message}}</td></tr>
-<tr data-ng-switch-when="tag"><th>message</th><td>{{object.object.message}}</td></tr>
-<tr data-ng-switch-when="tree"><th>entries</th><td>
-
-<table class="table table-striped table-condensed">
-<thead>
-<tr>
-<th>mode</th>
-<th>filename</th>
-<th>sha1</th>
-</tr>
-</thead>
-<tbody>
-<tr data-ng-repeat="entry in object.object.entries">
-<td><i data-mode-icon="entry.mode"></i> {{entry.mode}}</td>
-<td>{{entry.filename}}</td>
-<td><a href="#" data-ref-href="entry">{{entry.sha1}}</a></td>
-</tr>
-</tbody>
-
-</table>
-</td></tr>
-</tbody>
-
-<tbody>
-
-<tr>
-<th>commands</th>
-<td>
-
-<table class="table table-striped">
-<thead>
-<th>source</th>
-<th>offset</th>
-<th>size</th>
-<th>data</th>
-</thead>
-<tbody>
-<tr data-ng-repeat="command in object.delta_commands">
-<td>{{command.source}}</td>
-<td>{{command.offset}}</td>
-<td>{{command.size}}</td>
-<td><pre data-ng-show="command.data">{{command.data}}</pre></td>
-</tr>
-</tbody>
-
+<table class="table">
+  <tbody data-ng-switch="object.object.type">
+    <tr data-ng-switch-when="blob"><th>content</th><td><pre>{{object.object.content}}</pre></td></tr>
+    <tr data-ng-switch-when="commit"><th>message</th><td>{{object.object.message}}</td></tr>
+    <tr data-ng-switch-when="tag"><th>message</th><td>{{object.object.message}}</td></tr>
+    <tr data-ng-switch-when="tree">
+      <th>entries</th>
+      <td>
+        <table class="table table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>mode</th>
+              <th>filename</th>
+              <th>sha1</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-ng-repeat="entry in object.object.entries">
+              <td><i data-mode-icon="entry.mode"></i> {{entry.mode}}</td>
+              <td>{{entry.filename}}</td>
+              <td><a href="#" data-ref-href="entry">{{entry.sha1}}</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
-</td>
-</tr>
+
+      </div>
+
+      <div class="tab-pane" id="deltas">
+
+        <table class="table table-striped">
+          <thead>
+            <th>source</th>
+            <th>offset</th>
+            <th>size</th>
+            <th>data</th>
+          </thead>
+          <tbody>
+            <tr data-ng-repeat="command in object.delta_commands">
+              <td>{{command.source}}</td>
+              <td>{{command.offset}}</td>
+              <td>{{command.size}}</td>
+              <td><pre data-ng-show="command.data">{{command.data}}</pre></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
 
 
 
-</tbody>
-</table>
 
-<a href="#/.git/packed-refs" data-ng-show="limited">Show All</a>
 </article>
-
