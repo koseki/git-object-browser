@@ -201,6 +201,9 @@ function GitCtrl($scope, $location, $routeParams, GitResource, PackedObjectResou
         }
       });
       $scope.object.entries = entries;
+    } else if (json.type == "packed_object") {
+      template = json.type;
+      $scope.unpacked = json.unpacked;
     } else {
       template = json.type;
     }

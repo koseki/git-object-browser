@@ -4,17 +4,23 @@
   <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#parsed" data-toggle="tab">Parsed</a></li>
-      <li><a href="#deltas" data-toggle="tab" data-ng-show="object.delta_commands">Deltas</a></li>
+      <li data-ng-show="object.object.content"><a href="#plain" data-toggle="tab">Plain</a></li>
+      <li data-ng-show="object.delta_commands"><a href="#deltas" data-toggle="tab">Deltas</a></li>
+      <li><a href="#/{{path.replace('.pack', '.idx')}}"><i class="icon-list"></i> Index</a></li>
     </ul>
 
     <div class="tab-content">
       <div class="tab-pane active" id="parsed">
-
 <table class="table">
   <tbody>
     <tr>
+      <!-- Object could be unpacked. -->
+      <th>sha1</th>
+      <td>{{object.object.sha1}} <a data-ref-href="object.object" data-ng-show="unpacked"><i class="icon-arrow-right"></i> unpacked</a></td>
+    </tr>
+    <tr>
       <th>offset</th>
-      <td>{{object.offset}}</td>
+      <td><a href="#/{{path}}?offset={{object.offset}}">{{object.offset}}</a></td>
     </tr>
     <tr data-ng-show="object.base_offset">
       <th>base offset</th>
@@ -37,7 +43,6 @@
       <td>{{object.size}}</td>
     </tr>
     <tr><th>size</th><td>{{object.object.size}}</td></tr>
-    <tr><th>sha1</th><td>{{object.object.sha1}}</td></tr>
 
     <tr data-ng-repeat="prop in object.object.properties">
       <th>{{prop.key}}</th>
@@ -79,9 +84,7 @@
   </tbody>
 </table>
 
-
       </div>
-
       <div class="tab-pane" id="deltas">
 
         <table class="table table-striped">
@@ -100,6 +103,12 @@
             </tr>
           </tbody>
         </table>
+
+      </div>
+      <div class="tab-pane" id="plain">
+
+<pre>{{object.object.type}} {{object.object.size}}\0
+{{object.object.content}}</pre>
 
       </div>
     </div>

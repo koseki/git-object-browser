@@ -71,6 +71,11 @@ module GitObjectBrowser
         hash[:path] = @relpath
         hash[:wroking_dir] = File.basename(File.dirname(@target))
 
+        if type == 'packed_object'
+          sha1 = hash[:object][:object][:sha1]
+          hash[:unpacked] = File.exist?(File.join(@target, 'objects', sha1[0..1], sha1[2..-1]).to_s)
+        end
+
         response.body = ::JSON.generate(hash)
       end
 
