@@ -21,8 +21,8 @@ module GitObjectBrowser
 
       def to_hash
         return {
-          "signature" => @signature,
-          "total_length" => @total_length,
+          :signature     => @signature,
+          :total_length  => @total_length,
         }
       end
 

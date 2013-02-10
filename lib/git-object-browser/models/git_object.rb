@@ -47,13 +47,13 @@ module GitObjectBrowser
 
       def to_hash
         return {
-          'type' => @type,
-          'sha1' => @sha1,
-          'size' => @size,
-          'entries' => @entries,
-          'content' => @content,
-          'properties' => @properties,
-          'message' => @message,
+          :type       => @type,
+          :sha1       => @sha1,
+          :size       => @size,
+          :entries    => @entries,
+          :content    => @content,
+          :properties => @properties,
+          :message    => @message
         }
       end
 
@@ -88,23 +88,23 @@ module GitObjectBrowser
           line = lines.shift
           break if line.empty?
           prop = {}
-          (prop['key'], prop['value']) = line.split(/ /, 2)
-          if prop['value'] =~ /\A([0-9a-f]{2})([0-9a-f]{38})\z/
-            prop['type'] = 'sha1'
-            prop['path'] = "objects/#{ $1 }/#{ $2 }"
-          elsif %w{author committer tagger}.include?(prop['key']) &&
+          (prop[:key], prop[:value]) = line.split(/ /, 2)
+          if prop[:value] =~ /\A([0-9a-f]{2})([0-9a-f]{38})\z/
+            prop[:type] = 'sha1'
+            prop[:path] = "objects/#{ $1 }/#{ $2 }"
+          elsif %w{author committer tagger}.include?(prop[:key]) &&
               # couldn't find the spec...
-              prop['value'].to_s =~ /\A(.*) <(.*)> (\d+)(?: ((?:(?:\+|-)(?:\d{4}|\d{2}:\d{2}))|Z))?\z/
-            prop['type']  = 'user'
-            prop['name']  = $1.force_encoding("UTF-8")
-            prop['name']  = '(not UTF-8)' unless prop['name'].valid_encoding?
-            prop['email'] = $2.force_encoding("UTF-8")
-            prop['email'] = '(not UTF-8)' unless prop['email'].valid_encoding?
-            prop['unixtime'] = $3
-            prop['timezone'] = $4
-            prop['date'] = epoch($3.to_i, $4).iso8601
+              prop[:value].to_s =~ /\A(.*) <(.*)> (\d+)(?: ((?:(?:\+|-)(?:\d{4}|\d{2}:\d{2}))|Z))?\z/
+            prop[:type]  = 'user'
+            prop[:name]  = $1.force_encoding("UTF-8")
+            prop[:name]  = '(not UTF-8)' unless prop[:name].valid_encoding?
+            prop[:email] = $2.force_encoding("UTF-8")
+            prop[:email] = '(not UTF-8)' unless prop[:email].valid_encoding?
+            prop[:unixtime] = $3
+            prop[:timezone] = $4
+            prop[:date] = epoch($3.to_i, $4).iso8601
           else
-            prop['type'] = 'text'
+            prop[:type] = 'text'
           end
           properties << prop
         end

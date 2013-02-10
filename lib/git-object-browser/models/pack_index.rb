@@ -121,10 +121,10 @@ module GitObjectBrowser
 
       def to_hash
         return {
-          :fanout => @fanout,
-          :entries => @entries,
+          :fanout        => @fanout,
+          :entries       => @entries,
           :packfile_sha1 => @packfile_sha1,
-          :index_sha1 => @index_sha1,
+          :index_sha1    => @index_sha1,
         }
       end
 

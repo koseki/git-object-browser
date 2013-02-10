@@ -49,9 +49,9 @@ module GitObjectBrowser
 
       def to_hash
         return {
-          "type" => "directory",
-          "path" => @path,
-          "entries" => @entries
+          :type    => "directory",
+          :path    => @path,
+          :entries => @entries
         }
       end
 

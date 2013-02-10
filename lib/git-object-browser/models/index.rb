@@ -60,11 +60,11 @@ module GitObjectBrowser
         end
 
         return {
-          "version"      => @version,
-          "entry_count"  => @entry_count,
-          "entries"      => entries,
-          "extensions"   => extensions,
-          "sha1"         => @sha1,
+          :version       => @version,
+          :entry_count   => @entry_count,
+          :entries       => entries,
+          :extensions    => extensions,
+          :sha1          => @sha1,
         }
       end
 

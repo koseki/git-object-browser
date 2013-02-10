@@ -17,7 +17,7 @@ module GitObjectBrowser
       end
 
       def to_hash
-        return { 'content' => @content }
+        return { :content => @content }
       end
     end
   end

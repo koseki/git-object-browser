@@ -65,11 +65,11 @@ module GitObjectBrowser
       def response_wrapped_object(response, type, obj)
         ok(response)
         hash = {}
-        hash["type"] = type
-        hash["object"] = obj.to_hash
-        hash["root"] = @target
-        hash["path"] = @relpath
-        hash["wroking_dir"] = File.basename(File.dirname(@target))
+        hash[:type] = type
+        hash[:object] = obj.to_hash
+        hash[:root] = @target
+        hash[:path] = @relpath
+        hash[:wroking_dir] = File.basename(File.dirname(@target))
 
         response.body = ::JSON.generate(hash)
       end

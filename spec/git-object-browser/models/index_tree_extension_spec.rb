@@ -14,18 +14,18 @@ module GitObjectBrowser::Models
 
       it 'should parse extension signature and length' do
         data = subject.parse.to_hash
-        tree = data['extensions'][0]
-        tree['signature'].should eq 'TREE'
-        tree['total_length'].should eq 25
+        tree = data[:extensions][0]
+        tree[:signature].should eq 'TREE'
+        tree[:total_length].should eq 25
       end
 
       it 'should parse entries' do
-        entries = subject.parse.to_hash['extensions'][0]['entries']
+        entries = subject.parse.to_hash[:extensions][0][:entries]
         entries.length.should eq 1
         entry = entries.first
-        entry['sha1'].should eq 'c36491256978d26c08cd7aa97eee0f5631f96659'
-        entry['entry_count'].should eq 2
-        entry['subtree_count'].should eq 0
+        entry[:sha1].should eq 'c36491256978d26c08cd7aa97eee0f5631f96659'
+        entry[:entry_count].should eq 2
+        entry[:subtree_count].should eq 0
       end
     end
 
@@ -34,24 +34,24 @@ module GitObjectBrowser::Models
 
       it 'should parse extension signature and length' do
         data = subject.parse.to_hash
-        tree = data['extensions'][0]
-        tree['signature'].should eq 'TREE'
-        tree['total_length'].should eq 6
+        tree = data[:extensions][0]
+        tree[:signature].should eq 'TREE'
+        tree[:total_length].should eq 6
       end
 
       it 'should return -1 entry_count' do
-        entries = subject.parse.to_hash['extensions'][0]['entries']
+        entries = subject.parse.to_hash[:extensions][0][:entries]
         entries.length.should eq 1
         entry = entries.first
-        entry['entry_count'].should eq -1
-        entry['subtree_count'].should eq 0
-        entry['path_component'].should eq ''
-        entry['sha1'].should be_nil
+        entry[:entry_count].should eq -1
+        entry[:subtree_count].should eq 0
+        entry[:path_component].should eq ''
+        entry[:sha1].should be_nil
       end
 
       it 'return correct hash' do
         data = subject.parse.to_hash
-        data['sha1'].should eq 'ad7408a5d4e6050d3b95c21d260ae568b24e4d19'
+        data[:sha1].should eq 'ad7408a5d4e6050d3b95c21d260ae568b24e4d19'
       end
     end
   end
