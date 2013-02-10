@@ -1,54 +1,83 @@
 <article>
-<h1 style="font-size:1.8em;"><i data-entry-icon="'object'"></i> {{path}} <small>Object</small></h1>
+  <h1 style="font-size:1.8em;"><i data-entry-icon="'object'"></i> {{path}} <small>Object</small></h1>
+
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#parsed" data-toggle="tab">Parsed</a></li>
+      <li><a href="#plain" data-toggle="tab">Plain</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="parsed">
 
 <table class="table">
+  <tbody>
+    <tr>
+      <th>sha1</th>
+      <td>{{object.sha1}}</td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><i data-entry-icon="object.type"></i> {{object.type}}</td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td>{{object.size}}</td>
+    </tr>
+    <tr data-ng-repeat="prop in object.properties">
+      <th>{{prop.key}}</th>
+      <td data-ng-switch="prop.type">
+        <span data-ng-switch-when="sha1"><a href="#/.git/{{prop.path}}">{{prop.value}}</a></span>
+        <span data-ng-switch-when="user">{{prop.value}} <small style="color:#aaa">{{prop.date}}</small></span>
+        <span data-ng-switch-default>{{prop.value}}</span>
+      </td>
+    </tr>
+  </tbody>
 
-<tbody>
-<tr><th>type</th><td>
-<i data-entry-icon="object.type"></i> {{object.type}}
-</td>
-</tr>
-<tr><th>sha1</th><td>{{object.sha1}}</td></tr>
-<tr><th>size</th><td>{{object.size}}</td></tr>
-
-<tr data-ng-repeat="prop in object.properties">
-<th>{{prop.key}}</th>
-<td data-ng-switch="prop.type">
-<span data-ng-switch-when="sha1"><a href="#/.git/{{prop.path}}">{{prop.value}}</a></span>
-<span data-ng-switch-when="user">{{prop.value}} <small style="color:#aaa">{{prop.date}}</small></span>
-<span data-ng-switch-default>{{prop.value}}</span>
-</td>
-</tr>
-</tbody>
-
-<tbody data-ng-switch="object.type">
-<tr data-ng-switch-when="blob"><th>content</th><td><pre>{{object.content}}</pre></td></tr>
-<tr data-ng-switch-when="commit"><th>message</th><td>{{object.message}}</td></tr>
-<tr data-ng-switch-when="tag"><th>message</th><td>{{object.message}}</td></tr>
-<tr data-ng-switch-when="tree"><th>entries</th><td>
-
-<table class="table table-striped table-condensed">
-<thead>
-<tr>
-<th>mode</th>
-<th>filename</th>
-<th>sha1</th>
-</tr>
-</thead>
-<tbody>
-<tr data-ng-repeat="entry in object.entries">
-<td><i data-mode-icon="entry.mode"></i> {{entry.mode}}</td>
-<td>{{entry.filename}}</td>
-<td><a href="#" data-ref-href="entry">{{entry.sha1}}</a></td>
-</tr>
-</tbody>
+  <tbody data-ng-switch="object.type">
+    <tr data-ng-switch-when="blob">
+      <th>content</th>
+      <td><pre>{{object.content}}</pre></td>
+    </tr>
+    <tr data-ng-switch-when="commit">
+      <th>message</th>
+      <td>{{object.message}}</td>
+    </tr>
+    <tr data-ng-switch-when="tag">
+      <th>message</th>
+      <td>{{object.message}}</td>
+    </tr>
+    <tr data-ng-switch-when="tree">
+      <th>entries</th>
+      <td>
+        <table class="table table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>mode</th>
+              <th>filename</th>
+              <th>sha1</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-ng-repeat="entry in object.entries">
+              <td><i data-mode-icon="entry.mode"></i> {{entry.mode}}</td>
+              <td>{{entry.filename}}</td>
+              <td><a href="#" data-ref-href="entry">{{entry.sha1}}</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
 
 </table>
-</td></tr>
 
-</tbody>
+      </div>
+      <div class="tab-pane" id="plain">
 
-</table>
+<pre>{{object.type}} {{object.size}}\0
+{{object.content}}</pre>
 
-
+      </div>
+    </div>
+  </div>
 </article>

@@ -14,7 +14,7 @@
       "sha1": "d234c5e057fe32c676ea67e8cb38f4625ddaeb54"
     }
   ],
-  "content": null,
+  "content": "100644 sample-a.txt\\0\\1d3dc60b5a117054e43741d51e599ff31bb15f9f\n100644 sample.txt\\0\\d234c5e057fe32c676ea67e8cb38f4625ddaeb54\n",
   "properties": null,
   "message": null
 }

@@ -1,6 +1,14 @@
 <article>
 <h1><i data-entry-icon="'ref'"></i> {{path}} <small>Reference</small></h1>
 
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#parsed" data-toggle="tab">Parsed</a></li>
+    <li><a href="#plain" data-toggle="tab">Plain</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="parsed">
+
 <table class="table">
 <tr data-ng-show="object.sha1">
 <th>sha1</th><td><a data-ref-href="object">{{object.sha1}}</a></td>
@@ -9,4 +17,15 @@
 <th>ref</th><td><a  data-ref-href="object">{{object.ref}}</a></td>
 </tr>
 </table>
+
+    </div>
+    <div class="tab-pane" id="plain">
+
+<pre>{{object.content}}</pre>
+
+    </div>
+  </div>
+</div>
+
+
 </article>

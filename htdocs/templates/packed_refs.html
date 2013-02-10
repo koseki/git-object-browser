@@ -1,27 +1,43 @@
 <article>
-<h1><i data-entry-icon="'ref'"></i> {{path}} <small>Packed References</small></h1>
+  <h1><i data-entry-icon="'ref'"></i> {{path}} <small>Packed References</small></h1>
+
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#parsed" data-toggle="tab">Parsed</a></li>
+      <li><a href="#plain" data-toggle="tab">Plain</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="parsed">
 
 <table class="table table-striped">
-<thead>
-<tr>
-<th>sha1</th>
-<th>ref</th>
-</tr>
-</thead>
-<tbody>
-<tr data-ng-repeat="entry in object.entries">
-<td>
-<i data-entry-icon="'commit'" data-ng-hide="entry.tag_sha1"></i>
-<i data-entry-icon="'tag'" data-ng-show="entry.tag_sha1"></i>
- <a data-ref-href="entry">{{entry.sha1}}</a>
-<span data-ng-show="entry.tag_sha1"><br>
-<i data-entry-icon="'commit'"></i> <a data-ref-href="entry.tag_sha1">{{entry.tag_sha1}}</a>
-</span>
-</td>
-<td><a href="#/.git/packed-refs?ref={{entry.ref}}">{{entry.ref}}</a></td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>sha1</th>
+      <th>ref</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-ng-repeat="entry in object.entries">
+      <td>
+        <i data-entry-icon="'commit'" data-ng-hide="entry.tag_sha1"></i>
+        <i data-entry-icon="'tag'" data-ng-show="entry.tag_sha1"></i>
+        <a data-ref-href="entry">{{entry.sha1}}</a>
+        <span data-ng-show="entry.tag_sha1"><br>
+          <i data-entry-icon="'commit'"></i> <a data-ref-href="entry.tag_sha1">{{entry.tag_sha1}}</a>
+        </span>
+      </td>
+      <td><a href="#/.git/packed-refs?ref={{entry.ref}}">{{entry.ref}}</a></td>
+    </tr>
+  </tbody>
 </table>
-
 <a href="#/.git/packed-refs" data-ng-show="limited">Show All</a>
+
+      </div>
+      <div class="tab-pane" id="plain">
+        <pre>{{object.content}}</pre>
+      </div>
+    </div>
+  </div>
+</article>
+
 </article>

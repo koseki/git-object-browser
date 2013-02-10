@@ -5,6 +5,8 @@ module GitObjectBrowser
 
     class PackedRefs
       def initialize(input)
+        @content = input.read(nil)
+        input.seek(0)
         @entries = []
         while (line = input.gets) do
           next if line =~ /\A\s*#/
@@ -25,7 +27,8 @@ module GitObjectBrowser
 
       def to_hash
         return {
-          :entries => @entries
+          :entries => @entries,
+          :content => @content
         }
       end
 

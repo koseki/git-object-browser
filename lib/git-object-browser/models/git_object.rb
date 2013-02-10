@@ -65,6 +65,7 @@ module GitObjectBrowser
       private
 
       def parse_tree_entries
+        @content = ''
         entries = []
         loop do
           entry = {}
@@ -72,6 +73,7 @@ module GitObjectBrowser
           break if entry[:mode].empty?
           entry[:filename] = find_char "\0"
           entry[:sha1]     = hex(20)
+          @content += "#{entry[:mode]} #{entry[:filename]}\\0\\#{entry[:sha1]}\n"
           entries << entry
         end
         return entries
