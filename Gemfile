@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rake'
 gem 'json'
 
 # Specify your gem's dependencies in git-object-browser.gemspec
