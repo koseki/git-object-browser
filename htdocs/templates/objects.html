@@ -7,7 +7,7 @@
 <tr data-ng-repeat="rows in objectTable">
 <td data-ng-repeat="cel in rows">
   <span data-ng-switch="cel.type">
-    <span data-ng-switch-when="empty">{{cel.basename}}</span>
+    <span data-ng-switch-when="empty"><span style="color:#eee">{{cel.basename}}</span></span>
     <span data-ng-switch-default><a href="/#/.git/objects/{{cel.basename}}">{{cel.basename}}</a></span>
   </span>
 </td>
