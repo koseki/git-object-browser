@@ -206,7 +206,9 @@ module GitObjectBrowser
       end
 
       # sha1_file.c get_delta_base
+      #   https://github.com/git/git/blob/master/sha1_file.c
       # unpack-objects.c unpack_delta_entry
+      #   https://github.com/git/git/blob/master/builtin/unpack-objects.c
       def parse_delta_offset
         offset   = -1
         hdr_size = 0

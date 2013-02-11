@@ -154,16 +154,13 @@ function GitCtrl($scope, $location, $routeParams, GitResource, PackedObjectResou
       'gid',
       'size',
       'sha1',
+      'assume_valid_flag',
+      'extended_flag',
+      'stage',
       'path'
     ]
 
-    if (version == 2) {
-      keys = keys.concat([
-        'assume_valid_flag',
-        'extended_flag',
-        'stage',
-      ]);
-    } else {
+    if (version == 3) {
       keys = keys.concat([
         'skip_worktree',
         'intent_to_add',

@@ -28,8 +28,10 @@ module GitObjectBrowser
 
       def parse_entries
         entries = []
+        last_path = nil
         @entry_count.times do |i|
-          entries << IndexEntry.new(@in, @version)
+          entries << IndexEntry.new(@in, @version, last_path)
+          last_path = entries.last.path
         end
         return entries
       end

@@ -38,5 +38,21 @@ module GitObjectBrowser::Models
       extensions.length.should eq 1
     end
 
+    context 'when the index version is 4' do
+      let(:infile) { '003-version-4' }
+
+      it 'should parse header' do
+        index = subject.parse.to_hash
+        index[:version].should eq 4
+        index[:entry_count].should eq index[:entries].length
+      end
+
+      it 'should parse pathes' do
+        index = subject.parse.to_hash
+        entries = index[:entries]
+        expect = ['test.txt', 'test2.txt', 'test3.txt']
+        entries.map {|entry| entry[:path]}.should eq expect
+      end
+    end
   end
 end
