@@ -53,6 +53,20 @@ module GitObjectBrowser::Models
         expect = ['test.txt', 'test2.txt', 'test3.txt']
         entries.map {|entry| entry[:path]}.should eq expect
       end
+
+      it 'should parse extended data' do
+        index = subject.parse.to_hash
+
+        entry = index[:entries][1]
+        entry[:extended_flag].should eq 0
+        entry[:skip_worktree] = nil
+        entry[:intent_to_add] = nil
+
+        entry = index[:entries][2]
+        entry[:extended_flag].should eq 1
+        entry[:skip_worktree] = 0
+        entry[:intent_to_add] = 1
+      end
     end
   end
 end

@@ -48,8 +48,8 @@ module GitObjectBrowser
         @extended_flag     = flags[1..1].to_i
         @stage             = flags[2..3]
         @name_length = ["0000" + flags[4..15]].pack("B*").unpack("n")[0]
-        if @version == 3 && @extended_flag == 1
-          exended          = binstr(2)
+        if @version > 2 && @extended_flag == 1
+          extended         = binstr(2)
           reserved         = extended[0..0]
           @skip_worktree   = extended[1..1]
           @intent_to_add   = extended[2..2]
