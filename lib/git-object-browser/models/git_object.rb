@@ -36,14 +36,12 @@ module GitObjectBrowser
             (@properties, @message) = parse_contents
           end
 
-          @content = @content.force_encoding('UTF-8')
-          @content = '(not UTF-8)' unless @content.valid_encoding?
+          @content = force_utf8(@content)
           @content = @content[0, 3000] + "\n..." if @content.length > 3000
         end
 
         self
       end
-
 
       def to_hash
         return {
@@ -71,7 +69,7 @@ module GitObjectBrowser
           entry = {}
           entry[:mode]     = find_char ' '
           break if entry[:mode].empty?
-          entry[:filename] = find_char "\0"
+          entry[:filename] = force_utf8(find_char("\0"))
           entry[:sha1]     = hex(20)
           @content += "#{entry[:mode]} #{entry[:filename]}\\0\\#{entry[:sha1]}\n"
           entries << entry
@@ -96,20 +94,19 @@ module GitObjectBrowser
               # couldn't find the spec...
               prop[:value].to_s =~ /\A(.*) <(.*)> (\d+)(?: ((?:(?:\+|-)(?:\d{4}|\d{2}:\d{2}))|Z))?\z/
             prop[:type]  = 'user'
-            prop[:name]  = $1.force_encoding("UTF-8")
-            prop[:name]  = '(not UTF-8)' unless prop[:name].valid_encoding?
-            prop[:email] = $2.force_encoding("UTF-8")
-            prop[:email] = '(not UTF-8)' unless prop[:email].valid_encoding?
+            prop[:name]  = force_utf8($1)
+            prop[:email] = force_utf8($2)
             prop[:unixtime] = $3
             prop[:timezone] = $4
             prop[:date] = epoch($3.to_i, $4).iso8601
+
+            prop[:value] = force_utf8(prop[:value])
           else
             prop[:type] = 'text'
           end
           properties << prop
         end
-        message = lines.join("\n").force_encoding("UTF-8")
-        message = '(not UTF-8)' unless message.valid_encoding?
+        message = force_utf8(lines.join("\n"))
 
         [properties, message]
       end
@@ -123,6 +120,12 @@ module GitObjectBrowser
         return Rational(0, 24) unless timezone =~ /(\+|-)?(\d\d):?(\d\d)/
         Rational($2.to_i, 24) + Rational($3, 60) * (($1 == '-') ? -1 : 1)
       end
+
+      def force_utf8(str)
+        str = str.force_encoding('UTF-8')
+        str.valid_encoding? ? str : '(not UTF-8)'
+      end
+      private :force_utf8
 
     end
   end

@@ -97,7 +97,7 @@ module GitObjectBrowser
               File.open(File.join(@target, packpath)) do |pack_input|
                 object_dumper = GitObjectBrowser::Dumper::PackedObjectDumper.new(pack_input, index)
                 entries.each do |entry|
-                  dump_pack_object(object_dumper, entry)
+                  dump_packed_object(object_dumper, entry)
                 end
               end
             end
@@ -105,7 +105,7 @@ module GitObjectBrowser
         end
       end
 
-      def dump_pack_object(dumper, entry)
+      def dump_packed_object(dumper, entry)
         sha1_1 = entry[:sha1][0..1]
         sha1_2 = entry[:sha1][2..-1]
         obj_dir = File.join(@outdir, "objects", sha1_1)
