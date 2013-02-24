@@ -30,8 +30,10 @@ require "git-object-browser/models/plain_file"
 require "git-object-browser/server/main"
 require "git-object-browser/server/git_servlet"
 
-require "git-object-browser/dumper"
-require "git-object-browser/object_dumper"
-require "git-object-browser/index_dumper"
+require "git-object-browser/dumper/main"
+require "git-object-browser/dumper/object_dumper"
+require "git-object-browser/dumper/index_dumper"
+require "git-object-browser/dumper/pack_index_dumper"
+require "git-object-browser/dumper/packed_object_dumper"
 
 GitObjectBrowser::Main.new().execute if __FILE__ == $0

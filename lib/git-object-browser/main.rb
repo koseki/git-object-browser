@@ -4,16 +4,16 @@ module GitObjectBrowser
     def execute
       host = '127.0.0.1'
       port = 8080
+      dump = false
       opts = OptionParser.new do |opts|
-        opts.on('-p', '--port=PORT', 'port number') do |value|
+        opts.on('-p', '--port PORT', 'port number') do |value|
           port = value.to_i if 0 < value.to_i
         end
-        opts.on('-b', '--bind=HOST', 'address to bind') do |value|
+        opts.on('-b', '--bind HOST', 'address to bind') do |value|
           host = value
         end
-        opts.on('-d', '--dump', 'dump objects') do
-          puts 'not implemented yet'
-          exit
+        opts.on('-d', '--dump', 'dump objects') do |value|
+          dump = true
         end
         opts.on_tail("-h", "--help", "show this help.") do
           puts opts
@@ -25,9 +25,12 @@ module GitObjectBrowser
         end
         opts.parse!(ARGV)
       end
-
       target = find_target(ARGV[0])
-      Server::Main.execute(target, host, port)
+      if dump
+        GitObjectBrowser::Dumper::Main.execute(target)
+      else
+        GitObjectBrowser::Server::Main.execute(target, host, port)
+      end
     end
 
     def find_target(target = nil, git_dir_name = '.git')
