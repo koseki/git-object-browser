@@ -30,7 +30,7 @@ module GitObjectBrowser
         @gid   = int       # 36
         @size  = int       # 40
         @sha1  = hex(20)   # 60
-        parse_flags        # 62
+        parse_flags        # 62 (+2)
         parse_path
       end
 
@@ -68,7 +68,7 @@ module GitObjectBrowser
 
       # path: 2 + 8 * n bytes (nul pannding)
       def parse_path_v2
-        token = raw(2) # 64 bytes
+        token = raw(@extended_flag == 1 ? 8 : 2)
         @path = ""
         begin
           @path += token.unpack("Z*").first
