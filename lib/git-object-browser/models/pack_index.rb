@@ -116,7 +116,7 @@ module GitObjectBrowser
       end
 
       def self.path?(relpath)
-        return relpath =~ %r{\Aobjects/pack/pack-[0-9a-f]{40}.idx\z}
+        return relpath =~ %r{\Aobjects/pack/pack-[0-9a-f]{40}\.idx\z}
       end
 
       def to_hash

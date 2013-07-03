@@ -17,7 +17,7 @@ module GitObjectBrowser
       end
 
       def self.path?(relpath)
-        return relpath =~ %r{\Aobjects/pack/pack-[0-9a-f]{40}.pack\z}
+        return relpath =~ %r{\Aobjects/pack/pack-[0-9a-f]{40}\.pack\z}
       end
 
       def parse
