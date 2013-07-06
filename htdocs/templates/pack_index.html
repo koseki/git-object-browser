@@ -1,14 +1,14 @@
-<article>
+<article  data-ng-controller="PackIndexCtrl" data-scroll-bottom="scrollBottom()">
 <h1 style="font-size:1.8em;"><i data-entry-icon="'index'"></i> {{path}} <small>Pack Index</small></h1>
 
-<table class="table table-striped" data-ng-controller="PackIndexCtrl">
+<table class="table table-striped">
 <thead>
 <tr>
-<th><a href="" data-ng-click="orderByIndex()">#</a></th>
+<th><a href="#/{{path}}?order=sha1">#</a></th>
 <th>fanout</th>
 <th>sha1</th>
 <th>crc32</th>
-<th><a href="" data-ng-click="orderByOffset()">offset</a></th>
+<th><a href="#/{{path}}?order=offset">offset</a></th>
 <th>type</th>
 <th>size</th>
 </tr>
@@ -18,8 +18,8 @@
 <td>{{entry.index}}</td>
 
 <td>
-<span data-ng-show="entry.fanoutMax"><i class="icon-arrow-up"></i> {{entry.fanoutMin}} - {{entry.fanoutMax}}</span>
-<span data-ng-show="entry.fanoutMin != null && ! entry.fanoutMax"><i class="icon-arrow-up"></i> {{entry.fanoutMin}}</span>
+<span data-ng-show="entry.fanout_max"><i class="icon-arrow-up"></i> {{entry.fanout_min}} - {{entry.fanout_max}}</span>
+<span data-ng-show="entry.fanout_min && ! entry.fanout_max"><i class="icon-arrow-up"></i> {{entry.fanout_min}}</span>
 </td>
 <td>{{entry.sha1}}</td>
 <td>{{entry.crc32}}</td>

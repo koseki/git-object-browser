@@ -17,10 +17,15 @@ module GitObjectBrowser
         end
 
         @relpath = $1.to_s
-        @relpath = '' if @relpath == '_git'
-        if @relpath =~ %r{\A(objects/pack/pack-[0-9a-f]{40}\.pack)/\d{2}/\d{2}/(\d+)\z}
+        if @relpath == '_git'
+          @relpath = ''
+        elsif @relpath =~ %r{\A(objects/pack/pack-[0-9a-f]{40}\.pack)/\d{2}/\d{2}/(\d+)\z}
           @relpath = $1
           offset   = $2
+        elsif @relpath =~ %r{\A(objects/pack/pack-[0-9a-f]{40}\.idx)/(sha1|offset)/(\d+)\z}
+          @relpath = $1
+          order    = $2
+          page     = $3
         end
         path = File.join(@target, @relpath)
 
@@ -40,7 +45,7 @@ module GitObjectBrowser
         return if response_ref(response)
         return if response_packed_object(response, offset)
         return if response_pack_file(response)
-        return if response_pack_index(response)
+        return if response_pack_index(response, order, page)
         return if response_info_refs(response)
         return if response_packed_refs(response)
 
@@ -59,7 +64,8 @@ module GitObjectBrowser
               unless result.nil?
                 packfile = path.sub(/\.idx\z/, '.pack')
                 response.status = 302
-                response["Location"] = "/.git/#{ packfile }?offset=#{ result[:offset] }" # FIXME
+                ostr = "0000#{ result[:offset] }"
+                response["Location"] = "/json/#{ packfile }/#{ ostr[-2,2] }/#{ ostr[-4,2] }/#{ result[:offset] }.json"
                 return true
               end
             end
@@ -126,11 +132,14 @@ module GitObjectBrowser
         return true
       end
 
-      def response_pack_index(response)
+      def response_pack_index(response, order, page)
         return false unless GitObjectBrowser::Models::PackIndex.path?(@relpath)
         obj = {}
+        order ||= 'sha1'
+        page = page.to_i
+        page = 1 if page < 0
         File.open(File.join(@target, @relpath)) do |input|
-          obj = GitObjectBrowser::Models::PackIndex.new(input).parse
+          obj = GitObjectBrowser::Models::PackIndex.new(input).parse(order, page)
         end
         File.open(index_to_pack_path) do |input|
           obj.load_object_types(input)

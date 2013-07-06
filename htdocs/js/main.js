@@ -1,7 +1,5 @@
 
-angular.module('GitServices', ['ngResource']);
-
-angular.module('GitObjectBrowser', ['GitServices'])
+angular.module('GitObjectBrowser', ['ngResource'])
   .config(function($routeProvider) {
     $routeProvider = angular.extend($routeProvider, {
 
@@ -19,6 +17,21 @@ angular.module('GitObjectBrowser', ['GitServices'])
     $routeProvider.
       whenPath('/.git', 10, {controller:GitCtrl, templateUrl:'templates/git.html'}).
       otherwise({redirectTo:'/.git/'});
+  })
+
+  .directive('scrollBottom', function() {
+    return function(scope, elm, attr) {
+      var rawDomElement = elm[0];
+      angular.element(window).unbind('scroll');
+      angular.element(window).bind('scroll', function() {
+        if (! scope.scrollBottomEnabled) return;
+
+        var rectObject = rawDomElement.getBoundingClientRect();
+        if (rectObject.bottom - window.innerHeight < 50) {
+          scope.$apply(attr.scrollBottom);
+        }
+      });
+    };
   })
 
   .directive('entryIcon', function($parse) {
@@ -88,6 +101,8 @@ angular.module('GitObjectBrowser', ['GitServices'])
   });
 
 function GitCtrl($scope, $location, $routeParams, $resource) {
+  // reset scrollBottom event handler
+  angular.element(window).unbind('scroll');
 
   var objectTable = function(entries) {
     var rows = [];
@@ -157,6 +172,7 @@ function GitCtrl($scope, $location, $routeParams, $resource) {
   var resourceLoaded = function(json) {
     $scope.workingdir = json.workingdir;
     $scope.root = json.root;
+    $scope.gitPath = json.path;
     if (json.path == "") {
       $scope.path = ".git";
     } else {
@@ -191,7 +207,7 @@ function GitCtrl($scope, $location, $routeParams, $resource) {
     $scope.template = 'templates/' + template + '.html';
   };
 
-  var resourceError = function(path) {
+  $scope.resourceError = function(path) {
     return function(response) {
       if (response.status == 404) {
         resourceNotFound(path);
@@ -232,11 +248,15 @@ function GitCtrl($scope, $location, $routeParams, $resource) {
         + '/' + offset.slice(-2)
         + '/' + offset.slice(-4, -2)
         + '/' + $routeParams.offset + '.json';
+    } else if (path.match(/^objects\/pack\/pack-[0-9a-f]{40}\.idx$/)) {
+      var order = $routeParams.order == 'offset' ? 'offset' : 'sha1';
+      var page  = $routeParams.page || 1;
+      path = 'json/' + path.replace(/:/, '\\:') + '/' + order + '/' + page + '.json';
     } else {
       if (path == '') path = '_git';
       path = 'json/' + path.replace(/:/, '\\:') + '.json';
     }
-    $resource(path).get({}, resourceLoaded, resourceError(path));
+    $resource(path).get({}, resourceLoaded, $scope.resourceError(path));
   };
 
   loadJson(buildPath());
@@ -246,48 +266,30 @@ function PackFileCtrl($scope, $location, $routeParams) {
   $scope.indexUrl = $scope.path.replace(/.pack$/, '.idx');
 }
 
-function PackIndexCtrl($scope, $location, $routeParams) {
-
-  $scope.orderByOffset = function() {
-    $scope.object.entries = $scope.object.entries.sort(function(a, b) {
-      var x = a.offset - b.offset;
-      if (x == 0) {
-        return a.index - b.index;
-      }
-      return x;
-    });
-    return false;
-  }
-
-  $scope.orderByIndex = function() {
-    $scope.object.entries = $scope.object.entries.sort(function(a, b) {
-      return a.index - b.index;
-    })
-    return false;
-  }
+function PackIndexCtrl($scope, $location, $routeParams, $resource) {
 
   $scope.packUrl = $scope.path.replace(/.idx$/, '.pack');
+  $scope.firstPage = 1;
+  $scope.lastPage = 1;
+  $scope.scrollBottomEnabled = true;
 
-  angular.forEach($scope.object.entries, function(entry, i) {
-    entry.index = i;
-  });
+  var resourceLoaded = function(json) {
+    $scope.object.entries = $scope.object.entries.concat(json.object.entries);
+    $scope.scrollBottomEnabled = ! json.object.last_page;
+  }
 
-  angular.forEach($scope.object.fanout, function(fanout, i) {
-    function toHex(num) {
-      var hex = num.toString(16);
-      return hex.length < 2 ? '0' + hex : hex;
-    }
+  $scope.loadNextPage = function() {
+    $scope.lastPage += 1;
 
-    if ($scope.object.entries[fanout]) {
-      var entry = $scope.object.entries[fanout];
-      if (! entry.fanoutMin) {
-        entry.fanoutMin = toHex(i);
-      } else {
-        entry.fanoutMax = toHex(i);
-      }
-    } else {
-      $scope.object.entries[fanout] = { fanoutMin: toHex(i) };
-    }
-  });
+    var order = $routeParams.order == 'offset' ? 'offset' : 'sha1';
+    var path = 'json/' + $scope.gitPath.replace(/:/, '\\:') + '/' + order + '/' + $scope.lastPage + '.json';
+
+    $resource(path).get({}, resourceLoaded, $scope.resourceError(path));
+  };
+
+  $scope.scrollBottom = function() {
+    $scope.scrollBottomEnabled = false;
+    $scope.loadNextPage();
+  }
 
 }
