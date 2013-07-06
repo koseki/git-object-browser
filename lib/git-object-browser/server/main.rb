@@ -15,7 +15,7 @@ module GitObjectBrowser
         root = File.expand_path(File.join(root, "htdocs"))
         opts = { :BindAddress => host, :Port => port, :DocumentRoot => root }
         server = WEBrick::HTTPServer.new(opts)
-        server.mount('/.git', GitServlet, @target)
+        server.mount('/json', GitServlet, @target)
         trap 'INT' do
           server.shutdown
         end

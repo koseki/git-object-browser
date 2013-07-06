@@ -11,13 +11,19 @@ module GitObjectBrowser
       def do_GET(request, response)
         # status, content_type, body = do_stuff_with request
         path = request.path
-        unless path =~ %r{/.git(?:/(.*))?}
+        unless path =~ %r{\A/json/(.+)\.json\z}
           not_found(response)
           return
         end
 
         @relpath = $1.to_s
+        @relpath = '' if @relpath == '_git'
+        if @relpath =~ %r{\A(objects/pack/pack-[0-9a-f]{40}\.pack)/\d{2}/\d{2}/(\d+)\z}
+          @relpath = $1
+          offset   = $2
+        end
         path = File.join(@target, @relpath)
+
         unless File.exist?(path)
           not_found(response) unless redirect_to_packed_object(response)
           return
@@ -32,7 +38,7 @@ module GitObjectBrowser
         return if response_index(response)
         return if response_object(response)
         return if response_ref(response)
-        return if response_packed_object(response, request.query["offset"])
+        return if response_packed_object(response, offset)
         return if response_pack_file(response)
         return if response_pack_index(response)
         return if response_info_refs(response)
@@ -53,7 +59,7 @@ module GitObjectBrowser
               unless result.nil?
                 packfile = path.sub(/\.idx\z/, '.pack')
                 response.status = 302
-                response["Location"] = "/.git/#{ packfile }?offset=#{ result[:offset] }"
+                response["Location"] = "/.git/#{ packfile }?offset=#{ result[:offset] }" # FIXME
                 return true
               end
             end
@@ -155,7 +161,6 @@ module GitObjectBrowser
         return false if offset.nil?
         return false unless GitObjectBrowser::Models::PackedObject.path?(@relpath)
         obj = {}
-
         File.open(pack_to_index_path) do |index_input|
           index = GitObjectBrowser::Models::PackIndex.new(index_input)
           File.open(File.join(@target, @relpath)) do |input|

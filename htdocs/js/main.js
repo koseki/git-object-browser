@@ -1,13 +1,5 @@
 
-angular.module('GitServices', ['ngResource'])
-  .factory('GitResource', function($resource) {
-    var resource = $resource('/.git/:path');
-    return resource;
-  })
-  .factory('PackedObjectResource', function($resource) {
-    var resource = $resource('/.git/:path?offset=:offset');
-    return resource;
-  });
+angular.module('GitServices', ['ngResource']);
 
 angular.module('GitObjectBrowser', ['GitServices'])
   .config(function($routeProvider) {
@@ -95,15 +87,8 @@ angular.module('GitObjectBrowser', ['GitServices'])
     }
   });
 
-function GitCtrl($scope, $location, $routeParams, GitResource, PackedObjectResource) {
+function GitCtrl($scope, $location, $routeParams, $resource) {
   $scope.template = 'templates/loading.html';
-  var path = '';
-  for (var i = 1; i <= 10; i++) {
-    if ($routeParams['path' + i]) {
-      if (i > 1) path += '/';
-      path += $routeParams['path' + i];
-    }
-  }
 
   $scope.objectTable = function(entries) {
     var rows = [];
@@ -212,6 +197,8 @@ function GitCtrl($scope, $location, $routeParams, GitResource, PackedObjectResou
       if (response.status == 404) {
         $scope.resourceNotFound(path);
       } else {
+        $scope.status = response.status;
+        $scope.path = path;
         $scope.template = 'templates/error.html';
       }
     };
@@ -226,12 +213,24 @@ function GitCtrl($scope, $location, $routeParams, GitResource, PackedObjectResou
     }
   };
 
-  if (path.match(/^objects\/pack\/pack-[0-9a-f]{40}\.pack$/) && $routeParams.offset) {
-    PackedObjectResource.get({path: path, offset:$routeParams.offset}, $scope.resourceLoaded, $scope.resourceError(path));
-  } else {
-    GitResource.get({path: path}, $scope.resourceLoaded, $scope.resourceError(path));
+  var path = '';
+  for (var i = 1; i <= 10; i++) {
+    if ($routeParams['path' + i]) {
+      if (i > 1) path += '/';
+      path += $routeParams['path' + i];
+    }
   }
-
+  if (path.match(/^objects\/pack\/pack-[0-9a-f]{40}\.pack$/) && $routeParams.offset) {
+    var offset = '0000' + $routeParams.offset;
+    path = 'json/' + path.replace(/:/, '\\:')
+      + '/' + offset.slice(-2)
+      + '/' + offset.slice(-4, -2)
+      + '/' + $routeParams.offset + '.json';
+  } else {
+    if (path == '') path = '_git';
+    path = 'json/' + path.replace(/:/, '\\:') + '.json';
+  }
+  $resource(path).get({}, $scope.resourceLoaded, $scope.resourceError(path));
 }
 
 function PackFileCtrl($scope, $location, $routeParams) {
