@@ -51,6 +51,9 @@ module GitObjectBrowser
         elsif params[:relpath] =~ %r{\A(#{ pack_rex }\.pack)/\d{2}/\d{2}/(\d+)\z}
           params[:relpath] = $1
           params[:offset]  = $2.to_i
+        elsif params[:relpath] =~ %r{\A(#{ pack_rex }\.idx)\z}
+          params[:relpath] = $1
+          params[:order]   = 'digest'
         elsif params[:relpath] =~ %r{\A(#{ pack_rex }\.idx)/(sha1|offset)/(\d+)\z}
           params[:relpath] = $1
           params[:order]   = $2
@@ -133,8 +136,10 @@ module GitObjectBrowser
         File.open(@params[:abspath]) do |input|
           obj = GitObjectBrowser::Models::PackIndex.new(input).parse(@params[:order], @params[:page])
         end
-        File.open(index_to_pack_path) do |input|
-          obj.load_object_types(input)
+        if @params[:order] != 'digest'
+          File.open(index_to_pack_path) do |input|
+            obj.load_object_types(input)
+          end
         end
         response_wrapped_object('pack_index', obj)
         return true

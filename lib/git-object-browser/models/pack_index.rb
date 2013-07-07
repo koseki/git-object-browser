@@ -22,19 +22,23 @@ module GitObjectBrowser
       def parse(order, page)
         parse_fanout
         @page = page
+        @order = order
 
-        if order == 'sha1'
+        if order == 'digest'
+          parse_digest
+        elsif order == 'sha1'
           parse_sha1_page
+          set_fanouts
         else
+          @order = 'offset'
           parse_offset_page
+          set_fanouts
         end
 
         # XXX Doesn't support packfile >= 2 GiB
         # x.times do |i|
         #   puts "offset[#{ i }] = #{ hex(8) }"
         # end
-
-        set_fanouts
 
         seek(4 + 4 + 4 * 256 + (20 + 4 + 4) * @fanout[255])
         @packfile_sha1 = hex(20)
@@ -60,6 +64,17 @@ module GitObjectBrowser
         end
       end
       private :set_fanouts
+
+      def parse_digest
+        index = 0
+        @entries = []
+        while index <= @fanout[255] - 1
+          @entries << hex(20)
+          index += PER_PAGE
+          skip(20 * (PER_PAGE - 1)) if index <= @fanout[255] - 1
+        end
+      end
+      private :parse_digest
 
       def parse_sha1_page
         @entries = []
@@ -222,7 +237,8 @@ module GitObjectBrowser
           :index_sha1    => @index_sha1,
           :first_page    => @first_page,
           :last_page     => @last_page,
-          :page          => @page
+          :page          => @page,
+          :order         => @order
         }
       end
 
