@@ -276,6 +276,7 @@ function PackIndexCtrl($scope, $location, $routeParams, $resource) {
   var resourceLoaded = function(json) {
     $scope.object.entries = $scope.object.entries.concat(json.object.entries);
     $scope.scrollBottomEnabled = ! json.object.last_page;
+    $scope.loading = false;
   }
 
   $scope.loadNextPage = function() {
@@ -289,6 +290,7 @@ function PackIndexCtrl($scope, $location, $routeParams, $resource) {
 
   $scope.scrollBottom = function() {
     $scope.scrollBottomEnabled = false;
+    $scope.loading = true;
     $scope.loadNextPage();
   }
 
