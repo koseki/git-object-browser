@@ -287,8 +287,9 @@ function GitCtrl($scope, $location, $routeParams, $resource, $http) {
     $scope.path = path;
     if (path.match(/^json\/objects\/([0-9a-f]{2})\/([0-9a-f]{38})\.json$/)) {
       packedObjectFinder(RegExp.$1 + RegExp.$2);
-    } else if (path.indexOf('refs/') == 0) {
-      $location.url('/.git/packed-refs?ref=' + path);
+    } else if (path.match(/^json\/(refs\/.+)\.json$/)) {
+      $routeParams.ref = RegExp.$1;
+      loadJson('packed-refs')
     } else {
       $scope.template = 'templates/notfound.html';
     }
