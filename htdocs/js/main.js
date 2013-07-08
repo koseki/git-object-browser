@@ -100,7 +100,7 @@ angular.module('GitObjectBrowser', ['ngResource'])
     }
   });
 
-function GitCtrl($scope, $location, $routeParams, $resource) {
+function GitCtrl($scope, $location, $routeParams, $resource, $http) {
   // reset scrollBottom event handler
   angular.element(window).unbind('scroll');
 
@@ -219,14 +219,84 @@ function GitCtrl($scope, $location, $routeParams, $resource) {
     };
   };
 
+  var packedObjectFinder = function(sha1) {
+    var indexes = [];
+
+    var find = function() {
+      $http.get('json/objects/pack.json')
+        .success(startLoadPackDigest)
+        .error(showNotFound);
+    };
+
+    var startLoadPackDigest = function(json) {
+      angular.forEach(json.object.entries, function(entry) {
+        if (entry.basename.match(/\.idx$/)) {
+          indexes.push(entry);
+        }
+      });
+      loadPackDigest();
+    };
+
+    var loadPackDigest = function() {
+      if (indexes.length == 0) {
+        showNotFound();
+        return;
+      }
+      var entry = indexes.shift();
+      $http.get('json/objects/pack/' + entry.basename + '.json')
+        .success(findPackObject)
+        .error(showNotFound);
+    };
+
+    var findPackObject = function(json) {
+      var i = 0;
+      angular.forEach(json.object.entries, function(digestSha1) {
+        if (sha1 <= digestSha1) {
+          return;
+        }
+        i++;
+      });
+
+      if (i == 0) {
+        loadPackDigest();
+        return;
+      }
+
+      $http.get('json/' + json.path + '/sha1/' + i + '.json')
+        .success(loadPagedIndex)
+        .error(showNotFound);
+    };
+
+    var loadPagedIndex = function(json) {
+      var found = false;
+      angular.forEach(json.object.entries, function(entry) {
+        if (entry.sha1 == sha1) {
+          var path = json.path.replace(/.idx$/, '.pack');
+          found = true;
+          $routeParams.offset = entry.offset;
+          loadJson(path);
+        }
+      });
+      if (! found) loadPackDigest();
+    }
+
+    find();
+  };
+
   var resourceNotFound = function(path) {
     $scope.path = path;
-    if (path.indexOf('refs/') == 0) {
+    if (path.match(/^json\/objects\/([0-9a-f]{2})\/([0-9a-f]{38})\.json$/)) {
+      packedObjectFinder(RegExp.$1 + RegExp.$2);
+    } else if (path.indexOf('refs/') == 0) {
       $location.url('/.git/packed-refs?ref=' + path);
     } else {
       $scope.template = 'templates/notfound.html';
     }
   };
+
+  var showNotFound = function() {
+    $scope.template = 'templates/notfound.html';
+  }
 
   var buildPath = function() {
     var path = '';
