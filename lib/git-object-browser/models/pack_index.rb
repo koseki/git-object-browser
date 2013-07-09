@@ -78,18 +78,12 @@ module GitObjectBrowser
 
       def parse_sha1_page
         @entries = []
-        @first_page = @page == 1
-        @last_page  = true
 
         index_start = PER_PAGE * (@page - 1)
         index_end   = PER_PAGE * @page - 1
         index_last  = @fanout[255] - 1
         return if index_last < index_start
-        if index_last <= index_end
-          index_end = index_last
-        else
-          @last_page = false
-        end
+        index_end = index_last if index_last <= index_end
         entry_count = index_end - index_start + 1
 
         skip(20 * index_start)
@@ -114,18 +108,12 @@ module GitObjectBrowser
 
       def parse_offset_page
         @entries = []
-        @first_page = @page == 1
-        @last_page  = true
 
         index_start = PER_PAGE * (@page - 1)
         index_end   = PER_PAGE * @page - 1
         index_last  = @fanout[255] - 1
         return if index_last < index_start
-        if index_last <= index_end
-          index_end = index_last
-        else
-          @last_page = false
-        end
+        index_end = index_last if index_last <= index_end
         entry_count = index_end - index_start + 1
 
         # load all offsets
@@ -235,8 +223,14 @@ module GitObjectBrowser
           :entries       => @entries,
           :packfile_sha1 => @packfile_sha1,
           :index_sha1    => @index_sha1,
-          :first_page    => @first_page,
-          :last_page     => @last_page,
+        }
+      end
+
+      # Extended pagenation data for Git Object Browser.
+      def page_data
+        return {
+          :per_page      => PER_PAGE,
+          :entry_count   => @fanout[255],
           :page          => @page,
           :order         => @order
         }

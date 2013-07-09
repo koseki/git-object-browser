@@ -93,7 +93,7 @@ module GitObjectBrowser
         return false unless File.directory?(@params[:abspath])
 
         obj = GitObjectBrowser::Models::Directory.new(@target, @params[:relpath])
-        response_wrapped_object('directory', obj)
+        response_wrapped_object(obj)
         return true
       end
 
@@ -104,7 +104,7 @@ module GitObjectBrowser
         File.open(@params[:abspath]) do |input|
           obj = GitObjectBrowser::Models::Index.new(input).parse
         end
-        response_wrapped_object('index', obj)
+        response_wrapped_object(obj)
         return true
       end
 
@@ -115,7 +115,7 @@ module GitObjectBrowser
         File.open(@params[:abspath]) do |input|
           obj = GitObjectBrowser::Models::GitObject.new(input).parse
         end
-        response_wrapped_object('object', obj)
+        response_wrapped_object(obj)
         return true
       end
 
@@ -126,7 +126,7 @@ module GitObjectBrowser
         File.open(@params[:abspath]) do |input|
           obj = GitObjectBrowser::Models::Ref.new(input)
         end
-        response_wrapped_object('ref', obj)
+        response_wrapped_object(obj)
         return true
       end
 
@@ -141,7 +141,7 @@ module GitObjectBrowser
             obj.load_object_types(input)
           end
         end
-        response_wrapped_object('pack_index', obj)
+        response_wrapped_object(obj)
         return true
       end
 
@@ -151,7 +151,7 @@ module GitObjectBrowser
         File.open(@params[:abspath]) do |input|
           obj = GitObjectBrowser::Models::PackFile.new(input).parse
         end
-        response_wrapped_object('pack_file', obj)
+        response_wrapped_object(obj)
         return true
       end
 
@@ -165,7 +165,7 @@ module GitObjectBrowser
             obj = GitObjectBrowser::Models::PackedObject.new(index, input).parse(@params[:offset])
           end
         end
-        response_wrapped_object('packed_object', obj)
+        response_wrapped_object(obj)
         return true
       end
 
@@ -176,7 +176,7 @@ module GitObjectBrowser
         File.open(@params[:abspath]) do |input|
           obj = GitObjectBrowser::Models::InfoRefs.new(input)
         end
-        response_wrapped_object('info_refs', obj)
+        response_wrapped_object(obj)
         return true
       end
 
@@ -187,7 +187,7 @@ module GitObjectBrowser
         File.open(@params[:abspath]) do |input|
           obj = GitObjectBrowser::Models::PackedRefs.new(input)
         end
-        response_wrapped_object('packed_refs', obj)
+        response_wrapped_object(obj)
         return true
       end
 
@@ -196,27 +196,15 @@ module GitObjectBrowser
         File.open(@params[:abspath]) do |input|
           obj = GitObjectBrowser::Models::PlainFile.new(input).parse
         end
-        response_wrapped_object('file', obj)
+        response_wrapped_object(obj)
         return true
       end
 
 
-      def response_wrapped_object(type, obj)
+      def response_wrapped_object(obj)
+        wrapped = GitObjectBrowser::Models::WrappedObject.new(@target, @params[:relpath], obj)
+        @params[:response].body = ::JSON.generate(wrapped)
         ok
-        hash = {}
-        hash[:type] = type
-        hash[:object] = obj.to_hash
-        hash[:root] = @target
-        hash[:path] = @params[:relpath]
-        hash[:wroking_dir] = File.basename(File.dirname(@target))
-
-        if type == 'packed_object'
-          sha1 = hash[:object][:object][:sha1]
-          unpacked_file = File.join(@target, 'objects', sha1[0..1], sha1[2..-1]).to_s
-          hash[:unpacked] = File.exist?(unpacked_file)
-        end
-
-        @params[:response].body = ::JSON.generate(hash)
       end
 
       def ok(response = nil)

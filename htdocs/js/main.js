@@ -340,13 +340,13 @@ function PackFileCtrl($scope, $location, $routeParams) {
 function PackIndexCtrl($scope, $location, $routeParams, $resource) {
 
   $scope.packUrl = $scope.path.replace(/.idx$/, '.pack');
-  $scope.firstPage = 1;
   $scope.lastPage = 1;
   $scope.scrollBottomEnabled = true;
 
   var resourceLoaded = function(json) {
     $scope.object.entries = $scope.object.entries.concat(json.object.entries);
-    $scope.scrollBottomEnabled = ! json.object.last_page;
+    var last_page = Math.ceil(json.entry_count / json.per_page);
+    $scope.scrollBottomEnabled = (json.page < last_page);
     $scope.loading = false;
   }
 

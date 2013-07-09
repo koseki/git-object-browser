@@ -27,6 +27,7 @@ require "git-object-browser/models/pack_index"
 require "git-object-browser/models/packed_object"
 require "git-object-browser/models/packed_refs"
 require "git-object-browser/models/plain_file"
+require "git-object-browser/models/wrapped_object"
 require "git-object-browser/server/main"
 require "git-object-browser/server/git_servlet"
 
