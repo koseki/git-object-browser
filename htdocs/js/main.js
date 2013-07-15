@@ -360,7 +360,7 @@ function PackFileCtrl($scope, $location, $routeParams) {
   $scope.indexUrl = $scope.path.replace(/.pack$/, '.idx');
 }
 
-function PackIndexCtrl($scope, $location, $routeParams, $resource) {
+function PackIndexCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) {
 
   $scope.packUrl = $scope.path.replace(/.idx$/, '.pack');
   $scope.lastPage = 1;
@@ -377,7 +377,7 @@ function PackIndexCtrl($scope, $location, $routeParams, $resource) {
     $scope.lastPage += 1;
 
     var order = $routeParams.order == 'offset' ? 'offset' : 'sha1';
-    var path = 'json/' + $scope.gitPath + '/' + order + '/' + $scope.lastPage + '.json';
+    var path = 'json' + $rootScope.basedir + '/' + $scope.gitPath + '/' + order + '/' + $scope.lastPage + '.json';
 
     $http.get(path).success(resourceLoaded).error($scope.resourceError(path));
   };
