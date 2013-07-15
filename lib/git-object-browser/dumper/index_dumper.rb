@@ -6,17 +6,30 @@ module GitObjectBrowser
 
     class IndexDumper
 
-      def initialize(input, output)
-        @index = GitObjectBrowser::Models::Index.new(input)
-        @out = output
+      def initialize(root, outdir)
+        @root   = root
+        @outdir = outdir
       end
 
-      def dump
-        @out << JSON.pretty_generate(@index.parse.to_hash)
 
-        # template = File.join(GitObjectBrowser::Dumper::TEMPLATES_DIR, 'index.txt.erb')
-        # index = @index.parse.to_hash
-        # @out << ERB.new(File.read(template), nil, '-').result(binding)
+      def dump
+        index_file = File.join(@root, "index")
+        out_file   = File.join(@outdir, "index.json")
+
+        return unless File.exist?(index_file)
+
+        puts "Write: index\n"
+        File.open(index_file) do |input|
+          File.open(out_file, "w") do |output|
+            dump_object(input, output)
+          end
+        end
+      end
+
+      def dump_object(input, output)
+        obj =  GitObjectBrowser::Models::Index.new(input).parse
+        wrapped = GitObjectBrowser::Models::WrappedObject.new(nil, 'index', obj)
+        output << JSON.pretty_generate(wrapped.to_hash)
       end
 
     end
