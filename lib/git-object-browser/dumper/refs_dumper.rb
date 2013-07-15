@@ -12,7 +12,7 @@ module GitObjectBrowser
       end
 
       def dump
-        ref_files = []
+        ref_files = %w{HEAD FETCH_HEAD ORIG_HEAD MERGE_HEAD CHERRY_PICK_HEAD}
         Dir.chdir(@root) do
           Dir.glob("refs/**/*") do |path|
             ref_files << path if File.file?(path)
@@ -21,6 +21,7 @@ module GitObjectBrowser
         return if ref_files.empty?
 
         ref_files.each do |path|
+          next unless File.exist?(File.join(@root, path))
           outfile = File.join(@outdir, "#{ path }.json")
           FileUtils.mkdir_p(File.dirname(outfile))
 
