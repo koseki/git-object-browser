@@ -9,7 +9,7 @@
 </thead>
 <tbody>
 <tr data-ng-repeat="entry in object.entries">
-<td><i data-entry-icon="entry.type"></i> <a href="#/{{$parent.path}}/{{entry.basename}}">{{entry.basename}}</a>
+<td><i data-entry-icon="entry.type"></i> <a href="#{{basedir}}/{{$parent.path}}/{{entry.basename}}">{{entry.basename}}</a>
 </td>
 <td>
 {{entry.size}}

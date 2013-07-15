@@ -4,11 +4,11 @@
 <table class="table table-striped">
 <thead>
 <tr>
-<th><a href="#/{{path}}?order=sha1">#</a></th>
+<th><a href="#{{basedir}}/{{path}}?order=sha1">#</a></th>
 <th>fanout</th>
 <th>sha1</th>
 <th>crc32</th>
-<th><a href="#/{{path}}?order=offset">offset</a></th>
+<th><a href="#{{basedir}}/{{path}}?order=offset">offset</a></th>
 <th>type</th>
 <th>size</th>
 </tr>
@@ -23,9 +23,9 @@
 </td>
 <td>{{entry.sha1}}</td>
 <td>{{entry.crc32}}</td>
-<td><a href="#/{{packUrl}}?offset={{entry.offset}}">{{entry.offset}}</a></td>
+<td><a href="#{{basedir}}/{{packUrl}}?offset={{entry.offset}}">{{entry.offset}}</a></td>
 <td><i data-entry-icon="entry.type"></i> {{entry.type}}
-<span data-ng-show="entry.base_offset"><a href="#/{{packUrl}}?offset={{entry.base_offset}}">{{entry.base_offset}}</a></span>
+<span data-ng-show="entry.base_offset"><a href="#{{basedir}}/{{packUrl}}?offset={{entry.base_offset}}">{{entry.base_offset}}</a></span>
 <span data-ng-show="entry.base_sha1"><a data-ref-href="entry.base_sha1">{{entry.base_sha1.substr(0,6)}}</a></span>
 </td>
 <td>{{entry.size}}</td>

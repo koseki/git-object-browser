@@ -6,7 +6,7 @@
       <li class="active"><a href="#parsed" data-toggle="tab">Parsed</a></li>
       <li data-ng-show="object.object.content"><a href="#plain" data-toggle="tab">Plain</a></li>
       <li data-ng-show="object.delta_commands"><a href="#deltas" data-toggle="tab">Deltas</a></li>
-      <li><a href="#/{{path.replace('.pack', '.idx')}}"><i class="icon-list"></i> Index</a></li>
+      <li><a href="#{{basedir}}/{{path.replace('.pack', '.idx')}}"><i class="icon-list"></i> Index</a></li>
     </ul>
 
     <div class="tab-content">
@@ -20,11 +20,11 @@
     </tr>
     <tr>
       <th>offset</th>
-      <td><a href="#/{{path}}?offset={{object.offset}}">{{object.offset}}</a></td>
+      <td><a href="#{{basedir}}/{{path}}?offset={{object.offset}}">{{object.offset}}</a></td>
     </tr>
     <tr data-ng-show="object.base_offset">
       <th>base offset</th>
-      <td><a href="#/{{path}}?offset={{object.base_offset}}">{{object.base_offset}}</a></td>
+      <td><a href="#{{basedir}}/{{path}}?offset={{object.base_offset}}">{{object.base_offset}}</a></td>
     </tr>
     <tr data-ng-show="object.base_offset">
       <th>delta type</th>
@@ -47,7 +47,7 @@
     <tr data-ng-repeat="prop in object.object.properties">
       <th>{{prop.key}}</th>
       <td data-ng-switch="prop.type">
-        <span data-ng-switch-when="sha1"><a href="#/.git/{{prop.path}}">{{prop.value}}</a></span>
+        <span data-ng-switch-when="sha1"><a href="#{{basedir}}/.git/{{prop.path}}">{{prop.value}}</a></span>
         <span data-ng-switch-when="user">{{prop.value}} <small style="color:#aaa">{{prop.date}}</small></span>
         <span data-ng-switch-default>{{prop.value}}</span>
       </td>

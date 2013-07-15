@@ -1,6 +1,13 @@
+var steps = [];
+/*
+var steps = [
+  { name: '001-init', label: '1. git init' },
+  { name: '002-add', label: '2. git add' }
+];
+*/
 
-angular.module('GitObjectBrowser', ['ngResource'])
-  .config(function($routeProvider) {
+function routingConfig(steps) {
+  return function($routeProvider) {
     $routeProvider = angular.extend($routeProvider, {
 
       // AngularJS doesn't support regular expressions in routes.
@@ -13,11 +20,20 @@ angular.module('GitObjectBrowser', ['ngResource'])
         return this;
       }
     });
+    if (steps.length > 0) {
+      $routeProvider.
+        whenPath('/:basedir/.git', 10, {controller:GitCtrl, templateUrl:'templates/git.html'}).
+        otherwise({redirectTo:'/' + steps[0].name + '/.git/'});
+    } else {
+      $routeProvider.
+        whenPath('/.git', 10, {controller:GitCtrl, templateUrl:'templates/git.html'}).
+        otherwise({redirectTo:'/.git/'});
+    }
+  }
+}
 
-    $routeProvider.
-      whenPath('/.git', 10, {controller:GitCtrl, templateUrl:'templates/git.html'}).
-      otherwise({redirectTo:'/.git/'});
-  })
+angular.module('GitObjectBrowser', ['ngResource'])
+  .config(routingConfig(steps))
 
   .directive('scrollBottom', function() {
     return function(scope, elm, attr) {
@@ -72,7 +88,7 @@ angular.module('GitObjectBrowser', ['ngResource'])
     }
   })
 
-  .directive('refHref', function($parse) {
+  .directive('refHref', function($parse, $rootScope) {
     return function(scope, element, attrs) {
       var entry = ($parse(attrs.refHref))(scope);
       var href = "";
@@ -85,9 +101,9 @@ angular.module('GitObjectBrowser', ['ngResource'])
       }
 
       if (sha1 !== null) {
-        href = '#/.git/objects/' + sha1.substr(0, 2) + '/' + sha1.substr(2);
+        href = '#' + $rootScope.basedir + '/.git/objects/' + sha1.substr(0, 2) + '/' + sha1.substr(2);
       } else if (entry && entry.ref) {
-        href = '#/.git/' + entry.ref;
+        href = '#' + $rootScope.basedir + '/.git/' + entry.ref;
       }
 
       element.attr('href', href);
@@ -100,7 +116,7 @@ angular.module('GitObjectBrowser', ['ngResource'])
     }
   });
 
-function GitCtrl($scope, $location, $routeParams, $resource, $http) {
+function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) {
   // reset scrollBottom event handler
   angular.element(window).unbind('scroll');
 
@@ -208,11 +224,11 @@ function GitCtrl($scope, $location, $routeParams, $resource, $http) {
   };
 
   $scope.resourceError = function(path) {
-    return function(response) {
-      if (response.status == 404) {
+    return function(data, status, headers, config) {
+      if (status == 404) {
         resourceNotFound(path);
       } else {
-        $scope.status = response.status;
+        $scope.status = status;
         $scope.path = path;
         $scope.template = 'templates/error.html';
       }
@@ -223,7 +239,7 @@ function GitCtrl($scope, $location, $routeParams, $resource, $http) {
     var indexes = [];
 
     var find = function() {
-      $http.get('json/objects/pack.json')
+      $http.get('json' + $rootScope.basedir + '/objects/pack.json')
         .success(startLoadPackDigest)
         .error(showNotFound);
     };
@@ -243,7 +259,7 @@ function GitCtrl($scope, $location, $routeParams, $resource, $http) {
         return;
       }
       var entry = indexes.shift();
-      $http.get('json/objects/pack/' + entry.basename + '.json')
+      $http.get('json' + $rootScope.basedir + '/objects/pack/' + entry.basename + '.json')
         .success(findPackObject)
         .error(showNotFound);
     };
@@ -262,7 +278,7 @@ function GitCtrl($scope, $location, $routeParams, $resource, $http) {
         return;
       }
 
-      $http.get('json/' + json.path + '/sha1/' + i + '.json')
+      $http.get('json' + $rootScope.basedir + '/' + json.path + '/sha1/' + i + '.json')
         .success(loadPagedIndex)
         .error(showNotFound);
     };
@@ -274,7 +290,7 @@ function GitCtrl($scope, $location, $routeParams, $resource, $http) {
           var path = json.path.replace(/.idx$/, '.pack');
           found = true;
           $routeParams.offset = entry.offset;
-          loadJson(path);
+          loadJson([$rootScope.basedir, path]);
         }
       });
       if (! found) loadPackDigest();
@@ -285,11 +301,11 @@ function GitCtrl($scope, $location, $routeParams, $resource, $http) {
 
   var resourceNotFound = function(path) {
     $scope.path = path;
-    if (path.match(/^json\/objects\/([0-9a-f]{2})\/([0-9a-f]{38})\.json$/)) {
+    if (path.match(/^json\/[^\/]+\/objects\/([0-9a-f]{2})\/([0-9a-f]{38})\.json$/)) {
       packedObjectFinder(RegExp.$1 + RegExp.$2);
-    } else if (path.match(/^json\/(refs\/.+)\.json$/)) {
+    } else if (path.match(/^json\/[^\/]+\/(refs\/.+)\.json$/)) {
       $routeParams.ref = RegExp.$1;
-      loadJson('packed-refs')
+      loadJson([$rootScope.basedir, 'packed-refs'])
     } else {
       $scope.template = 'templates/notfound.html';
     }
@@ -299,35 +315,42 @@ function GitCtrl($scope, $location, $routeParams, $resource, $http) {
     $scope.template = 'templates/notfound.html';
   }
 
+  // ['',         '/.git/xxx'] or
+  // ['/basedir', '/.git/xxx']
   var buildPath = function() {
     var path = '';
+    var basedir = '';
+    if ($routeParams['basedir'] !== undefined) {
+      basedir = '/' + $routeParams['basedir'];
+    }
     for (var i = 1; i <= 10; i++) {
       if ($routeParams['path' + i]) {
         if (i > 1) path += '/';
         path += $routeParams['path' + i];
       }
     }
-    return path;
+    return [basedir, path];
   }
 
   var loadJson = function(path) {
+    $rootScope.basedir = path[0];
     $scope.template = 'templates/loading.html';
 
-    if (path.match(/^objects\/pack\/pack-[0-9a-f]{40}\.pack$/) && $routeParams.offset) {
+    if (path[1].match(/^objects\/pack\/pack-[0-9a-f]{40}\.pack$/) && $routeParams.offset) {
       var offset = '0000' + $routeParams.offset;
-      path = 'json/' + path.replace(/:/, '\\:')
+      path = 'json' + path[0] + '/' + path[1]
         + '/' + offset.slice(-2)
         + '/' + offset.slice(-4, -2)
         + '/' + $routeParams.offset + '.json';
-    } else if (path.match(/^objects\/pack\/pack-[0-9a-f]{40}\.idx$/)) {
+    } else if (path[1].match(/^objects\/pack\/pack-[0-9a-f]{40}\.idx$/)) {
       var order = $routeParams.order == 'offset' ? 'offset' : 'sha1';
       var page  = $routeParams.page || 1;
-      path = 'json/' + path.replace(/:/, '\\:') + '/' + order + '/' + page + '.json';
+      path = 'json' + path[0] + '/' + path[1] + '/' + order + '/' + page + '.json';
     } else {
-      if (path == '') path = '_git';
-      path = 'json/' + path.replace(/:/, '\\:') + '.json';
+      if (path[1] == '') path[1] = '_git';
+      path = 'json' + path[0] + '/' + path[1] + '.json';
     }
-    $resource(path).get({}, resourceLoaded, $scope.resourceError(path));
+    $http.get(path).success(resourceLoaded).error($scope.resourceError(path));
   };
 
   loadJson(buildPath());
@@ -354,9 +377,9 @@ function PackIndexCtrl($scope, $location, $routeParams, $resource) {
     $scope.lastPage += 1;
 
     var order = $routeParams.order == 'offset' ? 'offset' : 'sha1';
-    var path = 'json/' + $scope.gitPath.replace(/:/, '\\:') + '/' + order + '/' + $scope.lastPage + '.json';
+    var path = 'json/' + $scope.gitPath + '/' + order + '/' + $scope.lastPage + '.json';
 
-    $resource(path).get({}, resourceLoaded, $scope.resourceError(path));
+    $http.get(path).success(resourceLoaded).error($scope.resourceError(path));
   };
 
   $scope.scrollBottom = function() {

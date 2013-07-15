@@ -26,7 +26,7 @@
     <tr data-ng-repeat="prop in object.properties">
       <th>{{prop.key}}</th>
       <td data-ng-switch="prop.type">
-        <span data-ng-switch-when="sha1"><a href="#/.git/{{prop.path}}">{{prop.value}}</a></span>
+        <span data-ng-switch-when="sha1"><a href="#{{basedir}}/.git/{{prop.path}}">{{prop.value}}</a></span>
         <span data-ng-switch-when="user">{{prop.value}} <small style="color:#aaa">{{prop.date}}</small></span>
         <span data-ng-switch-default>{{prop.value}}</span>
       </td>

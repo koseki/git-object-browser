@@ -1,6 +1,6 @@
 <h1><i class="icon-folder-open"></i> {{path}} <small>Directory</small></h1>
 
-<p><i class="icon-folder-open"></i> <a href="#/.git/objects/pack">pack</a></p>
+<p><i class="icon-folder-open"></i> <a href="#{{basedir}}/.git/objects/pack">pack</a></p>
 
 <table class="table table-bordered table-hover">
 <tbody>
@@ -8,7 +8,7 @@
 <td data-ng-repeat="cel in rows">
   <span data-ng-switch="cel.type">
     <span data-ng-switch-when="empty"><span style="color:#eee">{{cel.basename}}</span></span>
-    <span data-ng-switch-default><a href="#/.git/objects/{{cel.basename}}">{{cel.basename}}</a></span>
+    <span data-ng-switch-default><a href="#{{basedir}}/.git/objects/{{cel.basename}}">{{cel.basename}}</a></span>
   </span>
 </td>
 </tr>

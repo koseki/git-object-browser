@@ -30,7 +30,7 @@
 </thead>
 <tbody>
 <tr data-ng-repeat="entry in object.entries">
-<td><i class="icon-file"></i> <a href="#/.git/index?sha1={{entry.sha1}}">{{entry.path}}</a></td>
+<td><i class="icon-file"></i> <a href="#{{basedir}}/.git/index?sha1={{entry.sha1}}">{{entry.path}}</a></td>
 <td><a href="#" data-ref-href="entry">{{entry.sha1}}</a></td>
 </tr>
 </tbody>
