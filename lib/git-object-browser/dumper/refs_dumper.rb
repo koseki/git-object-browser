@@ -4,7 +4,7 @@ module GitObjectBrowser
 
   module Dumper
 
-    class ObjectsDumper
+    class RefsDumper
 
       def initialize(root, outdir)
         @root   = root
@@ -12,23 +12,21 @@ module GitObjectBrowser
       end
 
       def dump
-        obj_files = []
+        ref_files = []
         Dir.chdir(@root) do
-          Dir.glob("objects/**/*") do |path|
-            obj_files << path if File.file?(path) && path =~ %r{/[a-z0-9]{38}$}
+          Dir.glob("refs/**/*") do |path|
+            ref_files << path if File.file?(path)
           end
         end
-        return if obj_files.empty?
+        return if ref_files.empty?
 
-        obj_files.each do |path|
+        ref_files.each do |path|
           outfile = File.join(@outdir, "#{ path }.json")
-          next if File.exist?(outfile)
-
           FileUtils.mkdir_p(File.dirname(outfile))
 
           puts "Write: #{path}\n"
-          obj_file = File.join(@root, path)
-          File.open(obj_file) do |input|
+          ref_file = File.join(@root, path)
+          File.open(ref_file) do |input|
             File.open(outfile, "w") do |output|
               dump_object(input, output, path)
             end
@@ -37,10 +35,11 @@ module GitObjectBrowser
       end
 
       def dump_object(input, output, path)
-        obj =  GitObjectBrowser::Models::GitObject.new(input).parse
+        obj =  GitObjectBrowser::Models::Ref.new(input)
         wrapped = GitObjectBrowser::Models::WrappedObject.new(nil, path, obj)
         output << JSON.pretty_generate(wrapped.to_hash)
       end
     end
   end
 end
+

@@ -20,7 +20,12 @@ module GitObjectBrowser
         FileUtils.mkdir_p(json_dir) unless File.exist?(json_dir)
         [IndexDumper,
          ObjectsDumper,
+         RefsDumper,
          DirectoriesDumper,
+         PlainFilesDumper,
+         PackIndexesDumper,
+         PackedRefsDumper,
+         InfoRefsDumper,
         ].each do |dumper|
           dumper.new(@target, json_dir).dump
         end

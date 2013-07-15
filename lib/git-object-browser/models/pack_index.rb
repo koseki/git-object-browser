@@ -13,6 +13,8 @@ module GitObjectBrowser
     #   pack  sha1 20bytes
     #   index sha1 20bytes
     class PackIndex < Bindata
+      attr_reader :entries
+
       PER_PAGE = 200
 
       def initialize(input)
@@ -45,6 +47,10 @@ module GitObjectBrowser
         @index_sha1 = hex(20)
 
         self
+      end
+
+      def empty?
+        @entries.empty?
       end
 
       def set_fanouts

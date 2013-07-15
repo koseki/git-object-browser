@@ -32,9 +32,14 @@ require "git-object-browser/server/main"
 require "git-object-browser/server/git_servlet"
 
 require "git-object-browser/dumper/main"
-require "git-object-browser/dumper/object_dumper"
+require "git-object-browser/dumper/objects_dumper"
 require "git-object-browser/dumper/index_dumper"
-require "git-object-browser/dumper/pack_index_dumper"
-require "git-object-browser/dumper/packed_object_dumper"
+require "git-object-browser/dumper/directories_dumper"
+require "git-object-browser/dumper/plain_files_dumper"
+require "git-object-browser/dumper/refs_dumper"
+require "git-object-browser/dumper/packed_refs_dumper"
+require "git-object-browser/dumper/pack_indexes_dumper"
+require "git-object-browser/dumper/packed_objects_dumper"
+require "git-object-browser/dumper/info_refs_dumper"
 
 GitObjectBrowser::Main.new().execute if __FILE__ == $0
