@@ -27,8 +27,7 @@ module GitObjectBrowser
             next if %w{HEAD FETCH_HEAD ORIG_HEAD MERGE_HEAD CHERRY_PICK_HEAD}.include?(path)
             next if %w{dump index objects refs packed-refs}.include?(path)
 
-            full_path = File.join(@root, path)
-            if File.directory?(full_path)
+            if File.directory?(path)
               subdirs << path
             else
               plain_files << path
@@ -43,7 +42,7 @@ module GitObjectBrowser
             Dir.glob('**/*') do |path|
               # skip info/refs (InfoRefs)
               next if dir == 'info' && path == 'refs'
-              if File.file?(File.join(@root, dir, path))
+              if File.file?(path)
                 plain_files << File.join(dir, path)
               end
             end
