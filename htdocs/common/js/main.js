@@ -22,11 +22,11 @@ function routingConfig(steps) {
     });
     if (steps.length > 0) {
       $routeProvider.
-        whenPath('/:basedir/.git', 10, {controller:GitCtrl, templateUrl:'templates/git.html'}).
+        whenPath('/:basedir/.git', 10, {controller:GitCtrl, templateUrl:'common/templates/git.html'}).
         otherwise({redirectTo:'/' + steps[0].name + '/.git/'});
     } else {
       $routeProvider.
-        whenPath('/.git', 10, {controller:GitCtrl, templateUrl:'templates/git.html'}).
+        whenPath('/.git', 10, {controller:GitCtrl, templateUrl:'common/templates/git.html'}).
         otherwise({redirectTo:'/.git/'});
     }
   }
@@ -220,7 +220,7 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
       template = json.type;
     }
 
-    $scope.template = 'templates/' + template + '.html';
+    $scope.template = 'common/templates/' + template + '.html';
   };
 
   $scope.resourceError = function(path) {
@@ -230,7 +230,7 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
       } else {
         $scope.status = status;
         $scope.path = path;
-        $scope.template = 'templates/error.html';
+        $scope.template = 'common/templates/error.html';
       }
     };
   };
@@ -307,12 +307,12 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
       $routeParams.ref = RegExp.$1;
       loadJson([$rootScope.basedir, 'packed-refs'])
     } else {
-      $scope.template = 'templates/notfound.html';
+      $scope.template = 'common/templates/notfound.html';
     }
   };
 
   var showNotFound = function() {
-    $scope.template = 'templates/notfound.html';
+    $scope.template = 'common/templates/notfound.html';
   }
 
   // ['',         '/.git/xxx'] or
@@ -334,7 +334,7 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
 
   var loadJson = function(path) {
     $rootScope.basedir = path[0];
-    $scope.template = 'templates/loading.html';
+    $scope.template = 'common/templates/loading.html';
 
     if (path[1].match(/^objects\/pack\/pack-[0-9a-f]{40}\.pack$/) && $routeParams.offset) {
       var offset = '0000' + $routeParams.offset;
