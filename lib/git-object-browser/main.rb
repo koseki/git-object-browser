@@ -5,6 +5,7 @@ module GitObjectBrowser
       host = '127.0.0.1'
       port = 8080
       dump = nil
+      step = nil
       opts = OptionParser.new do |opts|
         opts.on('-p', '--port PORT', 'port number') do |value|
           port = value.to_i if 0 < value.to_i
@@ -12,8 +13,11 @@ module GitObjectBrowser
         opts.on('-b', '--bind HOST', 'address to bind') do |value|
           host = value
         end
-        opts.on('-d', '--dump PATH', 'dump .git as json and HTMLs') do |value|
+        opts.on('-d', '--dump PATH', 'dump .git as JSON and HTMLs') do |value|
           dump = value
+        end
+        opts.on('--step STEP', 'dump JSONs into sub directory') do |value|
+          step = value
         end
         opts.on_tail("-h", "--help", "show this help.") do
           puts opts
@@ -29,7 +33,7 @@ module GitObjectBrowser
       if dump.nil?
         GitObjectBrowser::Server::Main.execute(target, host, port)
       else
-        GitObjectBrowser::Dumper::Main.execute(target, dump)
+        GitObjectBrowser::Dumper::Main.execute(target, dump, step)
       end
     end
 
