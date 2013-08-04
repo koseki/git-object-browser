@@ -1,11 +1,3 @@
-var steps = [];
-/*
-var steps = [
-  { name: '001-init', label: '1. git init' },
-  { name: '002-add', label: '2. git add' }
-];
-*/
-
 function routingConfig(steps) {
   return function($routeProvider) {
     $routeProvider = angular.extend($routeProvider, {
