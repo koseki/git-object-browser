@@ -381,3 +381,38 @@ function PackIndexCtrl($scope, $location, $routeParams, $rootScope, $resource, $
   }
 
 }
+
+function MenuCtrl($scope, $location, $routeParams) {
+  $scope.steps = steps;
+
+  $scope.stepPrev = function() {
+    var idx = getStepIndex();
+    if (idx.index > 0) {
+      $location.path('/' + $scope.steps[idx.index - 1].name + '/' + idx.file);
+    }
+  }
+
+  $scope.stepNext = function() {
+    var idx = getStepIndex();
+    if (idx.index < $scope.steps.length - 1) {
+      $location.path('/' + $scope.steps[idx.index + 1].name + '/' + idx.file);
+    }
+  }
+
+  var getStepIndex = function() {
+    var path = $location.path();
+    if (! path.match(/\/([^\/]+)\/(.+)/)) return null;
+
+    var stepName = RegExp.$1;
+    var file     = RegExp.$2;
+    var obj = { stepName: stepName, file: file, index: 0 };
+
+    for (var i = 0; i < $scope.steps.length; i++) {
+      if (stepName == $scope.steps[i].name) {
+        obj.index = i;
+        return obj;
+      }
+    }
+    return obj;
+  }
+}
