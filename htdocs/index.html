@@ -45,7 +45,7 @@
                     <a class="brand" href="/"><i class="icon-comment icon-white"></i> GOB</a>
                     <div class="nav-collapse collapse" data-ng-controller="MenuCtrl">
                         <ul class="nav">
-                            <li class="active"><a href="/">Home</a></li>
+                            <li class="active" data-ng-show="steps.length == 0" style="display:none"><a href="/">Home</a></li>
 
                             <li class="dropdown" data-ng-show="steps.length > 0" style="display:none">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Steps <b class="caret"></b></a>
