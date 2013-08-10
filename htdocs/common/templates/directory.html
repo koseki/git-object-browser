@@ -8,8 +8,8 @@
 <th>mtime</th>
 </thead>
 <tbody>
-<tr data-ng-repeat="entry in object.entries">
-<td><i data-entry-icon="entry.type"></i> <a href="#{{basedir}}/{{$parent.path}}/{{entry.basename}}">{{entry.basename}}</a>
+<tr data-ng-repeat="entry in object.entries" data-ng-class="{error: diff[path + '/' + entry.basename]}">
+<td><i data-entry-icon="entry.type"></i> <a href="#{{basedir}}/{{path}}/{{entry.basename}}">{{entry.basename}}</a>
 </td>
 <td>
 {{entry.size}}

@@ -109,6 +109,10 @@ angular.module('GitObjectBrowser', ['ngResource'])
   });
 
 function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) {
+  if (! $rootScope.diffCache) {
+    $rootScope.diffCache = {};
+  }
+
   // reset scrollBottom event handler
   angular.element(window).unbind('scroll');
 
@@ -192,6 +196,7 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
     if (json.path == "objects") {
       template = "objects";
       $scope.objectTable = objectTable($scope.object.entries);
+      loadDiffData();
     } else if (json.type == "index" && $routeParams.sha1) {
       template = "index_entry";
       $scope.entry = findIndexEntry($routeParams.sha1);
@@ -208,12 +213,56 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
     } else if (json.type == "packed_object") {
       template = json.type;
       $scope.unpacked = json.unpacked;
+    } else if (json.type == "directory") {
+      template = json.type;
+      loadDiffData();
     } else {
       template = json.type;
     }
 
     $scope.template = 'common/templates/' + template + '.html';
   };
+
+  var loadDiffData = function() {
+    $scope.diff = {}
+    var base = '.git/';
+    if ($scope.object.path !== '') {
+      base = base + $scope.object.path + '/';
+    }
+    angular.forEach($scope.object.entries, function(entry) {
+      $scope.diff[base + entry.basename] = null;
+    });
+
+    var stepPath = $rootScope.basedir;
+    var cache = $rootScope.diffCache[stepPath];
+    if (cache) {
+      diffDataLoaded(cache);
+      return
+    }
+    $http.get('json' + stepPath + '/_diff.json').success(function(diffData) {
+      $rootScope.diffCache[stepPath] = diffData;
+      diffDataLoaded(diffData);
+    }).error(function() {
+      $rootScope.diffCache[stepPath] = [];
+    });
+  };
+
+  var diffDataLoaded = function(data) {
+    var newDiffData = {}
+    angular.forEach($scope.diff, function(value, key) {
+      newDiffData[key] = isDiffEntry(data, key);
+    });
+    $scope.diff = newDiffData;
+  }
+
+  var isDiffEntry = function(data, key) {
+    for(var i = 0; i < data.length; i++) {
+      if (('.git/' + data[i]).indexOf(key) === 0) {
+        return '#fee';
+      }
+    }
+    return null;
+  }
 
   $scope.resourceError = function(path) {
     return function(data, status, headers, config) {
