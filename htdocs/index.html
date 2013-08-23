@@ -16,6 +16,23 @@
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
+
+            .sidenote {
+              margin-top: 10px;
+              margin-left: 10px;
+              border: solid 1px #ccc;
+              padding: 18px;
+              -webkit-border-radius: 5px;
+                 -moz-border-radius: 5px;
+                      border-radius: 5px;
+            }
+
+            .sidenote h3 {
+              margin: 0;
+              margin-bottom: 10px;
+              line-height: 20px;
+              font-size: 1em;
+            }
         </style>
         <link rel="stylesheet" href="common/css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="common/css/main.css">
@@ -99,6 +116,9 @@
       <li class=""><a href="#{{basedir}}/.git/HEAD"><i data-entry-icon="'ref'"></i> HEAD</a></li>
       <li class=""><a href="#{{basedir}}/.git/index"><i data-entry-icon="'index'"></i> index</a></li>
     </ul>
+
+    <article class="sidenote" data-ng-bind-html-unsafe="note" style="display:none" data-ng-show="note">
+    </article>
   </div>
 
   <div class="span9">

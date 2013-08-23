@@ -109,9 +109,8 @@ angular.module('GitObjectBrowser', ['ngResource'])
   });
 
 function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) {
-  if (! $rootScope.diffCache) {
-    $rootScope.diffCache = {};
-  }
+  if (! $rootScope.diffCache) $rootScope.diffCache = {};
+  if (! $rootScope.noteCache) $rootScope.noteCache = {};
 
   // reset scrollBottom event handler
   angular.element(window).unbind('scroll');
@@ -221,6 +220,23 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
     }
 
     $scope.template = 'common/templates/' + template + '.html';
+  };
+
+  var loadNote = function() {
+    if (! $rootScope.basedir) return;
+    var basedir = $rootScope.basedir;
+    if ($rootScope.noteCache[basedir] !== undefined) {
+      $rootScope.note = $rootScope.noteCache[basedir];
+      return;
+    }
+    $http.get('notes/' + basedir + '.html')
+      .success(function(data) {
+        $rootScope.noteCache[basedir] = data;
+        $rootScope.note = data;
+      }).error(function() {
+        $rootScope.noteCache[basedir] = '';
+        $rootScope.note = null;
+      });
   };
 
   var loadDiffData = function() {
@@ -395,6 +411,7 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
   };
 
   loadJson(buildPath());
+  loadNote();
 }
 
 function PackFileCtrl($scope, $location, $routeParams) {
