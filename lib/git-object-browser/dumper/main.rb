@@ -36,16 +36,38 @@ module GitObjectBrowser
         @diff_dir = diff_dir
 
         if @step
+          (@diff_dir, @step) = find_next_dir if @step == :next
           @json_dir = File.join(@outdir, 'json', @step)
         else
           @json_dir = File.join(@outdir, 'json')
         end
       end
 
+      def find_next_dir
+        json_dir = File.join(@outdir, 'json')
+        FileUtils.mkdir_p(json_dir) unless File.exist?(json_dir)
+        dir = Dir.open(json_dir).map do |dir|
+          if dir =~ /\Astep(\d+)\z/
+            [dir, $1.to_i]
+          else
+            nil
+          end
+        end.compact.sort {|a,b| a[1] <=> b[1] }.last
+        if dir
+          return [File.join(json_dir, dir[0]), "step#{dir[1] + 1}"]
+        else
+          return [nil, "step1"]
+        end
+      end
+      private :find_next_dir
+
       def dump
         dump_objects
         copy_htdocs
         create_diff_data
+        if @step
+          puts "-- Complete: #{ @step }"
+        end
       end
 
       def create_diff_data
@@ -97,7 +119,11 @@ module GitObjectBrowser
       end
 
       def dump_objects
-        FileUtils.mkdir_p(@json_dir) unless File.exist?(@json_dir)
+        if File.exist?(@json_dir)
+          puts "Remove old data: #{ @step }"
+          FileUtils.rm_r(@json_dir)
+        end
+        FileUtils.mkdir_p(@json_dir)
         [IndexDumper,
          ObjectsDumper,
          RefsDumper,

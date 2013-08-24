@@ -7,6 +7,7 @@ module GitObjectBrowser
       dump = nil
       step = nil
       diff_dir = nil
+      nextstep = false
       opts = OptionParser.new do |opts|
         opts.on('-p', '--port PORT', 'port number') do |value|
           port = value.to_i if 0 < value.to_i
@@ -23,6 +24,9 @@ module GitObjectBrowser
         opts.on('--diff OLD_JSON_DIR', 'dump JSONs with diff data') do |value|
           diff_dir = value
         end
+        opts.on('--next', 'same with --step step${N} --diff step${N-1}') do |value|
+          nextstep = true
+        end
         opts.on_tail("-h", "--help", "show this help.") do
           puts opts
           exit
@@ -37,6 +41,10 @@ module GitObjectBrowser
       if dump.nil?
         GitObjectBrowser::Server::Main.execute(target, host, port)
       else
+        if nextstep
+          step = :next
+          diff_dir = nil
+        end
         GitObjectBrowser::Dumper::Main.execute(target, dump, step, diff_dir)
       end
     end
