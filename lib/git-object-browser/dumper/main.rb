@@ -142,12 +142,12 @@ module GitObjectBrowser
         puts "Copy htdocs/*"
         Dir.chdir(HTDOCS_DIR) do
           Dir.glob('*').each do |file|
-            next if file == 'steps.js'
+            next if file == 'config.js'
             puts "Copy: #{file}"
             FileUtils.copy_entry(file, File.join(@outdir, file))
           end
-          unless File.exist?(File.join(@outdir, 'steps.js'))
-            FileUtils.copy_entry('steps.js', File.join(@outdir, 'steps.js'))
+          unless File.exist?(File.join(@outdir, 'config.js'))
+            FileUtils.copy_entry('config.js', File.join(@outdir, 'config.js'))
           end
         end
       end
