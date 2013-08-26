@@ -18,11 +18,13 @@ module GitObjectBrowser
             relpath = File.join(@path, file).gsub(%r{\A/}, '')
             entry = {}
             if File.directory?(file)
-              entry[:type] = "directory"
+              entry[:type] = 'directory'
             elsif File.symlink?(file)
-              entry[:type] = "symlink"
+              entry[:type] = 'symlink'
             elsif Ref::path?(relpath)
               entry[:type] = 'ref'
+            elsif Reflog::path?(relpath)
+              entry[:type] = 'reflog'
             elsif InfoRefs::path?(relpath)
               entry[:type] = 'info_refs'
             elsif PackedRefs::path?(relpath)
@@ -40,7 +42,7 @@ module GitObjectBrowser
             entries << entry
           end
         end
-        order = %w{directory ref info_refs packed_refs index object file symlink}
+        order = %w{directory ref reflog info_refs packed_refs index object file symlink}
         entries.sort do |a,b|
           (order.index(a[:type]) <=> order.index(b[:type])).nonzero? ||
             a[:basename] <=> b[:basename]

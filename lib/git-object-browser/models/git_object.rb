@@ -98,7 +98,7 @@ module GitObjectBrowser
             prop[:email] = force_utf8($2)
             prop[:unixtime] = $3
             prop[:timezone] = $4
-            prop[:date] = epoch($3.to_i, $4).iso8601
+            prop[:date] = GitDate.new($3, $4).to_s
 
             prop[:value] = force_utf8(prop[:value])
           else

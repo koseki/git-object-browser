@@ -26,6 +26,7 @@ module GitObjectBrowser
          :response_index,
          :response_object,
          :response_ref,
+         :response_reflog,
          :response_packed_object,
          :response_pack_file,
          :response_pack_index,
@@ -125,6 +126,17 @@ module GitObjectBrowser
         obj = {}
         File.open(@params[:abspath]) do |input|
           obj = GitObjectBrowser::Models::Ref.new(input)
+        end
+        response_wrapped_object(obj)
+        return true
+      end
+
+      def response_reflog
+        return false unless GitObjectBrowser::Models::Reflog.path?(@params[:relpath])
+
+        obj = {}
+        File.open(@params[:abspath]) do |input|
+          obj = GitObjectBrowser::Models::Reflog.new(input).parse
         end
         response_wrapped_object(obj)
         return true

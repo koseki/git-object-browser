@@ -13,6 +13,7 @@ module GitObjectBrowser
           Index        => 'index',
           GitObject    => 'object',
           Ref          => 'ref',
+          Reflog       => 'reflog',
           PackIndex    => 'pack_index',
           PackFile     => 'pack_file',
           PackedObject => 'packed_object',
