@@ -65,6 +65,7 @@ module GitObjectBrowser
         dump_objects
         copy_htdocs
         create_diff_data
+        create_note
         if @step
           puts "-- Complete: #{ @step }"
         end
@@ -149,6 +150,22 @@ module GitObjectBrowser
           unless File.exist?(File.join(@outdir, 'config.js'))
             FileUtils.copy_entry('config.js', File.join(@outdir, 'config.js'))
           end
+        end
+      end
+
+      def create_note
+        if @step
+          FileUtils.mkdir_p(File.join(@outdir, 'notes'))
+          path = File.join(@outdir, 'notes', "#{ @step }.html")
+          msg = "Create: notes/#{ @step }.html"
+        else
+          path = File.join(@outdir, 'note.html')
+          msg = "Create: note.html"
+        end
+        unless File.exist?(path)
+          puts "-- Create note"
+          puts msg
+          File.open(path, 'w') {}
         end
       end
     end
