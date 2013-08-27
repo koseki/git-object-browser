@@ -68,6 +68,8 @@ module GitObjectBrowser
         create_note
         if @step
           puts "-- Complete: #{ @step }"
+        else
+          puts "-- Complete"
         end
       end
 
@@ -121,9 +123,15 @@ module GitObjectBrowser
 
       def dump_objects
         if File.exist?(@json_dir)
-          puts "Remove old data: #{ @step }"
+          puts "-- Remove old JSON files"
+          if @step
+            puts "Remove: json/#{ @step }"
+          else
+            puts "Remove: json/*"
+          end
           FileUtils.rm_r(@json_dir)
         end
+        puts "-- Dump objects"
         FileUtils.mkdir_p(@json_dir)
         [IndexDumper,
          ObjectsDumper,
@@ -140,11 +148,15 @@ module GitObjectBrowser
       private :dump_objects
 
       def copy_htdocs
-        puts "Copy htdocs/*"
+        puts "-- Copy htdocs"
         Dir.chdir(HTDOCS_DIR) do
           Dir.glob('*').each do |file|
             next if file == 'config.js'
-            puts "Copy: #{file}"
+            if File.directory?(file)
+              puts "Copy: #{file}/*"
+            else
+              puts "Copy: #{file}"
+            end
             FileUtils.copy_entry(file, File.join(@outdir, file))
           end
           unless File.exist?(File.join(@outdir, 'config.js'))
