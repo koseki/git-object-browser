@@ -224,13 +224,19 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
   };
 
   var loadNote = function() {
-    if (! $rootScope.basedir) return;
-    var basedir = $rootScope.basedir;
+    var basedir, url;
+    if ($rootScope.basedir) {
+      basedir = $rootScope.basedir;
+      url = 'notes' + basedir + '.html';
+    } else {
+      basedir = '';
+      url = 'note.html';
+    }
     if ($rootScope.noteCache[basedir] !== undefined) {
       $rootScope.note = $rootScope.noteCache[basedir];
       return;
     }
-    $http.get('notes' + basedir + '.html')
+    $http.get(url)
       .success(function(data) {
         $rootScope.noteCache[basedir] = data;
         $rootScope.note = data;
