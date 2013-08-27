@@ -230,7 +230,7 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
       $rootScope.note = $rootScope.noteCache[basedir];
       return;
     }
-    $http.get('notes/' + basedir + '.html')
+    $http.get('notes' + basedir + '.html')
       .success(function(data) {
         $rootScope.noteCache[basedir] = data;
         $rootScope.note = data;
@@ -241,6 +241,9 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
   };
 
   var loadDiffData = function() {
+    var stepPath = $rootScope.basedir;
+    if (! stepPath) return;
+
     $scope.diff = {}
     var base = '.git/';
     if ($scope.object.path !== '') {
@@ -250,7 +253,6 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
       $scope.diff[base + entry.basename] = null;
     });
 
-    var stepPath = $rootScope.basedir;
     var cache = $rootScope.diffCache[stepPath];
     if (cache) {
       diffDataLoaded(cache);
