@@ -25,7 +25,7 @@ function routingConfig(steps) {
 }
 
 angular.module('GitObjectBrowser', ['ngResource'])
-  .config(routingConfig(steps))
+  .config(routingConfig(config.steps))
 
   .directive('scrollBottom', function() {
     return function(scope, elm, attr) {
@@ -224,6 +224,7 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
   };
 
   var loadNote = function() {
+    if (! config.loadNote) return;
     var basedir, url;
     if ($rootScope.basedir) {
       basedir = $rootScope.basedir;
@@ -247,6 +248,7 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
   };
 
   var loadDiffData = function() {
+    if (! config.loadDiff) return;
     var stepPath = $rootScope.basedir;
     if (! stepPath) return;
 
@@ -458,7 +460,7 @@ function PackIndexCtrl($scope, $location, $routeParams, $rootScope, $resource, $
 }
 
 function MenuCtrl($scope, $location, $routeParams) {
-  $scope.steps = steps;
+  $scope.steps = config.steps;
 
   $scope.stepPrev = function() {
     var idx = getStepIndex();
