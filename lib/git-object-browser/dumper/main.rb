@@ -112,7 +112,17 @@ module GitObjectBrowser
       end
 
       def create_diff_data
-        return unless @diff_dir
+        return unless @step
+        unless @diff_dir
+          puts "-- Create empty diff data"
+          puts "Write: _diff.json"
+          File.open(File.join(@json_dir, '_diff.json'), 'w') do |io|
+            io << '[]'
+          end
+          return
+        end
+
+        puts "-- Create diff data"
         old_files = []
         Dir.chdir(@diff_dir) do
           Dir.glob("**/*").each do |file|
@@ -154,6 +164,7 @@ module GitObjectBrowser
           diff_files << file.sub(/\.json\z/, '')
         end
 
+        puts "Write: _diff.json"
         File.open(File.join(@json_dir, '_diff.json'), 'w') do |io|
           io << JSON.pretty_generate(diff_files)
         end
