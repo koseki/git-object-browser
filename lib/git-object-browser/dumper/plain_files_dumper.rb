@@ -25,7 +25,7 @@ module GitObjectBrowser
         Dir.chdir(@root) do
           Dir.glob('*') do |path|
             next if %w{HEAD FETCH_HEAD ORIG_HEAD MERGE_HEAD CHERRY_PICK_HEAD}.include?(path)
-            next if %w{dump index objects refs packed-refs}.include?(path)
+            next if %w{dump index objects refs packed-refs logs}.include?(path)
 
             if File.directory?(path)
               subdirs << path

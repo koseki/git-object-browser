@@ -185,6 +185,7 @@ module GitObjectBrowser
         [IndexDumper,
          ObjectsDumper,
          RefsDumper,
+         ReflogDumper,
          DirectoriesDumper,
          PlainFilesDumper,
          PackIndexesDumper,
