@@ -7,6 +7,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Browse git raw objects.}
   gem.summary       = %q{Browse git raw objects.}
   gem.homepage      = 'https://github.com/koseki/git-object-browser'
+  gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
