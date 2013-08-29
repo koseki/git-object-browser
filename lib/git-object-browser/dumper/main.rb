@@ -102,7 +102,9 @@ module GitObjectBrowser
           conf['loadDiff'] = true
         end
         conf['steps'] = [] unless conf['steps'].is_a? Array
-        conf['steps'] << { 'name' => @step, 'label' => @step }
+        if @step
+          conf['steps'] << { 'name' => @step, 'label' => @step }
+        end
 
         File.open(default_file, 'w') do |io|
           io << "// Edit config.js instead of this file.\n"
