@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "#!/bin/sh\n#\n# An example hook script to check the commit log message.\n# Called by \"git commit\" with one argument, the name of the file\n# that has the commit message.  The hook should exit with non-zero\n# status after issuing an appropriate message if it wants to stop the\n# commit.  The hook is allowed to edit the commit message file.\n#\n# To enable this hook, rename this file to \"commit-msg\".\n\n# Uncomment the below to add a Signed-off-by line to the message.\n# Doing this in a hook is a bad idea in general, but the prepare-commit-msg\n# hook is more suited to it.\n#\n# SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\\(.*>\\).*$/Signed-off-by: \\1/p')\n# grep -qs \"^$SOB\" \"$1\" || echo \"$SOB\" >> \"$1\"\n\n# This example catches duplicate Signed-off-by lines.\n\ntest \"\" = \"$(grep '^Signed-off-by: ' \"$1\" |\n\t sort | uniq -c | sed -e '/^[ \t]*1[ \t]/d')\" || {\n\techo >&2 Duplicate Signed-off-by lines.\n\texit 1\n}\n"
+  },
+  "root": null,
+  "path": "hooks/commit-msg.sample",
+  "working_dir": "."
+}

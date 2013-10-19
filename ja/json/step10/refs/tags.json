@@ -1,0 +1,13 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "refs/tags",
+    "entries": [
+
+    ]
+  },
+  "root": null,
+  "path": "refs/tags",
+  "working_dir": "."
+}

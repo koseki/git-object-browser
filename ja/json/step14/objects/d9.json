@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/d9",
+    "entries": [
+      {
+        "type": "object",
+        "basename": "658695cf35f55e4fa1f8021f44c3c8bcfe8702",
+        "mtime": 1356966000,
+        "size": 50
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects/d9",
+  "working_dir": "."
+}

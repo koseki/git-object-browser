@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "logs/refs",
+    "entries": [
+      {
+        "type": "directory",
+        "basename": "heads",
+        "mtime": 1356966000,
+        "size": 136
+      }
+    ]
+  },
+  "root": null,
+  "path": "logs/refs",
+  "working_dir": "."
+}

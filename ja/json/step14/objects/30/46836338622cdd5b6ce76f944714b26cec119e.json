@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "object": {
+    "type": "blob",
+    "sha1": "3046836338622cdd5b6ce76f944714b26cec119e",
+    "size": "9",
+    "entries": null,
+    "content": "from gist",
+    "properties": null,
+    "message": null
+  },
+  "root": null,
+  "path": "objects/30/46836338622cdd5b6ce76f944714b26cec119e",
+  "working_dir": "."
+}

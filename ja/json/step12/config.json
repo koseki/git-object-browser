@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "[user]\n    name = KOSEKI Kengo\n    email = koseki@example.com\n\n[core]\n    repositoryformatversion = 0\n    filemode = true\n    bare = false\n    logallrefupdates = true\n    ignorecase = true\n"
+  },
+  "root": null,
+  "path": "config",
+  "working_dir": "."
+}

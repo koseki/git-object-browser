@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "object": {
+    "type": "tree",
+    "sha1": "ac1d9f6dab5288c8482736e14ce1238fa7f3b6f1",
+    "size": "66",
+    "entries": [
+      {
+        "mode": "100644",
+        "filename": "a.txt",
+        "sha1": "303ff981c488b812b6215f7db7920dedb3b59d9a"
+      },
+      {
+        "mode": "100644",
+        "filename": "d.txt",
+        "sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      }
+    ],
+    "content": "100644 a.txt\\0\\303ff981c488b812b6215f7db7920dedb3b59d9a\n100644 d.txt\\0\\e69de29bb2d1d6434b8b29ae775ad8c2e48c5391\n",
+    "properties": null,
+    "message": null
+  },
+  "root": null,
+  "path": "objects/ac/1d9f6dab5288c8482736e14ce1238fa7f3b6f1",
+  "working_dir": "."
+}

@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "step4 で b.txt をコミットしました。\n"
+  },
+  "root": null,
+  "path": "COMMIT_EDITMSG",
+  "working_dir": "."
+}

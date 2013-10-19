@@ -1,0 +1,21 @@
+{
+  "type": "reflog",
+  "object": {
+    "content": "0000000000000000000000000000000000000000 0b48b1325567ae55dbfaefb250e7460e4fbb7d6d KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit (initial): step3 で最初のファイル a.txt をコミットしました。\n",
+    "entries": [
+      {
+        "message": "commit (initial): step3 で最初のファイル a.txt をコミットしました。",
+        "sha1_from": "0000000000000000000000000000000000000000",
+        "sha1_to": "0b48b1325567ae55dbfaefb250e7460e4fbb7d6d",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ]
+  },
+  "root": null,
+  "path": "logs/refs/heads/master",
+  "working_dir": "."
+}

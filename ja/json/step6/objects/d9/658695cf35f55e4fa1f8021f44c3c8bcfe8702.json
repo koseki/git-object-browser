@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "object": {
+    "type": "tree",
+    "sha1": "d9658695cf35f55e4fa1f8021f44c3c8bcfe8702",
+    "size": "33",
+    "entries": [
+      {
+        "mode": "100644",
+        "filename": "a.txt",
+        "sha1": "303ff981c488b812b6215f7db7920dedb3b59d9a"
+      }
+    ],
+    "content": "100644 a.txt\\0\\303ff981c488b812b6215f7db7920dedb3b59d9a\n",
+    "properties": null,
+    "message": null
+  },
+  "root": null,
+  "path": "objects/d9/658695cf35f55e4fa1f8021f44c3c8bcfe8702",
+  "working_dir": "."
+}

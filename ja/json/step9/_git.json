@@ -1,0 +1,78 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "",
+    "entries": [
+      {
+        "type": "directory",
+        "basename": "hooks",
+        "mtime": 1356966000,
+        "size": 340
+      },
+      {
+        "type": "directory",
+        "basename": "info",
+        "mtime": 1356966000,
+        "size": 102
+      },
+      {
+        "type": "directory",
+        "basename": "logs",
+        "mtime": 1356966000,
+        "size": 136
+      },
+      {
+        "type": "directory",
+        "basename": "objects",
+        "mtime": 1356966000,
+        "size": 442
+      },
+      {
+        "type": "directory",
+        "basename": "refs",
+        "mtime": 1356966000,
+        "size": 136
+      },
+      {
+        "type": "ref",
+        "basename": "HEAD",
+        "mtime": 1356966000,
+        "size": 23
+      },
+      {
+        "type": "ref",
+        "basename": "ORIG_HEAD",
+        "mtime": 1356966000,
+        "size": 41
+      },
+      {
+        "type": "index",
+        "basename": "index",
+        "mtime": 1356966000,
+        "size": 209
+      },
+      {
+        "type": "file",
+        "basename": "COMMIT_EDITMSG",
+        "mtime": 1356966000,
+        "size": 59
+      },
+      {
+        "type": "file",
+        "basename": "config",
+        "mtime": 1356966000,
+        "size": 189
+      },
+      {
+        "type": "file",
+        "basename": "description",
+        "mtime": 1356966000,
+        "size": 73
+      }
+    ]
+  },
+  "root": null,
+  "path": "",
+  "working_dir": "."
+}

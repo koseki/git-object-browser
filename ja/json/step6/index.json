@@ -1,0 +1,58 @@
+{
+  "type": "index",
+  "object": {
+    "version": 2,
+    "entry_count": 2,
+    "entries": [
+      {
+        "ctime": 1356966000,
+        "cnano": 0,
+        "mtime": 1356966000,
+        "mnano": 0,
+        "dev": 234881026,
+        "ino": 1356966000,
+        "object_type": "1000",
+        "unix_permission": "644",
+        "uid": 501,
+        "gid": 20,
+        "size": 11,
+        "sha1": "303ff981c488b812b6215f7db7920dedb3b59d9a",
+        "path": "a.txt",
+        "assume_valid_flag": 0,
+        "extended_flag": 0,
+        "stage": "00",
+        "skip_worktree": null,
+        "intent_to_add": null,
+        "name_length": 5
+      },
+      {
+        "ctime": 1356966000,
+        "cnano": 0,
+        "mtime": 1356966000,
+        "mnano": 0,
+        "dev": 234881026,
+        "ino": 1356966000,
+        "object_type": "1000",
+        "unix_permission": "644",
+        "uid": 501,
+        "gid": 20,
+        "size": 12,
+        "sha1": "1c59427adc4b205a270d8f810310394962e79a8b",
+        "path": "b.txt",
+        "assume_valid_flag": 0,
+        "extended_flag": 0,
+        "stage": "00",
+        "skip_worktree": null,
+        "intent_to_add": null,
+        "name_length": 5
+      }
+    ],
+    "extensions": [
+
+    ],
+    "sha1": "-"
+  },
+  "root": null,
+  "path": "index",
+  "working_dir": "."
+}

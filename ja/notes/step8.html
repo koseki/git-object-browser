@@ -1,0 +1,10 @@
+<h3>Step 8. fast forward merge</h3>
+<p><code>$ git checkout master</code></p>
+<p><code>$ git merge step5</code></p>
+<p>master ブランチをチェックアウトし、step5 ブランチをマージしました。</p>
+<p><a href="#/step8/.git/refs/heads">リファレンス</a>を見ると、master が step5 と同じコミットを指すようになりました。step5 の1つ後ろにいた master が、step5 に追いついた格好です。</p>
+<p>このようにリファレンスを前進させるだけで済むマージのことを <strong>Fast-forward</strong> マージと呼びます。</p>
+<p><a href="#/step8/.git/objects">新しいオブジェクトは1つも作成されていません</a>。Fast-forward マージは、ただリファレンスを書き換えるだけです。</p>
+<p><a href="#/step8/.git/logs/HEAD">HEAD のログ</a>に、step5 から master ブランチに移動し、Fast-forward マージを行ったことが記録されています。</p>
+<p>新しく <a href="#/step8/.git/ORIG_HEAD">ORIG_HEAD</a> というファイルが追加されました。マージやリセットなどの操作を行うと、元の HEAD が ORIG_HEAD に記録されます。ブランチを元に戻したいときに、このファイルが役に立ちます。</p>
+<p><a href="#/step8/.git/">index も赤くなり</a>更新されたことになっていますが、これはファイルのタイムスタンプによるものです。このページをバージョン管理する都合上、タイムスタンプを隠しています。</p>

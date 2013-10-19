@@ -1,0 +1,8 @@
+<h3>Step 4. commit 2</h3>
+<p><code>$ echo 'second file' &gt; b.txt</code></p>
+<p><code>$ git add b.txt</code></p>
+<p><code>$ git commit -m '...'</code></p>
+<p>b.txt を add し、コミットしました。</p>
+<p><a href="#/step4/.git/refs/heads/master">refs/heads/master</a> を開き、<i class="icon-chevron-left"></i> <strong>Prev</strong> と <strong>Next</strong> <i class="icon-chevron-right"></i> を使って、リファレンスの指す先が <a href="#/step4/.git/objects/0b/48b1325567ae55dbfaefb250e7460e4fbb7d6d">0b48b13</a> から <a href="#/step4/.git/objects/f7/50c1a8d8292dde48842e0d6502801ea79e86a3">f750c1a</a> に書き換わったことを確認してください。</p>
+<p>また、新しいコミット<a href="#/step4/.git/objects/f7/50c1a8d8292dde48842e0d6502801ea79e86a3">f750c1a</a> を見ると、parent に一つ前のコミット、 <a href="#/step4/.git/objects/0b/48b1325567ae55dbfaefb250e7460e4fbb7d6d">0b48b13</a> が書かれていることもわかります。</p>
+<p>このように、parent で古いコミットに新しいコミットが連なり、リファレンスが新しいコミットを指すことで、ブランチが前進していきます。</p>

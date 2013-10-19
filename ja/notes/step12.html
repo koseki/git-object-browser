@@ -1,0 +1,9 @@
+<h3>Step 12. merge</h3>
+<p><code>$ git merge step5 -m '...'</code></p>
+<p><a href="#/step12/.git/refs/heads/master">master ブランチ</a>に <a href="#/step12/.git/refs/heads/step5">step5 ブランチ</a>をマージしました。</p>
+<p><a href="#/step8/.git/">step 8</a> でみた Fast-forward マージとは異なり、<a href="#/step12/.git/objects/">2個の新しいオブジェクトが作成されています</a>。</p>
+<p>1つは <a href="#/step12/.git/objects/88/005dbf6891d8ea4a17d4fa4dd73f0b813e369a">commit オブジェクト</a>です。マージによって作成されるコミットのことを、マージコミットと呼びます。</p>
+<p>このマージコミットには、 parent が2つあることに注目してください。parent によって、枝分かれした2つのコミットを1つにまとめたことがわかります。</p>
+<p>もう1つの追加されたオブジェクトは <a href="#/step12/.git/objects/ab/bb4b938bf57ea8f48c847b37ce119208576cd7">tree オブジェクト</a>です。2つのブランチがマージされ、a.txt から d.txt まで4つのファイルが揃いました。</p>
+<p>マージとは直接関係ありませんが、<a href="#/step12/.git/objects/ab/bb4b938bf57ea8f48c847b37ce119208576cd7">ツリーを見ると</a> c.txt と d.txt が1つの <a href="#/step12/.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391">blob オブジェクト (e69de29)</a>を参照していることがわかります。</p>
+<p>ファイルの内容が同じ(ここでは空のファイル)であれば、1つの blob オブジェクトが使い回されます。これはどのリポジトリでも同じです。<a href="https://www.google.co.jp/search?q=e69de29bb2d1d6434b8b29ae775ad8c2e48c5391" target="_blank">空ファイルの blob のハッシュ値を Google で検索すると</a>、世界中で同じオブジェクトが使われていることがわかります。</p>

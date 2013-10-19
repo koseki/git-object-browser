@@ -1,0 +1,5 @@
+<h3>Step 10. reset 2</h3>
+<p><code>$ git reset --hard 0b48b13</code></p>
+<p>再度 reset コマンドを使って、<a href="#/step10/.git/refs/heads/master">master</a> リファレンスが最初のコミット <a href="#/step10/.git/objects/0b/48b1325567ae55dbfaefb250e7460e4fbb7d6d">0b48b13</a> を指すように書き換えました。</p>
+<p>reset コマンドを使うと、リファレンスをコミットツリーのどの位置にでも移動できます。</p>
+<p>リファレンスから参照されなくなった commit オブジェクトと、commit にぶら下がる tree, blob オブジェクトは、いずれゴミ回収処理 (gc、ガベージコレクション) で消去されます。</p>

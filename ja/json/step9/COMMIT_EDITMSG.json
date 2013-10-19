@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "step7 で空のファイル c.txt を追加しました。\n"
+  },
+  "root": null,
+  "path": "COMMIT_EDITMSG",
+  "working_dir": "."
+}
