@@ -1,4 +1,6 @@
-<h1><i class="icon-folder-open"></i> {{path}} <small>Directory</small></h1>
+<h1><i class="icon-folder-open"></i>
+<span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
+<small>Directory</small></h1>
 
 <p><i class="icon-folder-open"></i> <a href="#{{basedir}}/.git/objects/pack">pack</a></p>
 

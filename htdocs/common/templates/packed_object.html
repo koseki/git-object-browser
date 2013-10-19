@@ -1,5 +1,7 @@
 <article>
-<h1 style="font-size:1.8em;"><i data-entry-icon="'object'"></i> {{path}} <small>Packed Object</small></h1>
+<h1 style="font-size:1.8em;"><i data-entry-icon="'object'"></i>
+<span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
+<small>Packed Object</small></h1>
 
   <div class="tabbable">
     <ul class="nav nav-tabs">

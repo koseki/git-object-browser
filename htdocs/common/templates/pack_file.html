@@ -1,5 +1,7 @@
 <article data-ng-controller="PackFileCtrl">
-<h1 style="font-size:1.8em"><i data-entry-icon="'blob'"></i> {{path}} <small>Pack file</small></h1>
+<h1 style="font-size:1.8em"><i data-entry-icon="'blob'"></i>
+<span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
+<small>Pack file</small></h1>
 
 <table class="table">
 <tr>

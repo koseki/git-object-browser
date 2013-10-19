@@ -1,5 +1,7 @@
 <article>
-<h1><i data-entry-icon="'index'"></i> {{path}} <small>Index</small></h1>
+<h1><i data-entry-icon="'index'"></i>
+<span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
+<small>Index</small></h1>
 
 <table class="table">
 <tr>

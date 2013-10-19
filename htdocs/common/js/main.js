@@ -181,6 +181,26 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
     return keys;
   };
 
+  var splitPath = function() {
+    var pathTokens = $scope.path.split('/');
+    var token;
+    var fullpath = ""
+    for (var i = 0; i < pathTokens.length; i++) {
+      token = {}
+      token.label = pathTokens[i];
+      if (pathTokens.length == i + 1) {
+        fullpath += token.label;
+        token.last = true;
+      } else {
+        fullpath += token.label + '/';
+        token.last = false;
+      }
+      token.path = fullpath;
+      pathTokens[i] = token;
+    }
+    return pathTokens;
+  };
+
   var resourceLoaded = function(json) {
     $scope.workingdir = json.workingdir;
     $scope.root = json.root;
@@ -190,6 +210,8 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
     } else {
       $scope.path = ".git/" + json.path;
     }
+    $scope.pathTokens = splitPath();
+
     $scope.object = json.object;
     $scope.keys = indexEntryKeys($scope.object.version);
     var template;
