@@ -17,8 +17,7 @@ config.steps = [
   { name: 'step16', label: 'step 16. lightweigt tag' },
   { name: 'step17', label: 'step 17. annotated tag' },
   { name: 'step18', label: 'step 18. stash' },
-  { name: 'step19', label: 'step 19. annotated tag' },
-  { name: 'step20', label: 'step 17. annotated tag' },
-  { name: 'step21', label: 'step 17. annotated tag' },
-  { name: 'step22', label: 'step 17. annotated tag' },
+  { name: 'step19', label: 'step 19. stash 2' },
+  { name: 'step20', label: 'step 20. stash pop' },
+  { name: 'step21', label: 'step 21. stash pop 2' },
 ];
