@@ -117,6 +117,46 @@ git fetch gist
 # step14
 git object-browser --dump $DUMP_DIR --next
 
+git merge remotes/gist/master -m 'step15 で master に remotes/gist/master をマージしました。'
+
+# step15
+git object-browser --dump $DUMP_DIR --next
+
+git tag step16
+
+# step16
+git object-browser --dump $DUMP_DIR --next
+
+git tag -a step17 -m 'step17 で annotated タグを作成しました。'
+
+# step17
+git object-browser --dump $DUMP_DIR --next
+
+echo abc > a.txt
+git add a.txt
+echo def > a.txt
+git stash
+
+# step18
+git object-browser --dump $DUMP_DIR --next
+
+echo xyz > a.txt
+git stash
+
+# step18
+git object-browser --dump $DUMP_DIR --next
+
+git stash pop
+
+# step18
+git object-browser --dump $DUMP_DIR --next
+
+git reset --hard HEAD
+git stash pop
+
+# step18
+git object-browser --dump $DUMP_DIR --next
+
 
 
 find $DUMP_DIR -name '*.json' | xargs ruby -pne 'gsub(/^(\s+)"(ctime|mtime|ino)":\s+\d+,$/, %{\\1"\\2": 1356966000,})' -i

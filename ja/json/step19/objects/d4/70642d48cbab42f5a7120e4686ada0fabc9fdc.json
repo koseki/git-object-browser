@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "object": {
+    "type": "commit",
+    "sha1": "d470642d48cbab42f5a7120e4686ada0fabc9fdc",
+    "size": "192",
+    "entries": null,
+    "content": "tree 390ebc0a2f864032599cf59df83614fda04fa9ce\nauthor KOSEKI Kengo <koseki@users.noreply.github.com> 1382297476 -0700\ncommitter KOSEKI Kengo <koseki@users.noreply.github.com> 1382297476 -0700\n\n",
+    "properties": [
+      {
+        "key": "tree",
+        "value": "390ebc0a2f864032599cf59df83614fda04fa9ce",
+        "type": "sha1",
+        "path": "objects/39/0ebc0a2f864032599cf59df83614fda04fa9ce"
+      },
+      {
+        "key": "author",
+        "value": "KOSEKI Kengo <koseki@users.noreply.github.com> 1382297476 -0700",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@users.noreply.github.com",
+        "unixtime": "1382297476",
+        "timezone": "-0700",
+        "date": "2013-10-21T02:31:16+07:00"
+      },
+      {
+        "key": "committer",
+        "value": "KOSEKI Kengo <koseki@users.noreply.github.com> 1382297476 -0700",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@users.noreply.github.com",
+        "unixtime": "1382297476",
+        "timezone": "-0700",
+        "date": "2013-10-21T02:31:16+07:00"
+      }
+    ],
+    "message": ""
+  },
+  "root": null,
+  "path": "objects/d4/70642d48cbab42f5a7120e4686ada0fabc9fdc",
+  "working_dir": "."
+}

@@ -1,0 +1,121 @@
+{
+  "type": "reflog",
+  "object": {
+    "content": "0000000000000000000000000000000000000000 0b48b1325567ae55dbfaefb250e7460e4fbb7d6d KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit (initial): step3 で最初のファイル a.txt をコミットしました。\n0b48b1325567ae55dbfaefb250e7460e4fbb7d6d f750c1a8d8292dde48842e0d6502801ea79e86a3 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step4 で b.txt をコミットしました。\nf750c1a8d8292dde48842e0d6502801ea79e86a3 f750c1a8d8292dde48842e0d6502801ea79e86a3 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcheckout: moving from master to step5\nf750c1a8d8292dde48842e0d6502801ea79e86a3 e82cd786cf435b70aa2fb67bba7673dd616ec64a KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step7 で空のファイル c.txt を追加しました。\ne82cd786cf435b70aa2fb67bba7673dd616ec64a f750c1a8d8292dde48842e0d6502801ea79e86a3 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcheckout: moving from step5 to master\nf750c1a8d8292dde48842e0d6502801ea79e86a3 e82cd786cf435b70aa2fb67bba7673dd616ec64a KOSEKI Kengo <koseki@example.com> 981172800 +0000\tmerge step5: Fast-forward\ne82cd786cf435b70aa2fb67bba7673dd616ec64a f750c1a8d8292dde48842e0d6502801ea79e86a3 KOSEKI Kengo <koseki@example.com> 981172800 +0000\treset: moving to HEAD^\nf750c1a8d8292dde48842e0d6502801ea79e86a3 0b48b1325567ae55dbfaefb250e7460e4fbb7d6d KOSEKI Kengo <koseki@example.com> 981172800 +0000\treset: moving to 0b48b13\n0b48b1325567ae55dbfaefb250e7460e4fbb7d6d 518f130bc865983d8a99b81011f93c5922572113 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step11 で空のファイル d.txt を追加しました。\n518f130bc865983d8a99b81011f93c5922572113 88005dbf6891d8ea4a17d4fa4dd73f0b813e369a KOSEKI Kengo <koseki@example.com> 981172800 +0000\tmerge step5: Merge made by the 'recursive' strategy.\n88005dbf6891d8ea4a17d4fa4dd73f0b813e369a bfdc4e868ca40c2b1fbc5fe9333de483719d406f KOSEKI Kengo <koseki@example.com> 981172800 +0000\tmerge remotes/gist/master: Merge made by the 'recursive' strategy.\n",
+    "entries": [
+      {
+        "message": "commit (initial): step3 で最初のファイル a.txt をコミットしました。",
+        "sha1_from": "0000000000000000000000000000000000000000",
+        "sha1_to": "0b48b1325567ae55dbfaefb250e7460e4fbb7d6d",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step4 で b.txt をコミットしました。",
+        "sha1_from": "0b48b1325567ae55dbfaefb250e7460e4fbb7d6d",
+        "sha1_to": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "checkout: moving from master to step5",
+        "sha1_from": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "sha1_to": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step7 で空のファイル c.txt を追加しました。",
+        "sha1_from": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "sha1_to": "e82cd786cf435b70aa2fb67bba7673dd616ec64a",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "checkout: moving from step5 to master",
+        "sha1_from": "e82cd786cf435b70aa2fb67bba7673dd616ec64a",
+        "sha1_to": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "merge step5: Fast-forward",
+        "sha1_from": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "sha1_to": "e82cd786cf435b70aa2fb67bba7673dd616ec64a",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "reset: moving to HEAD^",
+        "sha1_from": "e82cd786cf435b70aa2fb67bba7673dd616ec64a",
+        "sha1_to": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "reset: moving to 0b48b13",
+        "sha1_from": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "sha1_to": "0b48b1325567ae55dbfaefb250e7460e4fbb7d6d",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step11 で空のファイル d.txt を追加しました。",
+        "sha1_from": "0b48b1325567ae55dbfaefb250e7460e4fbb7d6d",
+        "sha1_to": "518f130bc865983d8a99b81011f93c5922572113",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "merge step5: Merge made by the 'recursive' strategy.",
+        "sha1_from": "518f130bc865983d8a99b81011f93c5922572113",
+        "sha1_to": "88005dbf6891d8ea4a17d4fa4dd73f0b813e369a",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "merge remotes/gist/master: Merge made by the 'recursive' strategy.",
+        "sha1_from": "88005dbf6891d8ea4a17d4fa4dd73f0b813e369a",
+        "sha1_to": "bfdc4e868ca40c2b1fbc5fe9333de483719d406f",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ]
+  },
+  "root": null,
+  "path": "logs/HEAD",
+  "working_dir": "."
+}

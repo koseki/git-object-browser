@@ -13,4 +13,12 @@ config.steps = [
   { name: 'step12', label: 'step 12. merge' },
   { name: 'step13', label: 'step 13. remote add' },
   { name: 'step14', label: 'step 14. fetch' },
+  { name: 'step15', label: 'step 15. merge remote' },
+  { name: 'step16', label: 'step 16. lightweigt tag' },
+  { name: 'step17', label: 'step 17. annotated tag' },
+  { name: 'step18', label: 'step 18. stash' },
+  { name: 'step19', label: 'step 19. annotated tag' },
+  { name: 'step20', label: 'step 17. annotated tag' },
+  { name: 'step21', label: 'step 17. annotated tag' },
+  { name: 'step22', label: 'step 17. annotated tag' },
 ];

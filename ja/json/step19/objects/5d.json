@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/5d",
+    "entries": [
+      {
+        "type": "object",
+        "basename": "959cec545aacaf82ad59a7121c9af8c4424893",
+        "mtime": 1356966000,
+        "size": 265
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects/5d",
+  "working_dir": "."
+}

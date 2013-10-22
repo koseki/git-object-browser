@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "step11 で空のファイル d.txt を追加しました。\n"
+  },
+  "root": null,
+  "path": "COMMIT_EDITMSG",
+  "working_dir": "."
+}

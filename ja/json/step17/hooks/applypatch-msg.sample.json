@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "#!/bin/sh\n#\n# An example hook script to check the commit log message taken by\n# applypatch from an e-mail message.\n#\n# The hook should exit with non-zero status after issuing an\n# appropriate message if it wants to stop the commit.  The hook is\n# allowed to edit the commit message file.\n#\n# To enable this hook, rename this file to \"applypatch-msg\".\n\n. git-sh-setup\ntest -x \"$GIT_DIR/hooks/commit-msg\" &&\n\texec \"$GIT_DIR/hooks/commit-msg\" ${1+\"$@\"}\n:\n"
+  },
+  "root": null,
+  "path": "hooks/applypatch-msg.sample",
+  "working_dir": "."
+}

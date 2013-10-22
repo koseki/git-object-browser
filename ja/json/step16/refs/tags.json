@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "refs/tags",
+    "entries": [
+      {
+        "type": "ref",
+        "basename": "step16",
+        "mtime": 1356966000,
+        "size": 41
+      }
+    ]
+  },
+  "root": null,
+  "path": "refs/tags",
+  "working_dir": "."
+}

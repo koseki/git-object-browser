@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "[user]\n    name = KOSEKI Kengo\n    email = koseki@example.com\n\n[core]\n    repositoryformatversion = 0\n    filemode = true\n    bare = false\n    logallrefupdates = true\n    ignorecase = true\n[remote \"gist\"]\n\turl = https://gist.github.com/7074135.git\n\tfetch = +refs/heads/*:refs/remotes/gist/*\n"
+  },
+  "root": null,
+  "path": "config",
+  "working_dir": "."
+}

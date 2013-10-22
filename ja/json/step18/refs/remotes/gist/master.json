@@ -1,0 +1,11 @@
+{
+  "type": "ref",
+  "object": {
+    "ref": null,
+    "sha1": "d470642d48cbab42f5a7120e4686ada0fabc9fdc",
+    "content": "d470642d48cbab42f5a7120e4686ada0fabc9fdc\n"
+  },
+  "root": null,
+  "path": "refs/remotes/gist/master",
+  "working_dir": "."
+}

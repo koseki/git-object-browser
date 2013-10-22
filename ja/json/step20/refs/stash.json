@@ -1,0 +1,11 @@
+{
+  "type": "ref",
+  "object": {
+    "ref": null,
+    "sha1": "3b90dd552cd11faec75e637748e5564b5479ff69",
+    "content": "3b90dd552cd11faec75e637748e5564b5479ff69\n"
+  },
+  "root": null,
+  "path": "refs/stash",
+  "working_dir": "."
+}

@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "object": {
+    "type": "blob",
+    "sha1": "24c5735c3e8ce8fd18d312e9e58149a62236c01a",
+    "size": "4",
+    "entries": null,
+    "content": "def\n",
+    "properties": null,
+    "message": null
+  },
+  "root": null,
+  "path": "objects/24/c5735c3e8ce8fd18d312e9e58149a62236c01a",
+  "working_dir": "."
+}
