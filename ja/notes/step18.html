@@ -1,3 +1,11 @@
 <h3>Step 18. stash</h3>
-<p><code>$ echo abc > a.txt</code></p>
+<p><code>$ echo aaa > a.txt</code></p>
+<p><code>$ echo bbb > b.txt</code></p>
+<p><code>$ git add a.txt</code></p>
 <p><code>$ git stash</code></p>
+<p>a.txt に aaa 、b.txt に bbb と書き込みます。a.txt だけ git add し、git stash を実行しました。</p>
+<p>git stash は、作業ディレクトリで行った変更を一時待避します。</p>
+<p><a href="#/step18/.git/refs">refs</a> 以下に <a href="#/step18/.git/refs/stash">stash</a> という名前のリファレンスが追加されています。</p>
+<p><a href="#/step18/.git/refs/stash">stash リファレンス</a>が指しているのは、WIP on master というメッセージが書かれた <a href="#/step18/.git/objects/1b/a54d9d566ecb322b082d24b43ec49b6e017b00">commit オブジェクト</a>です。これが一時待避中の内容です。<a href="#/step18/.git/objects/6b/50c978f896e185056233e58baf50e4b64226e3">tree</a> をたどると、<a href="#/step18/.git/objects/72/943a16fb2c8f38f9dde202b7a70ccc19c52f34">a.txt</a> に aaa、<a href="#/step18/.git/objects/f7/61ec192d9f0dca3329044b96ebdb12839dbff6">b.txt</a> に bbb と書かれているのが確認できます。</p>
+<p>さらに、<a href="#/step18/.git/objects/1b/a54d9d566ecb322b082d24b43ec49b6e017b00">WIP on master</a> の2番目の parent をたどると、index on master と書かれた <a href="#/step18/.git/objects/a1/9576ee788c2baed21828a66066c64c673ee3d3">commit オブジェクト</a>が見つかります。ここにはインデックスに対する変更(git add した内容)が記録されています。<a href="#/step18/.git/objects/94/f583a950e97b5ec09c972481a037141dd957cd">tree</a> を見ると、<a href="#/step18/.git/objects/72/943a16fb2c8f38f9dde202b7a70ccc19c52f34">a.txt</a> には aaa と書かれていますが、<a href="#/step18/.git/objects/1c/59427adc4b205a270d8f810310394962e79a8b">b.txt</a> は元のままです。</p>
+<p>また、<a href="#/step18/.git/logs/refs/stash">stash</a> という名前のログが追加されています。</p>

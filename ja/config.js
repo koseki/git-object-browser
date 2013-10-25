@@ -9,7 +9,7 @@ config.steps = [
   { name: 'step8', label: 'step 8. fast forward merge' },
   { name: 'step9', label: 'step 9. reset' },
   { name: 'step10', label: 'step 10. reset 2' },
-  { name: 'step11', label: 'step 11. commit to branch2' },
+  { name: 'step11', label: 'step 11. commit to branch 2' },
   { name: 'step12', label: 'step 12. merge' },
   { name: 'step13', label: 'step 13. remote add' },
   { name: 'step14', label: 'step 14. fetch' },

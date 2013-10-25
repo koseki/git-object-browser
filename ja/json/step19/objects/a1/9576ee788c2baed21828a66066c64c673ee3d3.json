@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "object": {
+    "type": "commit",
+    "sha1": "a19576ee788c2baed21828a66066c64c673ee3d3",
+    "size": "307",
+    "entries": null,
+    "content": "tree 94f583a950e97b5ec09c972481a037141dd957cd\nparent bfdc4e868ca40c2b1fbc5fe9333de483719d406f\nauthor KOSEKI Kengo <koseki@example.com> 981172800 +0000\ncommitter KOSEKI Kengo <koseki@example.com> 981172800 +0000\n\nindex on master: bfdc4e8 step15 で master に remotes/gist/master をマージしました。\n",
+    "properties": [
+      {
+        "key": "tree",
+        "value": "94f583a950e97b5ec09c972481a037141dd957cd",
+        "type": "sha1",
+        "path": "objects/94/f583a950e97b5ec09c972481a037141dd957cd"
+      },
+      {
+        "key": "parent",
+        "value": "bfdc4e868ca40c2b1fbc5fe9333de483719d406f",
+        "type": "sha1",
+        "path": "objects/bf/dc4e868ca40c2b1fbc5fe9333de483719d406f"
+      },
+      {
+        "key": "author",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "key": "committer",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ],
+    "message": "index on master: bfdc4e8 step15 で master に remotes/gist/master をマージしました。"
+  },
+  "root": null,
+  "path": "objects/a1/9576ee788c2baed21828a66066c64c673ee3d3",
+  "working_dir": "."
+}

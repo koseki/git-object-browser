@@ -1,12 +1,12 @@
 {
   "type": "reflog",
   "object": {
-    "content": "0000000000000000000000000000000000000000 3b90dd552cd11faec75e637748e5564b5479ff69 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tWIP on master: bfdc4e8 step15 で master に remotes/gist/master をマージしました。\n3b90dd552cd11faec75e637748e5564b5479ff69 5d959cec545aacaf82ad59a7121c9af8c4424893 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tWIP on master: bfdc4e8 step15 で master に remotes/gist/master をマージしました。\n",
+    "content": "0000000000000000000000000000000000000000 1ba54d9d566ecb322b082d24b43ec49b6e017b00 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tWIP on master: bfdc4e8 step15 で master に remotes/gist/master をマージしました。\n1ba54d9d566ecb322b082d24b43ec49b6e017b00 9b1c14236b48e8026cb35a26adb828f05976d2d8 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tWIP on master: bfdc4e8 step15 で master に remotes/gist/master をマージしました。\n",
     "entries": [
       {
         "message": "WIP on master: bfdc4e8 step15 で master に remotes/gist/master をマージしました。",
         "sha1_from": "0000000000000000000000000000000000000000",
-        "sha1_to": "3b90dd552cd11faec75e637748e5564b5479ff69",
+        "sha1_to": "1ba54d9d566ecb322b082d24b43ec49b6e017b00",
         "name": "KOSEKI Kengo",
         "email": "koseki@example.com",
         "unixtime": "981172800",
@@ -15,8 +15,8 @@
       },
       {
         "message": "WIP on master: bfdc4e8 step15 で master に remotes/gist/master をマージしました。",
-        "sha1_from": "3b90dd552cd11faec75e637748e5564b5479ff69",
-        "sha1_to": "5d959cec545aacaf82ad59a7121c9af8c4424893",
+        "sha1_from": "1ba54d9d566ecb322b082d24b43ec49b6e017b00",
+        "sha1_to": "9b1c14236b48e8026cb35a26adb828f05976d2d8",
         "name": "KOSEKI Kengo",
         "email": "koseki@example.com",
         "unixtime": "981172800",

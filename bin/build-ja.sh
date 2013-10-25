@@ -132,29 +132,29 @@ git tag -a step17 -m 'step17 で annotated タグを作成しました。'
 # step17
 git object-browser --dump $DUMP_DIR --next
 
-echo abc > a.txt
+echo aaa > a.txt
+echo bbb > b.txt
 git add a.txt
-echo def > a.txt
 git stash
 
 # step18
 git object-browser --dump $DUMP_DIR --next
 
-echo xyz > a.txt
+echo zzz > a.txt
 git stash
 
-# step18
+# step19
 git object-browser --dump $DUMP_DIR --next
 
 git stash pop
 
-# step18
+# step20
 git object-browser --dump $DUMP_DIR --next
 
 git reset --hard HEAD
-git stash pop
+git stash pop --index
 
-# step18
+# step21
 git object-browser --dump $DUMP_DIR --next
 
 
