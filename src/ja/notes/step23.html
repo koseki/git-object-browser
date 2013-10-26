@@ -1,0 +1,9 @@
+<h3>Step 23. tree 2</h3>
+<p><code>$ echo xxx &gt; dir2/x.txt</code></p>
+<p><code>$ git add dir2/x.txt</code></p>
+<p><code>$ git commit -m '...'</code></p>
+<p>dir2 に x.txt を追加しました。</p>
+<p><a href="#/step23/.git/objects/82/2dac5995ae7385e4e0775c19ec0e39ccf0fcac">dir2 の tree オブジェクトが差し替わっています</a>。追加前は<a href="#/step23/.git/objects/f8/a5c8e6c9639b646a235f4834c73eaaa4cff466">こう</a>でした。</p>
+<p>ディレクトリツリーのどこか一箇所が変わると、親の tree オブジェクトが変化し、親へ親へとさかのぼって、最終的にルートの tree オブジェクトが差し替わります。</p>
+<p>ルート tree オブジェクトの ID (sha1) は、ディレクトリツリー全体を反映しています。1つでもファイルが違うと、別のIDになります。</p>
+<p>このようにして、ルート tree オブジェクトの ID さえあれば、その時点での全ファイルを取り出すことが可能になっています。</p>

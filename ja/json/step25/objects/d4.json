@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/d4",
+    "entries": [
+      {
+        "type": "object",
+        "basename": "70642d48cbab42f5a7120e4686ada0fabc9fdc",
+        "mtime": 1356966000,
+        "size": 139
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects/d4",
+  "working_dir": "."
+}

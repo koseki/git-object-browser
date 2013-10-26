@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "object": {
+    "type": "tree",
+    "sha1": "390ebc0a2f864032599cf59df83614fda04fa9ce",
+    "size": "36",
+    "entries": [
+      {
+        "mode": "100644",
+        "filename": "gist.txt",
+        "sha1": "3046836338622cdd5b6ce76f944714b26cec119e"
+      }
+    ],
+    "content": "100644 gist.txt\\0\\3046836338622cdd5b6ce76f944714b26cec119e\n",
+    "properties": null,
+    "message": null
+  },
+  "root": null,
+  "path": "objects/39/0ebc0a2f864032599cf59df83614fda04fa9ce",
+  "working_dir": "."
+}

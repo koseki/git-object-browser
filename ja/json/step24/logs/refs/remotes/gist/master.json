@@ -1,0 +1,21 @@
+{
+  "type": "reflog",
+  "object": {
+    "content": "0000000000000000000000000000000000000000 d470642d48cbab42f5a7120e4686ada0fabc9fdc Koseki Kengo <koseki@kosekimbp.local> 981172800 +0000\tfetch gist: storing head\n",
+    "entries": [
+      {
+        "message": "fetch gist: storing head",
+        "sha1_from": "0000000000000000000000000000000000000000",
+        "sha1_to": "d470642d48cbab42f5a7120e4686ada0fabc9fdc",
+        "name": "Koseki Kengo",
+        "email": "koseki@kosekimbp.local",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ]
+  },
+  "root": null,
+  "path": "logs/refs/remotes/gist/master",
+  "working_dir": "."
+}

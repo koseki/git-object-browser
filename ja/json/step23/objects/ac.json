@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/ac",
+    "entries": [
+      {
+        "type": "object",
+        "basename": "1d9f6dab5288c8482736e14ce1238fa7f3b6f1",
+        "mtime": 1356966000,
+        "size": 77
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects/ac",
+  "working_dir": "."
+}

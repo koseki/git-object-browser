@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "step23 で dir2 に x.txt を追加しました。\n"
+  },
+  "root": null,
+  "path": "COMMIT_EDITMSG",
+  "working_dir": "."
+}

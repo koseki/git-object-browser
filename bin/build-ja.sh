@@ -157,8 +157,47 @@ git stash pop --index
 # step21
 git object-browser --dump $DUMP_DIR --next
 
+git reset --hard HEAD
+
+mkdir dir1 dir2
+touch dir1/empty.txt dir2/empty.txt
+git add .
+git ci -m 'step22 でディレクトリを2つ追加しました。'
+
+# step22
+git object-browser --dump $DUMP_DIR --next
+
+echo xxx > dir2/x.txt
+git add dir2/x.txt
+git commit -m 'step23 で dir2 に x.txt を追加しました。'
+
+# step23
+git object-browser --dump $DUMP_DIR --next
+
+git checkout -b step24
+
+echo xxx > a.txt
+git commit -am 'step24 ブランチにコミットしました。'
+
+git checkout master
+
+echo aaa > b.txt
+git commit -am 'step24 で master ブランチにコミットしました。その1。'
+
+echo bbb> b.txt
+git commit -am 'step24 で master ブランチにコミットしました。その2。'
+
+# step24
+git object-browser --dump $DUMP_DIR --next
+
+git rebase step24
+
+# step25
+git object-browser --dump $DUMP_DIR --next
 
 
 find $DUMP_DIR -name '*.json' | xargs ruby -pne 'gsub(/^(\s+)"(ctime|mtime|ino)":\s+\d+,$/, %{\\1"\\2": 1356966000,})' -i
 
 find $DUMP_DIR/json -name 'index.json' -maxdepth 2 | xargs ruby -pne 'gsub(/^    "sha1": "[0-9a-f]{40}"$/, %{    "sha1": "-"})' -i
+
+

@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "object": {
+    "type": "tree",
+    "sha1": "fee1900f073c1be708b1622b032e428f444dc185",
+    "size": "70",
+    "entries": [
+      {
+        "mode": "100644",
+        "filename": "empty.txt",
+        "sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "mode": "100644",
+        "filename": "x.txt",
+        "sha1": "d6459e005434a49a66a3ddec92279a86160ad71f"
+      }
+    ],
+    "content": "100644 empty.txt\\0\\e69de29bb2d1d6434b8b29ae775ad8c2e48c5391\n100644 x.txt\\0\\d6459e005434a49a66a3ddec92279a86160ad71f\n",
+    "properties": null,
+    "message": null
+  },
+  "root": null,
+  "path": "objects/fe/e1900f073c1be708b1622b032e428f444dc185",
+  "working_dir": "."
+}

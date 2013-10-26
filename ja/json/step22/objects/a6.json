@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/a6",
+    "entries": [
+      {
+        "type": "object",
+        "basename": "0c186d5f6c4e40af5bbb7c5b55ab822b68eab3",
+        "mtime": 1356966000,
+        "size": 134
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects/a6",
+  "working_dir": "."
+}

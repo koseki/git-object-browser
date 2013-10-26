@@ -20,4 +20,8 @@ config.steps = [
   { name: 'step19', label: 'step 19. stash 2' },
   { name: 'step20', label: 'step 20. stash pop' },
   { name: 'step21', label: 'step 21. stash pop 2' },
+  { name: 'step22', label: 'step 22. tree' },
+  { name: 'step23', label: 'step 23. tree 2' },
+  { name: 'step24', label: 'step 24. rebase' },
+  { name: 'step25', label: 'step 25. rebase 2' },
 ];

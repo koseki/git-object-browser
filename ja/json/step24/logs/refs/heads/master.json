@@ -1,0 +1,131 @@
+{
+  "type": "reflog",
+  "object": {
+    "content": "0000000000000000000000000000000000000000 0b48b1325567ae55dbfaefb250e7460e4fbb7d6d KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit (initial): step3 で最初のファイル a.txt をコミットしました。\n0b48b1325567ae55dbfaefb250e7460e4fbb7d6d f750c1a8d8292dde48842e0d6502801ea79e86a3 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step4 で b.txt をコミットしました。\nf750c1a8d8292dde48842e0d6502801ea79e86a3 e82cd786cf435b70aa2fb67bba7673dd616ec64a KOSEKI Kengo <koseki@example.com> 981172800 +0000\tmerge step5: Fast-forward\ne82cd786cf435b70aa2fb67bba7673dd616ec64a f750c1a8d8292dde48842e0d6502801ea79e86a3 KOSEKI Kengo <koseki@example.com> 981172800 +0000\treset: moving to HEAD^\nf750c1a8d8292dde48842e0d6502801ea79e86a3 0b48b1325567ae55dbfaefb250e7460e4fbb7d6d KOSEKI Kengo <koseki@example.com> 981172800 +0000\treset: moving to 0b48b13\n0b48b1325567ae55dbfaefb250e7460e4fbb7d6d 518f130bc865983d8a99b81011f93c5922572113 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step11 で空のファイル d.txt を追加しました。\n518f130bc865983d8a99b81011f93c5922572113 88005dbf6891d8ea4a17d4fa4dd73f0b813e369a KOSEKI Kengo <koseki@example.com> 981172800 +0000\tmerge step5: Merge made by the 'recursive' strategy.\n88005dbf6891d8ea4a17d4fa4dd73f0b813e369a bfdc4e868ca40c2b1fbc5fe9333de483719d406f KOSEKI Kengo <koseki@example.com> 981172800 +0000\tmerge remotes/gist/master: Merge made by the 'recursive' strategy.\nbfdc4e868ca40c2b1fbc5fe9333de483719d406f 56287c61775f5d9e298b6aeb06ad2bc91dd13e9c KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step22 でディレクトリを2つ追加しました。\n56287c61775f5d9e298b6aeb06ad2bc91dd13e9c 3e195e81da33826389f1131d179747a139284757 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step23 で dir2 に x.txt を追加しました。\n3e195e81da33826389f1131d179747a139284757 ea7a05b4e78dbc8a921f083e01b41317cc8c34e5 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step24 で master ブランチにコミットしました。その1。\nea7a05b4e78dbc8a921f083e01b41317cc8c34e5 9bc21195315febbc19c74bb98ffc30b1a3b8dd49 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step24 で master ブランチにコミットしました。その2。\n",
+    "entries": [
+      {
+        "message": "commit (initial): step3 で最初のファイル a.txt をコミットしました。",
+        "sha1_from": "0000000000000000000000000000000000000000",
+        "sha1_to": "0b48b1325567ae55dbfaefb250e7460e4fbb7d6d",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step4 で b.txt をコミットしました。",
+        "sha1_from": "0b48b1325567ae55dbfaefb250e7460e4fbb7d6d",
+        "sha1_to": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "merge step5: Fast-forward",
+        "sha1_from": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "sha1_to": "e82cd786cf435b70aa2fb67bba7673dd616ec64a",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "reset: moving to HEAD^",
+        "sha1_from": "e82cd786cf435b70aa2fb67bba7673dd616ec64a",
+        "sha1_to": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "reset: moving to 0b48b13",
+        "sha1_from": "f750c1a8d8292dde48842e0d6502801ea79e86a3",
+        "sha1_to": "0b48b1325567ae55dbfaefb250e7460e4fbb7d6d",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step11 で空のファイル d.txt を追加しました。",
+        "sha1_from": "0b48b1325567ae55dbfaefb250e7460e4fbb7d6d",
+        "sha1_to": "518f130bc865983d8a99b81011f93c5922572113",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "merge step5: Merge made by the 'recursive' strategy.",
+        "sha1_from": "518f130bc865983d8a99b81011f93c5922572113",
+        "sha1_to": "88005dbf6891d8ea4a17d4fa4dd73f0b813e369a",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "merge remotes/gist/master: Merge made by the 'recursive' strategy.",
+        "sha1_from": "88005dbf6891d8ea4a17d4fa4dd73f0b813e369a",
+        "sha1_to": "bfdc4e868ca40c2b1fbc5fe9333de483719d406f",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step22 でディレクトリを2つ追加しました。",
+        "sha1_from": "bfdc4e868ca40c2b1fbc5fe9333de483719d406f",
+        "sha1_to": "56287c61775f5d9e298b6aeb06ad2bc91dd13e9c",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step23 で dir2 に x.txt を追加しました。",
+        "sha1_from": "56287c61775f5d9e298b6aeb06ad2bc91dd13e9c",
+        "sha1_to": "3e195e81da33826389f1131d179747a139284757",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step24 で master ブランチにコミットしました。その1。",
+        "sha1_from": "3e195e81da33826389f1131d179747a139284757",
+        "sha1_to": "ea7a05b4e78dbc8a921f083e01b41317cc8c34e5",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step24 で master ブランチにコミットしました。その2。",
+        "sha1_from": "ea7a05b4e78dbc8a921f083e01b41317cc8c34e5",
+        "sha1_to": "9bc21195315febbc19c74bb98ffc30b1a3b8dd49",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ]
+  },
+  "root": null,
+  "path": "logs/refs/heads/master",
+  "working_dir": "."
+}

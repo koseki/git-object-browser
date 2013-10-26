@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/f8",
+    "entries": [
+      {
+        "type": "object",
+        "basename": "a5c8e6c9639b646a235f4834c73eaaa4cff466",
+        "mtime": 1356966000,
+        "size": 172
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects/f8",
+  "working_dir": "."
+}

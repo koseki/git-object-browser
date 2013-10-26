@@ -1,0 +1,24 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/f7",
+    "entries": [
+      {
+        "type": "object",
+        "basename": "50c1a8d8292dde48842e0d6502801ea79e86a3",
+        "mtime": 1356966000,
+        "size": 211
+      },
+      {
+        "type": "object",
+        "basename": "61ec192d9f0dca3329044b96ebdb12839dbff6",
+        "mtime": 1356966000,
+        "size": 19
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects/f7",
+  "working_dir": "."
+}

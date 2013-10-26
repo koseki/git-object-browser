@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "object": {
+    "type": "commit",
+    "sha1": "ea7a05b4e78dbc8a921f083e01b41317cc8c34e5",
+    "size": "283",
+    "entries": null,
+    "content": "tree 982b53ab3e5bc9cbb718d85ef1d9e68843d26c23\nparent 3e195e81da33826389f1131d179747a139284757\nauthor KOSEKI Kengo <koseki@example.com> 981172800 +0000\ncommitter KOSEKI Kengo <koseki@example.com> 981172800 +0000\n\nstep24 で master ブランチにコミットしました。その1。\n",
+    "properties": [
+      {
+        "key": "tree",
+        "value": "982b53ab3e5bc9cbb718d85ef1d9e68843d26c23",
+        "type": "sha1",
+        "path": "objects/98/2b53ab3e5bc9cbb718d85ef1d9e68843d26c23"
+      },
+      {
+        "key": "parent",
+        "value": "3e195e81da33826389f1131d179747a139284757",
+        "type": "sha1",
+        "path": "objects/3e/195e81da33826389f1131d179747a139284757"
+      },
+      {
+        "key": "author",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "key": "committer",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ],
+    "message": "step24 で master ブランチにコミットしました。その1。"
+  },
+  "root": null,
+  "path": "objects/ea/7a05b4e78dbc8a921f083e01b41317cc8c34e5",
+  "working_dir": "."
+}

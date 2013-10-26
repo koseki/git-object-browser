@@ -1,0 +1,15 @@
+<h3>Step 24. rebase</h3>
+<p><code>$ git checkout -b step24</code></p>
+<p><code>$ echo xxx &gt; a.txt</code></p>
+<p><code>$ git commit -am '...'</code></p>
+
+<p>rebase コマンドを観察する準備として、<a href="#/step24/.git/refs/heads/step24">step24 というブランチ</a>を作成し、<a href="#/step24/.git/objects/d6/459e005434a49a66a3ddec92279a86160ad71f">a.txt</a> に xxx と書き込みます。</p>
+
+<p><code>$ git checkout master</code></p>
+<p><code>$ echo aaa &gt; b.txt</code></p>
+<p><code>$ git commit -am '...'</code></p>
+<p><code>$ echo bbb &gt; b.txt</code></p>
+<p><code>$ git commit -am '...'</code></p>
+
+<p><a href="#/step24/.git/refs/heads/master">master ブランチ</a>に戻り、<a href="#/step24/.git/objects/72/943a16fb2c8f38f9dde202b7a70ccc19c52f34">b.txt</a> に aaa と書き込み<a href="#/step24/.git/objects/ea/7a05b4e78dbc8a921f083e01b41317cc8c34e5">コミット</a>、続けて <a href="#/step24/.git/objects/f7/61ec192d9f0dca3329044b96ebdb12839dbff6">b.txt</a> に bbb と書き込み<a href="#/step24/.git/objects/9b/c21195315febbc19c74bb98ffc30b1a3b8dd49">コミット</a>しました。</p>
+<p>step12 ブランチと master ブランチは枝分かれしています。step 12 で1コミット、master で2コミットしました。</p>

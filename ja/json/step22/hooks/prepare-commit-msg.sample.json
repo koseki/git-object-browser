@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "#!/bin/sh\n#\n# An example hook script to prepare the commit log message.\n# Called by \"git commit\" with the name of the file that has the\n# commit message, followed by the description of the commit\n# message's source.  The hook's purpose is to edit the commit\n# message file.  If the hook fails with a non-zero status,\n# the commit is aborted.\n#\n# To enable this hook, rename this file to \"prepare-commit-msg\".\n\n# This hook includes three examples.  The first comments out the\n# \"Conflicts:\" part of a merge commit.\n#\n# The second includes the output of \"git diff --name-status -r\"\n# into the message, just before the \"git status\" output.  It is\n# commented because it doesn't cope with --amend or with squashed\n# commits.\n#\n# The third example adds a Signed-off-by line to the message, that can\n# still be edited.  This is rarely a good idea.\n\ncase \"$2,$3\" in\n  merge,)\n    /usr/bin/perl -i.bak -ne 's/^/# /, s/^# #/#/ if /^Conflicts/ .. /#/; print' \"$1\" ;;\n\n# ,|template,)\n#   /usr/bin/perl -i.bak -pe '\n#      print \"\\n\" . `git diff --cached --name-status -r`\n#\t if /^#/ && $first++ == 0' \"$1\" ;;\n\n  *) ;;\nesac\n\n# SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\\(.*>\\).*$/Signed-off-by: \\1/p')\n# grep -qs \"^$SOB\" \"$1\" || echo \"$SOB\" >> \"$1\"\n"
+  },
+  "root": null,
+  "path": "hooks/prepare-commit-msg.sample",
+  "working_dir": "."
+}

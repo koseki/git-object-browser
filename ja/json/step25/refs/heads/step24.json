@@ -1,0 +1,11 @@
+{
+  "type": "ref",
+  "object": {
+    "ref": null,
+    "sha1": "63fcd719ec52504f9a83504039c2d5e8591c9f6b",
+    "content": "63fcd719ec52504f9a83504039c2d5e8591c9f6b\n"
+  },
+  "root": null,
+  "path": "refs/heads/step24",
+  "working_dir": "."
+}

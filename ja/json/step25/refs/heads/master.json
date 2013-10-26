@@ -1,0 +1,11 @@
+{
+  "type": "ref",
+  "object": {
+    "ref": null,
+    "sha1": "246f166091801a4191a665a3bf07a0339f2077e6",
+    "content": "246f166091801a4191a665a3bf07a0339f2077e6\n"
+  },
+  "root": null,
+  "path": "refs/heads/master",
+  "working_dir": "."
+}

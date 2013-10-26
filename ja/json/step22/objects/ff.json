@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/ff",
+    "entries": [
+      {
+        "type": "object",
+        "basename": "fb678e6ef28d2f7526016f349f1667f2e4d2ed",
+        "mtime": 1356966000,
+        "size": 185
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects/ff",
+  "working_dir": "."
+}

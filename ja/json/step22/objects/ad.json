@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/ad",
+    "entries": [
+      {
+        "type": "object",
+        "basename": "db68f0dba52714edfd99ac5088f73bacb78056",
+        "mtime": 1356966000,
+        "size": 75
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects/ad",
+  "working_dir": "."
+}

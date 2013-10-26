@@ -1,5 +1,5 @@
 <h3>Step 19. stash 2</h3>
-<p><code>$ echo zzz > a.txt</code></p>
+<p><code>$ echo zzz &gt; a.txt</code></p>
 <p><code>$ git stash</code></p>
 <p>今度は a.txt に zzz と書き込んで、git stash を実行しました。git add はしていません。</p>
 <p><a href="#/step19/.git/objects">追加されたオブジェクトは全部で4つ</a>です。commit オブジェクトが2つ (<a href="#/step19/.git/objects/e0/40372360e35e8b20ae99d3b70552759cfe5bcb">WIP on master</a> と <a href="#/step19/.git/objects/ed/f68234251fc66f5b5034caa6c9eab63df75b73">index on master</a>)、<a href="#/step19/.git/objects/e0/40372360e35e8b20ae99d3b70552759cfe5bcb">WIP on master</a> からたどれる <a href="#/step19/.git/objects/31/a8cbb1d04e8380fe3e3a8be3febdcc1d6ab95b">tree オブジェクト</a>、zzz が書かれた <a href="#/step19/.git/objects/b1/a17ba136936531b72571844a773fe938b85ad4">blob オブジェクト</a>です。</p>
