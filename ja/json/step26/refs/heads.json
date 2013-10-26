@@ -1,0 +1,30 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "refs/heads",
+    "entries": [
+      {
+        "type": "ref",
+        "basename": "master",
+        "mtime": 1356966000,
+        "size": 41
+      },
+      {
+        "type": "ref",
+        "basename": "step24",
+        "mtime": 1356966000,
+        "size": 41
+      },
+      {
+        "type": "ref",
+        "basename": "step5",
+        "mtime": 1356966000,
+        "size": 41
+      }
+    ]
+  },
+  "root": null,
+  "path": "refs/heads",
+  "working_dir": "."
+}

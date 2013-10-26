@@ -1,0 +1,58 @@
+{
+  "type": "index",
+  "object": {
+    "version": 2,
+    "entry_count": 2,
+    "entries": [
+      {
+        "ctime": 1356966000,
+        "cnano": 0,
+        "mtime": 1356966000,
+        "mnano": 0,
+        "dev": 234881026,
+        "ino": 1356966000,
+        "object_type": "1000",
+        "unix_permission": "644",
+        "uid": 501,
+        "gid": 20,
+        "size": 0,
+        "sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "path": "detached.txt",
+        "assume_valid_flag": 0,
+        "extended_flag": 0,
+        "stage": "00",
+        "skip_worktree": null,
+        "intent_to_add": null,
+        "name_length": 12
+      },
+      {
+        "ctime": 1356966000,
+        "cnano": 0,
+        "mtime": 1356966000,
+        "mnano": 0,
+        "dev": 234881026,
+        "ino": 1356966000,
+        "object_type": "1000",
+        "unix_permission": "644",
+        "uid": 501,
+        "gid": 20,
+        "size": 9,
+        "sha1": "3046836338622cdd5b6ce76f944714b26cec119e",
+        "path": "gist.txt",
+        "assume_valid_flag": 0,
+        "extended_flag": 0,
+        "stage": "00",
+        "skip_worktree": null,
+        "intent_to_add": null,
+        "name_length": 8
+      }
+    ],
+    "extensions": [
+
+    ],
+    "sha1": "-"
+  },
+  "root": null,
+  "path": "index",
+  "working_dir": "."
+}

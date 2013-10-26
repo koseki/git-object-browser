@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "object": {
+    "type": "commit",
+    "sha1": "56287c61775f5d9e298b6aeb06ad2bc91dd13e9c",
+    "size": "269",
+    "entries": null,
+    "content": "tree f8a5c8e6c9639b646a235f4834c73eaaa4cff466\nparent bfdc4e868ca40c2b1fbc5fe9333de483719d406f\nauthor KOSEKI Kengo <koseki@example.com> 981172800 +0000\ncommitter KOSEKI Kengo <koseki@example.com> 981172800 +0000\n\nstep22 でディレクトリを2つ追加しました。\n",
+    "properties": [
+      {
+        "key": "tree",
+        "value": "f8a5c8e6c9639b646a235f4834c73eaaa4cff466",
+        "type": "sha1",
+        "path": "objects/f8/a5c8e6c9639b646a235f4834c73eaaa4cff466"
+      },
+      {
+        "key": "parent",
+        "value": "bfdc4e868ca40c2b1fbc5fe9333de483719d406f",
+        "type": "sha1",
+        "path": "objects/bf/dc4e868ca40c2b1fbc5fe9333de483719d406f"
+      },
+      {
+        "key": "author",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "key": "committer",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ],
+    "message": "step22 でディレクトリを2つ追加しました。"
+  },
+  "root": null,
+  "path": "objects/56/287c61775f5d9e298b6aeb06ad2bc91dd13e9c",
+  "working_dir": "."
+}

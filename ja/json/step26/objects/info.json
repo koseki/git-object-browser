@@ -1,0 +1,13 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/info",
+    "entries": [
+
+    ]
+  },
+  "root": null,
+  "path": "objects/info",
+  "working_dir": "."
+}

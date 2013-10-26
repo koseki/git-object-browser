@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "detached HEAD 状態で detached.txt をコミットしました。\n"
+  },
+  "root": null,
+  "path": "COMMIT_EDITMSG",
+  "working_dir": "."
+}

@@ -1,0 +1,31 @@
+{
+  "type": "reflog",
+  "object": {
+    "content": "0000000000000000000000000000000000000000 3e195e81da33826389f1131d179747a139284757 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tbranch: Created from HEAD\n3e195e81da33826389f1131d179747a139284757 63fcd719ec52504f9a83504039c2d5e8591c9f6b KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step24 ブランチにコミットしました。\n",
+    "entries": [
+      {
+        "message": "branch: Created from HEAD",
+        "sha1_from": "0000000000000000000000000000000000000000",
+        "sha1_to": "3e195e81da33826389f1131d179747a139284757",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step24 ブランチにコミットしました。",
+        "sha1_from": "3e195e81da33826389f1131d179747a139284757",
+        "sha1_to": "63fcd719ec52504f9a83504039c2d5e8591c9f6b",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ]
+  },
+  "root": null,
+  "path": "logs/refs/heads/step24",
+  "working_dir": "."
+}

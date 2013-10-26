@@ -195,6 +195,22 @@ git rebase step24
 # step25
 git object-browser --dump $DUMP_DIR --next
 
+git checkout remotes/gist/master
+
+# step26
+git object-browser --dump $DUMP_DIR --next
+
+touch detached.txt
+git add detached.txt
+git commit -m 'detached HEAD 状態で detached.txt をコミットしました。'
+
+# step27
+git object-browser --dump $DUMP_DIR --next
+
+git checkout -b step28
+
+# step28
+git object-browser --dump $DUMP_DIR --next
 
 find $DUMP_DIR -name '*.json' | xargs ruby -pne 'gsub(/^(\s+)"(ctime|mtime|ino)":\s+\d+,$/, %{\\1"\\2": 1356966000,})' -i
 

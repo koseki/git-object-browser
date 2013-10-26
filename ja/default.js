@@ -103,6 +103,18 @@ var config = {
     {
       "name": "step25",
       "label": "step25"
+    },
+    {
+      "name": "step26",
+      "label": "step26"
+    },
+    {
+      "name": "step27",
+      "label": "step27"
+    },
+    {
+      "name": "step28",
+      "label": "step28"
     }
   ]
 };

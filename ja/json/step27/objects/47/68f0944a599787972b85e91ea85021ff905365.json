@@ -1,0 +1,51 @@
+{
+  "type": "object",
+  "object": {
+    "type": "tree",
+    "sha1": "4768f0944a599787972b85e91ea85021ff905365",
+    "size": "230",
+    "entries": [
+      {
+        "mode": "100644",
+        "filename": "a.txt",
+        "sha1": "d6459e005434a49a66a3ddec92279a86160ad71f"
+      },
+      {
+        "mode": "100644",
+        "filename": "b.txt",
+        "sha1": "1c59427adc4b205a270d8f810310394962e79a8b"
+      },
+      {
+        "mode": "100644",
+        "filename": "c.txt",
+        "sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "mode": "100644",
+        "filename": "d.txt",
+        "sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      {
+        "mode": "40000",
+        "filename": "dir1",
+        "sha1": "7015cf066692cff6f1cc228eeb31632b73cef98a"
+      },
+      {
+        "mode": "40000",
+        "filename": "dir2",
+        "sha1": "fee1900f073c1be708b1622b032e428f444dc185"
+      },
+      {
+        "mode": "100644",
+        "filename": "gist.txt",
+        "sha1": "3046836338622cdd5b6ce76f944714b26cec119e"
+      }
+    ],
+    "content": "100644 a.txt\\0\\d6459e005434a49a66a3ddec92279a86160ad71f\n100644 b.txt\\0\\1c59427adc4b205a270d8f810310394962e79a8b\n100644 c.txt\\0\\e69de29bb2d1d6434b8b29ae775ad8c2e48c5391\n100644 d.txt\\0\\e69de29bb2d1d6434b8b29ae775ad8c2e48c5391\n40000 dir1\\0\\7015cf066692cff6f1cc228eeb31632b73cef98a\n40000 dir2\\0\\fee1900f073c1be708b1622b032e428f444dc185\n100644 gist.txt\\0\\3046836338622cdd5b6ce76f944714b26cec119e\n",
+    "properties": null,
+    "message": null
+  },
+  "root": null,
+  "path": "objects/47/68f0944a599787972b85e91ea85021ff905365",
+  "working_dir": "."
+}

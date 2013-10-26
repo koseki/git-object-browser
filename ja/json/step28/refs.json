@@ -1,0 +1,30 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "refs",
+    "entries": [
+      {
+        "type": "directory",
+        "basename": "heads",
+        "mtime": 1356966000,
+        "size": 204
+      },
+      {
+        "type": "directory",
+        "basename": "remotes",
+        "mtime": 1356966000,
+        "size": 102
+      },
+      {
+        "type": "directory",
+        "basename": "tags",
+        "mtime": 1356966000,
+        "size": 136
+      }
+    ]
+  },
+  "root": null,
+  "path": "refs",
+  "working_dir": "."
+}

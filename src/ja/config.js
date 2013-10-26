@@ -24,4 +24,7 @@ config.steps = [
   { name: 'step23', label: 'step 23. tree 2' },
   { name: 'step24', label: 'step 24. rebase' },
   { name: 'step25', label: 'step 25. rebase 2' },
+  { name: 'step26', label: 'step 26. detached head' },
+  { name: 'step27', label: 'step 27. detached head 2' },
+  { name: 'step28', label: 'step 28. detached head 3' },
 ];

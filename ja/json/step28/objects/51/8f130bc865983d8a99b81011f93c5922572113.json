@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "object": {
+    "type": "commit",
+    "sha1": "518f130bc865983d8a99b81011f93c5922572113",
+    "size": "272",
+    "entries": null,
+    "content": "tree ac1d9f6dab5288c8482736e14ce1238fa7f3b6f1\nparent 0b48b1325567ae55dbfaefb250e7460e4fbb7d6d\nauthor KOSEKI Kengo <koseki@example.com> 981172800 +0000\ncommitter KOSEKI Kengo <koseki@example.com> 981172800 +0000\n\nstep11 で空のファイル d.txt を追加しました。\n",
+    "properties": [
+      {
+        "key": "tree",
+        "value": "ac1d9f6dab5288c8482736e14ce1238fa7f3b6f1",
+        "type": "sha1",
+        "path": "objects/ac/1d9f6dab5288c8482736e14ce1238fa7f3b6f1"
+      },
+      {
+        "key": "parent",
+        "value": "0b48b1325567ae55dbfaefb250e7460e4fbb7d6d",
+        "type": "sha1",
+        "path": "objects/0b/48b1325567ae55dbfaefb250e7460e4fbb7d6d"
+      },
+      {
+        "key": "author",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "key": "committer",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ],
+    "message": "step11 で空のファイル d.txt を追加しました。"
+  },
+  "root": null,
+  "path": "objects/51/8f130bc865983d8a99b81011f93c5922572113",
+  "working_dir": "."
+}

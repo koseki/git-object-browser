@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "object": {
+    "type": "commit",
+    "sha1": "88005dbf6891d8ea4a17d4fa4dd73f0b813e369a",
+    "size": "316",
+    "entries": null,
+    "content": "tree abbb4b938bf57ea8f48c847b37ce119208576cd7\nparent 518f130bc865983d8a99b81011f93c5922572113\nparent e82cd786cf435b70aa2fb67bba7673dd616ec64a\nauthor KOSEKI Kengo <koseki@example.com> 981172800 +0000\ncommitter KOSEKI Kengo <koseki@example.com> 981172800 +0000\n\nstep12 で master に step5 をマージしました。\n",
+    "properties": [
+      {
+        "key": "tree",
+        "value": "abbb4b938bf57ea8f48c847b37ce119208576cd7",
+        "type": "sha1",
+        "path": "objects/ab/bb4b938bf57ea8f48c847b37ce119208576cd7"
+      },
+      {
+        "key": "parent",
+        "value": "518f130bc865983d8a99b81011f93c5922572113",
+        "type": "sha1",
+        "path": "objects/51/8f130bc865983d8a99b81011f93c5922572113"
+      },
+      {
+        "key": "parent",
+        "value": "e82cd786cf435b70aa2fb67bba7673dd616ec64a",
+        "type": "sha1",
+        "path": "objects/e8/2cd786cf435b70aa2fb67bba7673dd616ec64a"
+      },
+      {
+        "key": "author",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "key": "committer",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ],
+    "message": "step12 で master に step5 をマージしました。"
+  },
+  "root": null,
+  "path": "objects/88/005dbf6891d8ea4a17d4fa4dd73f0b813e369a",
+  "working_dir": "."
+}

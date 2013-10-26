@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "object": {
+    "type": "commit",
+    "sha1": "c630cb6ad3deafc07daf54d4e2c506f8b53a6e86",
+    "size": "280",
+    "entries": null,
+    "content": "tree 1239a19016e3ad922dc66b651a437c986ef8b462\nparent d470642d48cbab42f5a7120e4686ada0fabc9fdc\nauthor KOSEKI Kengo <koseki@example.com> 981172800 +0000\ncommitter KOSEKI Kengo <koseki@example.com> 981172800 +0000\n\ndetached HEAD 状態で detached.txt をコミットしました。\n",
+    "properties": [
+      {
+        "key": "tree",
+        "value": "1239a19016e3ad922dc66b651a437c986ef8b462",
+        "type": "sha1",
+        "path": "objects/12/39a19016e3ad922dc66b651a437c986ef8b462"
+      },
+      {
+        "key": "parent",
+        "value": "d470642d48cbab42f5a7120e4686ada0fabc9fdc",
+        "type": "sha1",
+        "path": "objects/d4/70642d48cbab42f5a7120e4686ada0fabc9fdc"
+      },
+      {
+        "key": "author",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "key": "committer",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ],
+    "message": "detached HEAD 状態で detached.txt をコミットしました。"
+  },
+  "root": null,
+  "path": "objects/c6/30cb6ad3deafc07daf54d4e2c506f8b53a6e86",
+  "working_dir": "."
+}
