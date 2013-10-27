@@ -3,6 +3,7 @@
 <p><code>$ touch dir1/empty.txt dir2/empty.txt</code></p>
 <p><code>$ git add .</code></p>
 <p><code>$ git ci -m '...'</code></p>
+<p>tree オブジェクトの仕組みを見てみます。</p>
 <p><a href="#/step21/.git/">Step 21</a> での変更を reset --hard で元に戻し、dir1/empty.txt と dir2/empty.txt という2つの空ファイルをコミットしました。</p>
 <p><a href="#/step22/.git/objects">新たに追加されたオブジェクトは3つ</a>です。<a href="#/step22/.git/objects/56/287c61775f5d9e298b6aeb06ad2bc91dd13e9c">commit オブジェクト</a>、<a href="#/step22/.git/objects/f8/a5c8e6c9639b646a235f4834c73eaaa4cff466">ルート tree オブジェクト</a>、<a href="#/step22/.git/objects/70/15cf066692cff6f1cc228eeb31632b73cef98a">サブディレクトリの tree オブジェクト</a>の3つです。</p>
 <p>dir1 と dir2 の2つのディレクトリを作ったにもかかわらず、<a href="#/step22/.git/objects/70/15cf066692cff6f1cc228eeb31632b73cef98a">サブディレクトリの tree オブジェクト</a>は1つしか作られていません。<a href="#/step22/.git/objects/f8/a5c8e6c9639b646a235f4834c73eaaa4cff466">ルート tree</a> を見るとわかるように、dir1 と dir2 は同じオブジェクト(<a href="#/step22/.git/objects/70/15cf066692cff6f1cc228eeb31632b73cef98a">7015cf0</a>)を参照しています。</p>

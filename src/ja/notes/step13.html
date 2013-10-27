@@ -3,7 +3,7 @@
 <p>remote add コマンドでリモートリポジトリを登録しました。</p>
 <p>Github で<a href="https://gist.github.com/koseki/7074135">適当に作ったサンプルのリポジトリ</a>を gist という名前でリモートに追加しています。名前はなんでも構いません。</p>
 <p><a href="#/step13/.git/">変更されたファイル</a>は <a href="#/step13/.git/config">config</a> だけです。<i class="icon-chevron-left"></i> <strong>Prev</strong> と <strong>Next</strong> <i class="icon-chevron-right"></i> ボタンを使って、何が変わったのかを確認してください。</p>
-<p>最後の [remote &quot;gist&quot;] が追加されています。url はリモートのURLです。fetch は、git fetch コマンドが、リモートのどのブランチからローカルのどのブランチに変更を取り込むかの設定です。コロン(:)の左がリモート、右がローカルです。</p>
-<p>デフォルトではリモートの refs/heads/ にある全ブランチ(から参照されるオブジェクト)をローカルにコピーし、リファレンスを refs/remotes/gist/ 以下に反映します。</p>
-<p>fetch 先頭のプラス記号は、リモートがローカルの Fast-forward の位置関係でなくても、上書きでローカルに反映することを意味しています。</p>
+<p>最後の [remote &quot;gist&quot;] が追加されています。url はリモートのURLです。fetch  は、git fetch コマンドが、リモートのどのブランチからローカルのどのブランチに変更を取り込むかの設定です。コロン(:)の左がリモート、右がローカルです。</p>
+<p>デフォルトでは、リモートの refs/heads/ にある全ブランチのオブジェクトをローカルにコピーし、リファレンスを refs/remotes/gist/ 以下に反映します。</p>
+<p>fetch 先頭のプラス記号は、リモートブランチがローカルの Fast-forward の位置関係でなくても、上書きでローカルに反映することを意味しています。</p>
 

@@ -1,5 +1,5 @@
 <h3>Step 26. detached head</h3>
 <p><code>$ git checkout remotes/gist/master</code></p>
-<p>ブランチの先頭以外の (<a href="#/step26/.git/refs/heads">refs/heads</a> から参照されていない) コミットをチェックアウトすると、detached HEAD と呼ばれる状態になります。detached HEAD は「コミットしてもブランチが伸びない」状態です。</p>
+<p>ブランチの先頭以外の (<a href="#/step26/.git/refs/heads">refs/heads</a> から参照されていない) コミットをチェックアウトすると、<strong>detached HEAD</strong> と呼ばれる状態になります。detached HEAD は「コミットしてもブランチが伸びない」状態です。</p>
 <p>ここでは、<a href="#/step14/.git/">Step 14</a> で作成した<a href="#/step26/.git/refs/remotes/gist/master">追跡ブランチ</a>をチェックアウトして、detached HEAD の状態にしました。</p>
 <p>detached HEAD では、<a href="#/step26/.git/HEAD">HEAD リファレンス</a>が直接 commit オブジェクトを指します。これまで HEAD にはリファレンスのパスが書いてありましたが、commit オブジェクトの ID に変わりました。</p>

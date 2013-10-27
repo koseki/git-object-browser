@@ -2,10 +2,11 @@
 <p><code>$ git fetch gist</code></p>
 <p><a href="#/step13/.git/">step13</a> で追加した gist リモートから fetch しました。</p>
 <p><a href="#/step14/.git/config">config</a> の設定により、gist リモートの refs/heads/master リファレンスが、ローカルの <a href="#/step14/.git/refs/remotes/gist/master">refs/remotes/gist/master</a> にコピーされました。</p>
-<p>このように <a href="#/step14/.git/refs/remotes">refs/remotes</a> 以下にできるリファレンス(ブランチ)のことを、追跡ブランチ (またはリモートブランチ) と呼びます。追跡ブランチは、リモートのミラーです。追跡ブランチに直接コミットすることはできません。リモートリポジトリでの変更が追跡ブランチに忠実に反映されます。</p>
-<p>fetch によって、gist から <a href="#/step14/.git/objects">3つのオブジェクト</a>をダウンロードしました。</p>
-<p><a href="#/step14/.git/objects/d4/70642d48cbab42f5a7120e4686ada0fabc9fdc">commit オブジェクト</a>、<a href="#/step14/.git/objects/39/0ebc0a2f864032599cf59df83614fda04fa9ce">tree オブジェクト</a>、<a href="#/step14/.git/objects/30/46836338622cdd5b6ce76f944714b26cec119e">blob オブジェクト</a> の3つです。リモートから fetch したオブジェクトと、ローカルで作ったオブジェクトには何の区別もないことに注目してください。</p>
+<p>このように <a href="#/step14/.git/refs/remotes">refs/remotes</a> 以下にできるリファレンス(ブランチ)のことを、<strong>追跡ブランチ</strong> (または<strong>リモートブランチ</strong>) と呼びます。</p>
+<p>追跡ブランチは、リモートのミラーです。追跡ブランチに直接コミットすることはできません。リモートリポジトリでの変更が追跡ブランチに忠実に反映されます。</p>
+<p>fetch によって、gist から <a href="#/step14/.git/objects">3つのオブジェクト</a>をダウンロードしました。<a href="#/step14/.git/objects/d4/70642d48cbab42f5a7120e4686ada0fabc9fdc">commit オブジェクト</a>、<a href="#/step14/.git/objects/39/0ebc0a2f864032599cf59df83614fda04fa9ce">tree オブジェクト</a>、<a href="#/step14/.git/objects/30/46836338622cdd5b6ce76f944714b26cec119e">blob オブジェクト</a> の3つです。</p>
+<p>リモートから fetch したオブジェクトと、ローカルで作ったオブジェクトには何の区別もないことに注目してください。Git オブジェクトには、どのリポジトリで作られたかという情報は含まれていません。コピーすればどこでも同じように機能します。</p>
 <p>また、今回 fetch した <a href="#/step14/.git/objects/d4/70642d48cbab42f5a7120e4686ada0fabc9fdc">commit オブジェクト</a>には parent が無いことにも注目です。このコミットは、今までローカルで作ったどのコミットとも親子関係がありません。</p>
-<p>Git では、1つのリポジトリの中に複数の独立したコミットツリーを持つことができます。ローカルで親子関係がないコミットを新たに作成したい時は、git checkout コマンドに --orphan (孤児) オプションを指定します。</p>
+<p>Git では、1つのリポジトリの中に複数の独立したコミットツリーを持つことができます。ローカルで親子関係がないコミットを新たに作成したい時は、git checkout コマンドに <strong>--orphan (孤児)</strong> オプションを指定します。</p>
 
 
