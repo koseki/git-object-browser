@@ -215,5 +215,6 @@ git object-browser --dump $DUMP_DIR --next
 find $DUMP_DIR -name '*.json' | xargs ruby -pne 'gsub(/^(\s+)"(ctime|mtime|ino)":\s+\d+,$/, %{\\1"\\2": 1356966000,})' -i
 
 find $DUMP_DIR/json -name 'index.json' -maxdepth 2 | xargs ruby -pne 'gsub(/^    "sha1": "[0-9a-f]{40}"$/, %{    "sha1": "-"})' -i
-
-
+find $DUMP_DIR/json -name 'index.json' -maxdepth 2 | xargs ruby -pne 'gsub(/^        "dev": \d+,$/, %{        "dev": 234881026,})' -i
+find $DUMP_DIR/json -name 'index.json' -maxdepth 2 | xargs ruby -pne 'gsub(/^        "uid": \d+,$/, %{        "uid": 501,})' -i
+find $DUMP_DIR/json -name 'index.json' -maxdepth 2 | xargs ruby -pne 'gsub(/^        "gid": \d+,$/, %{        "gid": 20,})' -i
