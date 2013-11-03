@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "#!/bin/sh\n\n# An example hook script to verify what is about to be pushed.  Called by \"git\n# push\" after it has checked the remote status, but before anything has been\n# pushed.  If this script exits with a non-zero status nothing will be pushed.\n#\n# This hook is called with the following parameters:\n#\n# $1 -- Name of the remote to which the push is being done\n# $2 -- URL to which the push is being done\n#\n# If pushing without using a named remote those arguments will be equal.\n#\n# Information about the commits which are being pushed is supplied as lines to\n# the standard input in the form:\n#\n#   <local ref> <local sha1> <remote ref> <remote sha1>\n#\n# This sample shows how to prevent push of commits where the log message starts\n# with \"WIP\" (work in progress).\n\nremote=\"$1\"\nurl=\"$2\"\n\nz40=0000000000000000000000000000000000000000\n\nIFS=' '\nwhile read local_ref local_sha remote_ref remote_sha\ndo\n\tif [ \"$local_sha\" = $z40 ]\n\tthen\n\t\t# Handle delete\n\t\t:\n\telse\n\t\tif [ \"$remote_sha\" = $z40 ]\n\t\tthen\n\t\t\t# New branch, examine all commits\n\t\t\trange=\"$local_sha\"\n\t\telse\n\t\t\t# Update to existing branch, examine new commits\n\t\t\trange=\"$remote_sha..$local_sha\"\n\t\tfi\n\n\t\t# Check for WIP commit\n\t\tcommit=`git rev-list -n 1 --grep '^WIP' \"$range\"`\n\t\tif [ -n \"$commit\" ]\n\t\tthen\n\t\t\techo \"Found WIP commit in $local_ref, not pushing\"\n\t\t\texit 1\n\t\tfi\n\tfi\ndone\n\nexit 0\n"
+  },
+  "root": null,
+  "path": "hooks/pre-push.sample",
+  "working_dir": "."
+}

@@ -32,7 +32,13 @@
         "type": "file",
         "basename": "pre-commit.sample",
         "mtime": 1356966000,
-        "size": 1704
+        "size": 1635
+      },
+      {
+        "type": "file",
+        "basename": "pre-push.sample",
+        "mtime": 1356966000,
+        "size": 1352
       },
       {
         "type": "file",
