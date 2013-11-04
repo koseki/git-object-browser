@@ -1,0 +1,56 @@
+<article>
+<h1><i data-entry-icon="'index'"></i>
+<span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
+<small>Index Entry</small></h1>
+
+<table class="table">
+<tr>
+<th>version</th>
+<td>{{object.version}}</td>
+</tr>
+
+<tr>
+<th>sha1</th>
+<td>{{object.sha1}}</td>
+</tr>
+
+<tr>
+<th>entry_count</th>
+<td>{{object.entry_count}}</td>
+</tr>
+
+</table>
+</article>
+
+<article>
+
+<h2><i class="icon-file"></i> {{entry.path}}</h2>
+<table class="table">
+<tbody>
+<tr data-ng-repeat="key in keys">
+<th>{{key}}</th>
+<td data-ng-switch="key">
+
+<span data-ng-switch-when="sha1">
+<a href="#" data-ref-href="entry">{{entry.sha1}}</a>
+</span>
+
+<span data-ng-switch-when="ctime">
+{{entry.ctime}} <small style="color:#aaa">{{entry.ctime | unixtime:'yyyy-MM-dd HH:mm:ss' }}</small>
+</span>
+
+<span data-ng-switch-when="mtime">
+{{entry.mtime}} <small style="color:#aaa">{{entry.mtime | unixtime:'yyyy-MM-dd HH:mm:ss' }}</small>
+</span>
+
+<span data-ng-switch-default>
+{{entry[key]}}
+</span>
+
+</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+

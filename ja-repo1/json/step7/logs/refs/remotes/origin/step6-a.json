@@ -1,0 +1,21 @@
+{
+  "type": "reflog",
+  "object": {
+    "content": "0000000000000000000000000000000000000000 55e962d376617adabec31b95145f2fdb8e28a503 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tupdate by push\n",
+    "entries": [
+      {
+        "message": "update by push",
+        "sha1_from": "0000000000000000000000000000000000000000",
+        "sha1_to": "55e962d376617adabec31b95145f2fdb8e28a503",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ]
+  },
+  "root": null,
+  "path": "logs/refs/remotes/origin/step6-a",
+  "working_dir": "."
+}

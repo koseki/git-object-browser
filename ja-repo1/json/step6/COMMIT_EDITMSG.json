@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "step6-b ブランチで a.txt に bbb と書き込みました。\n"
+  },
+  "root": null,
+  "path": "COMMIT_EDITMSG",
+  "working_dir": "."
+}

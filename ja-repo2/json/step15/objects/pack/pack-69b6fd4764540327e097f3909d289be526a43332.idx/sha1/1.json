@@ -1,0 +1,116 @@
+{
+  "type": "pack_index",
+  "object": {
+    "entries": [
+      {
+        "index": 0,
+        "sha1": "1866aea2e78e872cd8a9eaa142a47eb52789bdef",
+        "crc32": "1654e7dc",
+        "offset": 232,
+        "fanout_min": "00",
+        "fanout_max": "17",
+        "type": "commit",
+        "size": 223,
+        "header_size": 2
+      },
+      {
+        "index": 1,
+        "sha1": "37057b2e8a9041ef88b805a5b7c4e0e668a03be4",
+        "crc32": "526b7de8",
+        "offset": 489,
+        "fanout_min": "18",
+        "fanout_max": "36",
+        "type": "tree",
+        "size": 33,
+        "header_size": 2
+      },
+      {
+        "index": 2,
+        "sha1": "55e962d376617adabec31b95145f2fdb8e28a503",
+        "crc32": "d4ef8cb8",
+        "offset": 12,
+        "fanout_min": "37",
+        "fanout_max": "54",
+        "type": "commit",
+        "size": 278,
+        "header_size": 2
+      },
+      {
+        "index": 3,
+        "sha1": "65a457425a679cbe9adf0d2741785d3ceabb44a7",
+        "crc32": "44cfce76",
+        "offset": 546,
+        "fanout_min": "55",
+        "fanout_max": "64",
+        "type": "tree",
+        "size": 33,
+        "header_size": 2
+      },
+      {
+        "index": 4,
+        "sha1": "705d00a2315521e07f6a26a2713d69502d402fa9",
+        "crc32": "96fa9ec9",
+        "offset": 599,
+        "fanout_min": "65",
+        "fanout_max": "6f",
+        "type": "tree",
+        "size": 33,
+        "header_size": 2
+      },
+      {
+        "index": 5,
+        "sha1": "72943a16fb2c8f38f9dde202b7a70ccc19c52f34",
+        "crc32": "25d040fe",
+        "offset": 533,
+        "fanout_min": "70",
+        "fanout_max": "71",
+        "type": "blob",
+        "size": 4,
+        "header_size": 1
+      },
+      {
+        "index": 6,
+        "sha1": "a9940e70f346c3b7d63d979137f52c088d00304d",
+        "crc32": "6ef244b3",
+        "offset": 413,
+        "fanout_min": "72",
+        "fanout_max": "a8",
+        "type": "ofs_delta",
+        "size": 65,
+        "header_size": 4,
+        "base_offset": 12
+      },
+      {
+        "index": 7,
+        "sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+        "crc32": "6e760029",
+        "offset": 590,
+        "fanout_min": "a9",
+        "fanout_max": "e5",
+        "type": "blob",
+        "size": 0,
+        "header_size": 1
+      },
+      {
+        "index": 8,
+        "sha1": "f761ec192d9f0dca3329044b96ebdb12839dbff6",
+        "crc32": "cef66d69",
+        "offset": 643,
+        "fanout_min": "e6",
+        "fanout_max": "f6",
+        "type": "blob",
+        "size": 4,
+        "header_size": 1
+      }
+    ],
+    "packfile_sha1": "4f17b9cb1c2f8c17cdb3965244227b1bedccd5ac",
+    "index_sha1": "b5d35e72377b3094a241dfe56421d13ce7a0687c"
+  },
+  "root": null,
+  "path": "objects/pack/pack-69b6fd4764540327e097f3909d289be526a43332.idx",
+  "working_dir": ".",
+  "per_page": 200,
+  "entry_count": 9,
+  "page": 1,
+  "order": "sha1"
+}

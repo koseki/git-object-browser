@@ -1,0 +1,31 @@
+{
+  "type": "packed_object",
+  "object": {
+    "offset": 489,
+    "type": "tree",
+    "size": 33,
+    "header_size": 2,
+    "base_offset": null,
+    "delta_commands": null,
+    "base_size": null,
+    "object": {
+      "type": "tree",
+      "sha1": "37057b2e8a9041ef88b805a5b7c4e0e668a03be4",
+      "size": "33",
+      "entries": [
+        {
+          "mode": "100644",
+          "filename": "a.txt",
+          "sha1": "72943a16fb2c8f38f9dde202b7a70ccc19c52f34"
+        }
+      ],
+      "content": "100644 a.txt\\0\\72943a16fb2c8f38f9dde202b7a70ccc19c52f34\n",
+      "properties": null,
+      "message": null
+    }
+  },
+  "root": null,
+  "path": "objects/pack/pack-69b6fd4764540327e097f3909d289be526a43332.pack",
+  "working_dir": ".",
+  "unpacked": false
+}

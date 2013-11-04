@@ -1,0 +1,27 @@
+{
+  "type": "packed_refs",
+  "object": {
+    "entries": [
+      {
+        "sha1": "55e962d376617adabec31b95145f2fdb8e28a503",
+        "ref": "refs/heads/master"
+      },
+      {
+        "sha1": "1866aea2e78e872cd8a9eaa142a47eb52789bdef",
+        "ref": "refs/remotes/origin/master"
+      },
+      {
+        "sha1": "55e962d376617adabec31b95145f2fdb8e28a503",
+        "ref": "refs/remotes/origin/step6-a"
+      },
+      {
+        "sha1": "a9940e70f346c3b7d63d979137f52c088d00304d",
+        "ref": "refs/remotes/origin/step6-b"
+      }
+    ],
+    "content": "# pack-refs with: peeled fully-peeled \n55e962d376617adabec31b95145f2fdb8e28a503 refs/heads/master\n1866aea2e78e872cd8a9eaa142a47eb52789bdef refs/remotes/origin/master\n55e962d376617adabec31b95145f2fdb8e28a503 refs/remotes/origin/step6-a\na9940e70f346c3b7d63d979137f52c088d00304d refs/remotes/origin/step6-b\n"
+  },
+  "root": null,
+  "path": "packed-refs",
+  "working_dir": "."
+}

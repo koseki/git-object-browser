@@ -1,0 +1,66 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "hooks",
+    "entries": [
+      {
+        "type": "file",
+        "basename": "applypatch-msg.sample",
+        "mtime": 1356966000,
+        "size": 452
+      },
+      {
+        "type": "file",
+        "basename": "commit-msg.sample",
+        "mtime": 1356966000,
+        "size": 896
+      },
+      {
+        "type": "file",
+        "basename": "post-update.sample",
+        "mtime": 1356966000,
+        "size": 189
+      },
+      {
+        "type": "file",
+        "basename": "pre-applypatch.sample",
+        "mtime": 1356966000,
+        "size": 398
+      },
+      {
+        "type": "file",
+        "basename": "pre-commit.sample",
+        "mtime": 1356966000,
+        "size": 1635
+      },
+      {
+        "type": "file",
+        "basename": "pre-push.sample",
+        "mtime": 1356966000,
+        "size": 1352
+      },
+      {
+        "type": "file",
+        "basename": "pre-rebase.sample",
+        "mtime": 1356966000,
+        "size": 4951
+      },
+      {
+        "type": "file",
+        "basename": "prepare-commit-msg.sample",
+        "mtime": 1356966000,
+        "size": 1239
+      },
+      {
+        "type": "file",
+        "basename": "update.sample",
+        "mtime": 1356966000,
+        "size": 3611
+      }
+    ]
+  },
+  "root": null,
+  "path": "hooks",
+  "working_dir": "."
+}

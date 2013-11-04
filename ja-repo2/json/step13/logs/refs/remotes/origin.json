@@ -1,0 +1,24 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "logs/refs/remotes/origin",
+    "entries": [
+      {
+        "type": "reflog",
+        "basename": "master",
+        "mtime": 1356966000,
+        "size": 165
+      },
+      {
+        "type": "reflog",
+        "basename": "step6-b",
+        "mtime": 1356966000,
+        "size": 167
+      }
+    ]
+  },
+  "root": null,
+  "path": "logs/refs/remotes/origin",
+  "working_dir": "."
+}

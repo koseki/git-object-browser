@@ -1,0 +1,13 @@
+[
+  "refs/heads",
+  "FETCH_HEAD",
+  "index",
+  "logs/HEAD",
+  "logs/refs/heads/master",
+  "logs/refs/remotes/origin/master",
+  "objects/18/66aea2e78e872cd8a9eaa142a47eb52789bdef",
+  "objects/65/a457425a679cbe9adf0d2741785d3ceabb44a7",
+  "objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+  "refs/heads/master",
+  "refs/remotes/origin/master"
+]

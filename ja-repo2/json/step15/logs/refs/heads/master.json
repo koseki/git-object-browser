@@ -1,0 +1,12 @@
+{
+  "type": "reflog",
+  "object": {
+    "content": "",
+    "entries": [
+
+    ]
+  },
+  "root": null,
+  "path": "logs/refs/heads/master",
+  "working_dir": "."
+}

@@ -1,0 +1,24 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/pack",
+    "entries": [
+      {
+        "type": "file",
+        "basename": "pack-69b6fd4764540327e097f3909d289be526a43332.idx",
+        "mtime": 1356966000,
+        "size": 1324
+      },
+      {
+        "type": "file",
+        "basename": "pack-69b6fd4764540327e097f3909d289be526a43332.pack",
+        "mtime": 1356966000,
+        "size": 676
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects/pack",
+  "working_dir": "."
+}

@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "[core]\n\trepositoryformatversion = 0\n\tfilemode = true\n\tbare = false\n\tlogallrefupdates = true\n\tignorecase = true\n\tprecomposeunicode = false\n[remote \"origin\"]\n\turl = /path/to/bare\n\tfetch = +refs/heads/*:refs/remotes/origin/*\n[branch \"master\"]\n\tremote = origin\n\tmerge = refs/heads/master\n[user]\n    name = KOSEKI Kengo\n    email = koseki@example.com\n"
+  },
+  "root": null,
+  "path": "config",
+  "working_dir": "."
+}

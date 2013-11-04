@@ -1,0 +1,41 @@
+<article  data-ng-controller="PackIndexCtrl" data-scroll-bottom="scrollBottom()">
+<h1 style="font-size:1.8em;"><i data-entry-icon="'index'"></i>
+<span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
+<small>Pack Index</small></h1>
+
+<table class="table table-striped">
+<thead>
+<tr>
+<th><a href="#{{basedir}}/{{path}}?order=sha1">#</a></th>
+<th>fanout</th>
+<th>sha1</th>
+<th>crc32</th>
+<th><a href="#{{basedir}}/{{path}}?order=offset">offset</a></th>
+<th>type</th>
+<th>size</th>
+</tr>
+</thead>
+<tbody>
+<tr data-ng-repeat="(i, entry) in object.entries">
+<td>{{entry.index}}</td>
+
+<td>
+<span data-ng-show="entry.fanout_max"><i class="icon-arrow-up"></i> {{entry.fanout_min}} - {{entry.fanout_max}}</span>
+<span data-ng-show="entry.fanout_min && ! entry.fanout_max"><i class="icon-arrow-up"></i> {{entry.fanout_min}}</span>
+</td>
+<td>{{entry.sha1}}</td>
+<td>{{entry.crc32}}</td>
+<td><a href="#{{basedir}}/{{packUrl}}?offset={{entry.offset}}">{{entry.offset}}</a></td>
+<td><i data-entry-icon="entry.type"></i> {{entry.type}}
+<span data-ng-show="entry.base_offset"><a href="#{{basedir}}/{{packUrl}}?offset={{entry.base_offset}}">{{entry.base_offset}}</a></span>
+<span data-ng-show="entry.base_sha1"><a data-ref-href="entry.base_sha1">{{entry.base_sha1.substr(0,6)}}</a></span>
+</td>
+<td>{{entry.size}}</td>
+</tr>
+</tbody>
+</table>
+
+<p data-ng-show="loading">Loading...</p>
+
+</article>
+

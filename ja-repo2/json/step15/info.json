@@ -1,0 +1,24 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "info",
+    "entries": [
+      {
+        "type": "info_refs",
+        "basename": "refs",
+        "mtime": 1356966000,
+        "size": 265
+      },
+      {
+        "type": "file",
+        "basename": "exclude",
+        "mtime": 1356966000,
+        "size": 240
+      }
+    ]
+  },
+  "root": null,
+  "path": "info",
+  "working_dir": "."
+}

@@ -1,0 +1,27 @@
+<article>
+<h1><i data-entry-icon="'directory'"></i>
+<span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
+<small>Directory</small></h1>
+
+<table class="table table-striped table-condensed">
+<thead>
+<th>file</th>
+<th>size</th>
+<th>mtime</th>
+</thead>
+<tbody>
+<tr data-ng-repeat="entry in object.entries" data-ng-class="{error: diff[path + '/' + entry.basename]}">
+<td><i data-entry-icon="entry.type"></i> <a href="#{{basedir}}/{{path}}/{{entry.basename}}">{{entry.basename}}</a>
+</td>
+<td>
+{{entry.size}}
+</td>
+<td>
+{{entry.mtime | unixtime:'yyyy-MM-dd HH:mm:ss'}}
+</td>
+
+</tr>
+</tbody>
+</table>
+
+</article>

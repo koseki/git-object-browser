@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects/55",
+    "entries": [
+      {
+        "type": "object",
+        "basename": "e962d376617adabec31b95145f2fdb8e28a503",
+        "mtime": 1356966000,
+        "size": 228
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects/55",
+  "working_dir": "."
+}

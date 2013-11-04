@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "#!/bin/sh\n#\n# An example hook script to verify what is about to be committed\n# by applypatch from an e-mail message.\n#\n# The hook should exit with non-zero status after issuing an\n# appropriate message if it wants to stop the commit.\n#\n# To enable this hook, rename this file to \"pre-applypatch\".\n\n. git-sh-setup\ntest -x \"$GIT_DIR/hooks/pre-commit\" &&\n\texec \"$GIT_DIR/hooks/pre-commit\" ${1+\"$@\"}\n:\n"
+  },
+  "root": null,
+  "path": "hooks/pre-applypatch.sample",
+  "working_dir": "."
+}

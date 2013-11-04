@@ -1,0 +1,61 @@
+{
+  "type": "reflog",
+  "object": {
+    "content": "0000000000000000000000000000000000000000 1866aea2e78e872cd8a9eaa142a47eb52789bdef KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit (initial): 最初のファイル a.txt をコミットしました。\n1866aea2e78e872cd8a9eaa142a47eb52789bdef 1866aea2e78e872cd8a9eaa142a47eb52789bdef KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcheckout: moving from master to step6-a\n1866aea2e78e872cd8a9eaa142a47eb52789bdef 55e962d376617adabec31b95145f2fdb8e28a503 KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step6-a ブランチで a.txt に aaa と書き込みました。\n55e962d376617adabec31b95145f2fdb8e28a503 1866aea2e78e872cd8a9eaa142a47eb52789bdef KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcheckout: moving from step6-a to step6-b\n1866aea2e78e872cd8a9eaa142a47eb52789bdef a9940e70f346c3b7d63d979137f52c088d00304d KOSEKI Kengo <koseki@example.com> 981172800 +0000\tcommit: step6-b ブランチで a.txt に bbb と書き込みました。\n",
+    "entries": [
+      {
+        "message": "commit (initial): 最初のファイル a.txt をコミットしました。",
+        "sha1_from": "0000000000000000000000000000000000000000",
+        "sha1_to": "1866aea2e78e872cd8a9eaa142a47eb52789bdef",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "checkout: moving from master to step6-a",
+        "sha1_from": "1866aea2e78e872cd8a9eaa142a47eb52789bdef",
+        "sha1_to": "1866aea2e78e872cd8a9eaa142a47eb52789bdef",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step6-a ブランチで a.txt に aaa と書き込みました。",
+        "sha1_from": "1866aea2e78e872cd8a9eaa142a47eb52789bdef",
+        "sha1_to": "55e962d376617adabec31b95145f2fdb8e28a503",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "checkout: moving from step6-a to step6-b",
+        "sha1_from": "55e962d376617adabec31b95145f2fdb8e28a503",
+        "sha1_to": "1866aea2e78e872cd8a9eaa142a47eb52789bdef",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "message": "commit: step6-b ブランチで a.txt に bbb と書き込みました。",
+        "sha1_from": "1866aea2e78e872cd8a9eaa142a47eb52789bdef",
+        "sha1_to": "a9940e70f346c3b7d63d979137f52c088d00304d",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ]
+  },
+  "root": null,
+  "path": "logs/HEAD",
+  "working_dir": "."
+}

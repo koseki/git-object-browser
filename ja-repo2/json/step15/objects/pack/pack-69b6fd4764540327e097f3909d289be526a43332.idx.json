@@ -1,0 +1,17 @@
+{
+  "type": "pack_index",
+  "object": {
+    "entries": [
+      "1866aea2e78e872cd8a9eaa142a47eb52789bdef"
+    ],
+    "packfile_sha1": "4f17b9cb1c2f8c17cdb3965244227b1bedccd5ac",
+    "index_sha1": "b5d35e72377b3094a241dfe56421d13ce7a0687c"
+  },
+  "root": null,
+  "path": "objects/pack/pack-69b6fd4764540327e097f3909d289be526a43332.idx",
+  "working_dir": ".",
+  "per_page": 200,
+  "entry_count": 9,
+  "page": null,
+  "order": "digest"
+}

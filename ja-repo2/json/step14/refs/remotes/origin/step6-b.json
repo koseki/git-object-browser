@@ -1,0 +1,11 @@
+{
+  "type": "ref",
+  "object": {
+    "ref": null,
+    "sha1": "a9940e70f346c3b7d63d979137f52c088d00304d",
+    "content": "a9940e70f346c3b7d63d979137f52c088d00304d\n"
+  },
+  "root": null,
+  "path": "refs/remotes/origin/step6-b",
+  "working_dir": "."
+}

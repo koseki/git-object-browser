@@ -1,0 +1,11 @@
+{
+  "type": "ref",
+  "object": {
+    "ref": "refs/heads/step6-b",
+    "sha1": null,
+    "content": "ref: refs/heads/step6-b\n"
+  },
+  "root": null,
+  "path": "HEAD",
+  "working_dir": "."
+}

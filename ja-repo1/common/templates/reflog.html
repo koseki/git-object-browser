@@ -1,0 +1,31 @@
+<article>
+<h1><i data-entry-icon="'reflog'"></i>
+<span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
+<small>Reflog</small></h1>
+
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#parsed" data-toggle="tab">Parsed</a></li>
+    <li><a href="#plain" data-toggle="tab">Plain</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="parsed">
+
+<pre data-ng-repeat="entry in object.entries">
+<a data-ref-href="entry.sha1_from">{{entry.sha1_from}}</a> <a data-ref-href="entry.sha1_to">{{entry.sha1_to}}</a>
+{{entry.name}} &lt;{{entry.email}}&gt; {{entry.date}}
+
+{{entry.message}}
+</pre>
+
+    </div>
+    <div class="tab-pane" id="plain">
+
+<pre>{{object.content}}</pre>
+
+    </div>
+  </div>
+</div>
+
+
+</article>

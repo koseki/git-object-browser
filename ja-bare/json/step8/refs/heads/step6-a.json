@@ -1,0 +1,11 @@
+{
+  "type": "ref",
+  "object": {
+    "ref": null,
+    "sha1": "55e962d376617adabec31b95145f2fdb8e28a503",
+    "content": "55e962d376617adabec31b95145f2fdb8e28a503\n"
+  },
+  "root": null,
+  "path": "refs/heads/step6-a",
+  "working_dir": "."
+}

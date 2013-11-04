@@ -1,0 +1,21 @@
+{
+  "type": "reflog",
+  "object": {
+    "content": "0000000000000000000000000000000000000000 a9940e70f346c3b7d63d979137f52c088d00304d KOSEKI Kengo <koseki@example.com> 981172800 +0000\tfetch origin step6-b: storing head\n",
+    "entries": [
+      {
+        "message": "fetch origin step6-b: storing head",
+        "sha1_from": "0000000000000000000000000000000000000000",
+        "sha1_to": "a9940e70f346c3b7d63d979137f52c088d00304d",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ]
+  },
+  "root": null,
+  "path": "logs/refs/remotes/origin/step6-b",
+  "working_dir": "."
+}

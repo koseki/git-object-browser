@@ -1,0 +1,30 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "logs/refs/heads",
+    "entries": [
+      {
+        "type": "reflog",
+        "basename": "master",
+        "mtime": 1356966000,
+        "size": 209
+      },
+      {
+        "type": "reflog",
+        "basename": "step6-a",
+        "mtime": 1356966000,
+        "size": 366
+      },
+      {
+        "type": "reflog",
+        "basename": "step6-b",
+        "mtime": 1356966000,
+        "size": 366
+      }
+    ]
+  },
+  "root": null,
+  "path": "logs/refs/heads",
+  "working_dir": "."
+}

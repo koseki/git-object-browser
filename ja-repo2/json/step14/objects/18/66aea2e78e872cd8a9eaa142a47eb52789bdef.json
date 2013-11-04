@@ -1,0 +1,42 @@
+{
+  "type": "object",
+  "object": {
+    "type": "commit",
+    "sha1": "1866aea2e78e872cd8a9eaa142a47eb52789bdef",
+    "size": "223",
+    "entries": null,
+    "content": "tree 65a457425a679cbe9adf0d2741785d3ceabb44a7\nauthor KOSEKI Kengo <koseki@example.com> 981172800 +0000\ncommitter KOSEKI Kengo <koseki@example.com> 981172800 +0000\n\n最初のファイル a.txt をコミットしました。\n",
+    "properties": [
+      {
+        "key": "tree",
+        "value": "65a457425a679cbe9adf0d2741785d3ceabb44a7",
+        "type": "sha1",
+        "path": "objects/65/a457425a679cbe9adf0d2741785d3ceabb44a7"
+      },
+      {
+        "key": "author",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      },
+      {
+        "key": "committer",
+        "value": "KOSEKI Kengo <koseki@example.com> 981172800 +0000",
+        "type": "user",
+        "name": "KOSEKI Kengo",
+        "email": "koseki@example.com",
+        "unixtime": "981172800",
+        "timezone": "+0000",
+        "date": "2001-02-03T04:00:00+00:00"
+      }
+    ],
+    "message": "最初のファイル a.txt をコミットしました。"
+  },
+  "root": null,
+  "path": "objects/18/66aea2e78e872cd8a9eaa142a47eb52789bdef",
+  "working_dir": "."
+}

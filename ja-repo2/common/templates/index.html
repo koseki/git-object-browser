@@ -1,0 +1,46 @@
+<article>
+<h1><i data-entry-icon="'index'"></i>
+<span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
+<small>Index</small></h1>
+
+<table class="table">
+<tr>
+<th>version</th>
+<td>{{object.version}}</td>
+</tr>
+
+<tr>
+<th>sha1</th>
+<td>{{object.sha1}}</td>
+</tr>
+
+<tr>
+<th>entry_count</th>
+<td>{{object.entry_count}}</td>
+</tr>
+
+<tr>
+<th>entries</th>
+<td>
+
+<table class="table table-striped table-condensed">
+<thead>
+<tr>
+<th>path</th>
+<th>sha1</th>
+</tr>
+</thead>
+<tbody>
+<tr data-ng-repeat="entry in object.entries">
+<td><i class="icon-file"></i> <a href="#{{basedir}}/.git/index?sha1={{entry.sha1}}">{{entry.path}}</a></td>
+<td><a href="#" data-ref-href="entry">{{entry.sha1}}</a></td>
+</tr>
+</tbody>
+
+</td>
+</tr>
+
+</table>
+
+</article>
+

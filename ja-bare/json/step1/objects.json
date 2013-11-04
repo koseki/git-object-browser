@@ -1,0 +1,24 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "objects",
+    "entries": [
+      {
+        "type": "directory",
+        "basename": "info",
+        "mtime": 1356966000,
+        "size": 68
+      },
+      {
+        "type": "directory",
+        "basename": "pack",
+        "mtime": 1356966000,
+        "size": 68
+      }
+    ]
+  },
+  "root": null,
+  "path": "objects",
+  "working_dir": "."
+}

@@ -1,0 +1,11 @@
+{
+  "type": "ref",
+  "object": {
+    "ref": null,
+    "sha1": "a9940e70f346c3b7d63d979137f52c088d00304d",
+    "content": "a9940e70f346c3b7d63d979137f52c088d00304d\t\tbranch 'step6-b' of /Users/koseki/w/git-object-browser-pages/tmp/bare\n"
+  },
+  "root": null,
+  "path": "FETCH_HEAD",
+  "working_dir": "."
+}

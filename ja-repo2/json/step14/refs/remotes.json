@@ -1,0 +1,18 @@
+{
+  "type": "directory",
+  "object": {
+    "type": "directory",
+    "path": "refs/remotes",
+    "entries": [
+      {
+        "type": "directory",
+        "basename": "origin",
+        "mtime": 1356966000,
+        "size": 170
+      }
+    ]
+  },
+  "root": null,
+  "path": "refs/remotes",
+  "working_dir": "."
+}

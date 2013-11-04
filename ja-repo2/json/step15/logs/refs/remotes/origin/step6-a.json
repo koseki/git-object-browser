@@ -1,0 +1,12 @@
+{
+  "type": "reflog",
+  "object": {
+    "content": "",
+    "entries": [
+
+    ]
+  },
+  "root": null,
+  "path": "logs/refs/remotes/origin/step6-a",
+  "working_dir": "."
+}

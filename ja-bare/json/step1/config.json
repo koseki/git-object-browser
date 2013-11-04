@@ -1,0 +1,9 @@
+{
+  "type": "file",
+  "object": {
+    "content": "[core]\n\trepositoryformatversion = 0\n\tfilemode = true\n\tbare = true\n\tignorecase = true\n\tprecomposeunicode = false\n"
+  },
+  "root": null,
+  "path": "config",
+  "working_dir": "."
+}

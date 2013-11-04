@@ -1,0 +1,16 @@
+[
+  "COMMIT_EDITMSG",
+  "HEAD",
+  "index",
+  "logs/HEAD",
+  "logs/refs/heads/step6-a",
+  "logs/refs/heads/step6-b",
+  "objects/37/057b2e8a9041ef88b805a5b7c4e0e668a03be4",
+  "objects/55/e962d376617adabec31b95145f2fdb8e28a503",
+  "objects/70/5d00a2315521e07f6a26a2713d69502d402fa9",
+  "objects/72/943a16fb2c8f38f9dde202b7a70ccc19c52f34",
+  "objects/a9/940e70f346c3b7d63d979137f52c088d00304d",
+  "objects/f7/61ec192d9f0dca3329044b96ebdb12839dbff6",
+  "refs/heads/step6-a",
+  "refs/heads/step6-b"
+]
