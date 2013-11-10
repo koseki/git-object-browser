@@ -238,6 +238,10 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
     } else if (json.type == "directory") {
       template = json.type;
       loadDiffData();
+    } else if (json.type == "pack_index") {
+      var last_page = Math.ceil(json.entry_count / json.per_page);
+      $scope.scrollBottomEnabled = (json.page < last_page);
+      template = json.type;
     } else {
       template = json.type;
     }
@@ -455,7 +459,7 @@ function PackIndexCtrl($scope, $location, $routeParams, $rootScope, $resource, $
 
   $scope.packUrl = $scope.path.replace(/.idx$/, '.pack');
   $scope.lastPage = 1;
-  $scope.scrollBottomEnabled = true;
+  $scope.scrollBottomEnabled = $scope.$parent.scrollBottomEnabled;
 
   var resourceLoaded = function(json) {
     $scope.object.entries = $scope.object.entries.concat(json.object.entries);
