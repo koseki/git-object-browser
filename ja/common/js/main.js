@@ -112,6 +112,11 @@ angular.module('GitObjectBrowser', ['ngResource'])
 function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) {
   if (! $rootScope.diffCache) $rootScope.diffCache = {};
   if (! $rootScope.noteCache) $rootScope.noteCache = {};
+  $scope.steps = config.steps;
+  $scope.stepLinkEnabled = (config.steps.length > 0);
+
+  $scope.stepPrev = function() { $scope.$emit('stepPrev', {}); };
+  $scope.stepNext = function() { $scope.$emit('stepNext', {}); };
 
   // reset scrollBottom event handler
   angular.element(window).unbind('scroll');
@@ -238,6 +243,10 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
     } else if (json.type == "directory") {
       template = json.type;
       loadDiffData();
+    } else if (json.type == "pack_index") {
+      var last_page = Math.ceil(json.entry_count / json.per_page);
+      $scope.scrollBottomEnabled = (json.page < last_page);
+      template = json.type;
     } else {
       template = json.type;
     }
@@ -455,7 +464,7 @@ function PackIndexCtrl($scope, $location, $routeParams, $rootScope, $resource, $
 
   $scope.packUrl = $scope.path.replace(/.idx$/, '.pack');
   $scope.lastPage = 1;
-  $scope.scrollBottomEnabled = true;
+  $scope.scrollBottomEnabled = $scope.$parent.scrollBottomEnabled;
 
   var resourceLoaded = function(json) {
     $scope.object.entries = $scope.object.entries.concat(json.object.entries);
@@ -481,22 +490,33 @@ function PackIndexCtrl($scope, $location, $routeParams, $rootScope, $resource, $
 
 }
 
-function MenuCtrl($scope, $location, $routeParams) {
+function MenuCtrl($scope, $location, $routeParams, $rootScope) {
   $scope.steps = config.steps;
 
-  $scope.stepPrev = function() {
+  $scope.stepPrev = function(goRoot = true) {
     var idx = getStepIndex();
     if (idx.index > 0) {
-      $location.path('/' + $scope.steps[idx.index - 1].name + '/' + idx.file);
+      if (goRoot) {
+        $location.path('/' + $scope.steps[idx.index - 1].name + '/.git/');
+      } else {
+        $location.path('/' + $scope.steps[idx.index - 1].name + '/' + idx.file);
+      }
     }
   }
 
-  $scope.stepNext = function() {
+  $scope.stepNext = function(goRoot = true) {
     var idx = getStepIndex();
     if (idx.index < $scope.steps.length - 1) {
-      $location.path('/' + $scope.steps[idx.index + 1].name + '/' + idx.file);
+      if (goRoot) {
+        $location.path('/' + $scope.steps[idx.index + 1].name + '/.git/');
+      } else {
+        $location.path('/' + $scope.steps[idx.index + 1].name + '/' + idx.file);
+      }
     }
   }
+
+  $rootScope.$on('stepPrev', function() { $scope.stepPrev(false); });
+  $rootScope.$on('stepNext', function() { $scope.stepNext(false); });
 
   var getStepIndex = function() {
     var path = $location.path();

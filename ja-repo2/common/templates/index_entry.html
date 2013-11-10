@@ -3,6 +3,15 @@
 <span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
 <small>Index Entry</small></h1>
 
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="">Parsed</a></li>
+    <li data-ng-show="stepLinkEnabled"><a href="" data-ng-click="stepPrev()">&laquo; Prev</a></li>
+    <li data-ng-show="stepLinkEnabled"><a href="" data-ng-click="stepNext()">Next &raquo;</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="parsed">
+
 <table class="table">
 <tr>
 <th>version</th>
@@ -51,6 +60,10 @@
 </tr>
 </tbody>
 </table>
+
+    </div>
+  </div>
+</div>
 
 </article>
 

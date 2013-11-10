@@ -1,6 +1,16 @@
+<article>
 <h1><i class="icon-folder-open"></i>
 <span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
 <small>Directory</small></h1>
+
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#">List</a></li>
+      <li data-ng-show="stepLinkEnabled"><a href="" data-ng-click="stepPrev()">&laquo; Prev</a></li>
+      <li data-ng-show="stepLinkEnabled"><a href="" data-ng-click="stepNext()">Next &raquo;</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="parsed">
 
 <p><i class="icon-folder-open"></i> <a href="#{{basedir}}/.git/objects/pack">pack</a></p>
 
@@ -16,3 +26,8 @@
 </tr>
 </tbody>
 </table>
+
+      </div>
+    </div>
+  </div>
+</article>
