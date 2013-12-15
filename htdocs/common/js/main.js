@@ -406,11 +406,22 @@ function GitCtrl($scope, $location, $routeParams, $rootScope, $resource, $http) 
       $routeParams.ref = RegExp.$1;
       loadJson([$rootScope.basedir, 'packed-refs'])
     } else {
-      $scope.template = 'common/templates/notfound.html';
+      showNotFound();
     }
   };
 
   var showNotFound = function() {
+    if ($scope.steps > 0 && $scope.path.match(/^json\/[^\/]+\/(.+)\.json/)) {
+      $scope.path = ".git/" + RegExp.$1;
+    } else if ($scope.path.match(/^json\/(.+)\.json/)) {
+      $scope.path = ".git/" + RegExp.$1;
+    }
+    if ($scope.path.length > 25) {
+      $scope.notfoundTitleStyle = "font-size:1.8em;";
+    } else {
+      $scope.notfoundTitleStyle = "";
+    }
+    $scope.pathTokens = splitPath();
     $scope.template = 'common/templates/notfound.html';
   }
 
