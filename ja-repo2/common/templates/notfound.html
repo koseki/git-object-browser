@@ -1,6 +1,18 @@
 <article>
-<h1>Not Found</h1>
+<h1 style="{{ notfoundTitleStyle }}"><i class="icon-remove-sign"></i>
+<span data-ng-repeat="token in pathTokens"><a href="#{{basedir}}/{{token.path}}" style="color:black">{{token.label}}</a><span data-ng-hide="token.last">/</span></span>
+<small>Not Found</small></h1>
 
-<p><a href="{{path}}">{{path}}</a></p>
-
+  <div class="tabbable">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="">Message</a></li>
+      <li data-ng-show="stepLinkEnabled" class="pull-right"><a href="" data-ng-click="stepNext()">Next &raquo;</a></li>
+      <li data-ng-show="stepLinkEnabled" class="pull-right"><a href="" data-ng-click="stepPrev()">&laquo; Prev</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="list">
+        <strong>File does not exist:</strong> {{path}}
+      </div>
+    </div>
+  </div>
 </article>
