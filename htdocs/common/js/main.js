@@ -15,6 +15,7 @@ function routingConfig(steps) {
     if (steps.length > 0) {
       $routeProvider.
         whenPath('/:basedir/.git', 10, {controller:GitCtrl, templateUrl:'common/templates/git.html'}).
+        when('/:basedir/.git', {redirectTo:'/:basedir/.git/'}).
         otherwise({redirectTo:'/' + steps[0].name + '/.git/'});
     } else {
       $routeProvider.
@@ -504,7 +505,8 @@ function PackIndexCtrl($scope, $location, $routeParams, $rootScope, $resource, $
 function MenuCtrl($scope, $location, $routeParams, $rootScope) {
   $scope.steps = config.steps;
 
-  $scope.stepPrev = function(goRoot = true) {
+  $scope.stepPrev = function(goRoot) {
+    if (goRoot === undefined) goRoot = true;
     var idx = getStepIndex();
     if (idx.index > 0) {
       if (goRoot) {
@@ -515,7 +517,8 @@ function MenuCtrl($scope, $location, $routeParams, $rootScope) {
     }
   }
 
-  $scope.stepNext = function(goRoot = true) {
+  $scope.stepNext = function(goRoot) {
+    if (goRoot === undefined) goRoot = true;
     var idx = getStepIndex();
     if (idx.index < $scope.steps.length - 1) {
       if (goRoot) {
