@@ -1,15 +1,16 @@
 <h3><span class="label label-important">bare</span> Step 1. init bare</h3>
-<p><a href="../ja/#/step28/.git/">Part 1</a> に引き続き、こんどは複数のリポジトリがどのようにオブジェクトをやり取りするかを見てみます。</p>
+<p><a href="../ja/#/step1/.git/">Part 1</a> に引き続き、こんどは複数のリポジトリがどのようにオブジェクトをやり取りするかを見てみます。</p>
 <p>次のステップに進むときは、このコラムの一番下にある <strong>次へ</strong> <i class="icon-hand-right"></i> のリンクを使ってください。リポジトリ間を移動することがあります。</p>
-<p>画面上部のメニューにある <i class="icon-chevron-left"></i> <strong>Prev</strong> と <strong>Next</strong> <i class="icon-chevron-right"></i> は、同じリポジトリ内での変化を見たいときに使います。</p>
+<p>画面上部 (黒いヘッダ部分) にある <strong>&laquo; Prev</strong> と <strong>Next &raquo;</strong> は、同じリポジトリ内での変化を見たいときに使います。</p>
 
 <hr>
 
 <p><code>$ git init --bare</code></p>
 <p>--bare をつけてリポジトリを作成しました。これを<strong>ベアリポジトリ</strong>と呼びます。</p>
+<p>このコラムの一番上にある <span class="label label-important">bare</span> は、ベアリポジトリの中身を表示していることを表しています。</p>
 <p>ベアリポジトリには作業ディレクトリがありません。.git ディレクトリの中身だけが生成されます。</p>
 <p>通常、コミットを push する先のリポジトリは、ベアリポジトリである必要があります。作業ディレクトリがあると、外からの push で HEAD と index の間にズレが生じて不都合だからです。</p>
 <p>Github などに、このベアリポジトリが置いてあるものと思えば OK です。</p>
-<p>次に、このベアリポジトリを clone します。次へをクリックして、repo1 リポジトリに移動してください。</p>
+<p>次に、このベアリポジトリを clone します。次へ <i class="icon-hand-right"></i> をクリックして、repo1 リポジトリに移動してください。</p>
 
 <p><a href="../ja-repo1/#/step2/.git/">次へ <i class="icon-hand-right"></i></a></p>

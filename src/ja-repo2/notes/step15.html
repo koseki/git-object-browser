@@ -1,14 +1,14 @@
 <h3><span class="label label-success">repo2</span> Step 15. gc</h3>
 <p><code>$ git gc</code></p>
 <p>最後に、 gc コマンドでオブジェクトを pack してみます。</p>
-<p>コミット日時を 2001 年と古く設定しているため、通常よりも gc は強い効果がでています。</p>
+<p>(コミット日時を 2001 年と古く設定しているため、通常よりも gc は強い効果がでています。)</p>
 <p><a href="#/step15/.git/objects/">.git/objects ディレクトリ</a>が空になり、オブジェクトは全て <a href="#/step15/.git/objects/pack/">.git/objects/pack</a> にある pack ファイルにまとまりました。</p>
 <p>pack ファイルを読むには、同じディレクトリの idx ファイルを見る必要があります。</p>
 <p><a href="#/step15/.git/objects/pack/pack-69b6fd4764540327e097f3909d289be526a43332.idx">idx ファイル</a>の offset が、pack ファイルのどの位置にオブジェクトがあるかという情報です (テーブルヘッダの offset をクリックするとソート順を変えられます)。</p>
 <p>type が ofs_delta となっている<a href="#/step15/.git/objects/pack/pack-69b6fd4764540327e097f3909d289be526a43332.pack?offset=413">このオブジェクト</a>は、他のオブジェクトとの差分だけが記録されています。</p>
-<p>Deltas というタブをクリックしてみてください。「ブランチで a.txt に aaa と書き込みました」というコミットメッセージの aaa の部分を bbb で置き換えているのが見て取れます。</p>
+<p>Deltas というタブをクリックしてみてください。「step6-a ブランチで a.txt に aaa と書き込みました」というコミットメッセージの a を b に、aaa を bbb で置き換えているのが見て取れます。</p>
 <p>また、リファレンスが <a href="#/step15/.git/packed-refs">packed-refs</a> というファイルにまとまっています。</p>
-
+<p><a href="#/step15/.git/logs">ログは空になりました</a>。古い日付のログは gc で消去されます。</a>
 <p>
 <a href="#/step14/.git/"><i class="icon-hand-left"></i> 前へ</a>
 </p>
